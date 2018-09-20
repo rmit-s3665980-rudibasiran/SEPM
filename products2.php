@@ -7,6 +7,7 @@ session_start();
 
 include 'inc/head.php';
 include 'inc/header.php';
+include 'inc/lib.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -112,9 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</ul>
 	</div>
 </section>
-
-
-
 
 
 <?php include('inc/footer.php');?>

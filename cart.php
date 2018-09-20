@@ -7,7 +7,7 @@ session_start();
 
 include 'inc/lib.php';
 include 'inc/head.php';
-include 'inc/header.php';
+
 
 
 $loginType = stripInput($_SESSION["loginType"]); 

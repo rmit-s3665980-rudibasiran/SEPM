@@ -1,6 +1,3 @@
-
-		
-		
 		<header>
 			<div class="container h-100">
 				<div class="row h-100 justify-content-between align-items-center">
@@ -12,9 +9,9 @@
 
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
-						<a href="#" onClick="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"><i class="fal fa-shopping-cart"></i> Cart</a>
-					]
-					<!--input type="submit" type = "button" id="cartBtn" name="cartBtn" value="Go to Cart" -->
+					<!--a href="""--><!--i class="fal fa-shopping-cart"--><!--/i--><!--/a-->
+					
+					<input type="submit" type = "button" id="cartBtn" name="cartBtn" value="Go to Cart">
 					<input type="hidden" id="currentPage" name="currentPage" value="products_cart">
 					<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 					<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
@@ -24,9 +21,7 @@
 					<input type="hidden" name="cart" value="<?php echo base64_encode(serialize($cart)); ?>" />
 					</form>
 					
-						<a href="">
-							<i class="fal fa-sign-in"></i> Login
-						</a>
+					<a href=""><i class="fal fa-sign-in"></i>Login</a>
 					</nav>
 				</div>
 			</div>
