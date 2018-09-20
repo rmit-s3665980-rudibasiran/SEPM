@@ -12,12 +12,10 @@ include 'inc/header.php';
 
 $loginType = stripInput($_SESSION["loginType"]); 
 $pCode = stripInput($_SESSION["pCode"]); 
-$cart = stripInput($_SESSION["cart"]); 
-echo '<h1>pCode=['.$pCode.']</h1>';
-echo '<h1>cart=['.$cart.']</h1>';
-?>
+$cart = unserialize($_SESSION["cart"]); 
 
-<?php
+
+echo '<h5>pCode=['.$pCode.']</h5>';
 
     foreach($cart as $x=>$x_value) {
         echo "Key=" . $x . ", Value=" . $x_value;

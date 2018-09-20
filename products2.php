@@ -12,18 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $msg = "";
     $proceed = TRUE;
-
-
-	$_SESSION['currentPage'] = $_POST;
-	$_SESSION['userEmail'] = $_POST;
-	$_SESSION['userName'] = $_POST;
-	$_SESSION['cart'] = $_POST;
-	$_SESSION['loginType'] = $_POST;
-	$_SESSION['pCode'] = $_POST;
 	
 	$pCode = $_POST["pCode"];
-	$currentPage = $_POST["currentPage"];
+	$_SESSION["pCode"] = $pCode;
+
+
+	$_SESSION["cart"] = $cart;
 	
+
+	$currentPage = $_POST["currentPage"];
+	$_SESSION["currentPage"] = $currentPage;
+
     if ($currentPage == "products" & $pCode <> "") {
 
         header ("Location: product_details.php"); 
@@ -68,9 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<input type="hidden" id="currentPage" name="currentPage" value="products">
 		<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 		<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
-		<?php $cart=array("L101"=>3,"TV101"=>2);?>
-		<input type="hidden" id="cart" name="cart" value="<?php echo $cart ;?>">
-		
+		<?php
+		$cart = array("L101"=>3,"TV101"=>2);
+		?>
+		<input type='hidden' name='cart' value="<?php echo base64_encode(serialize($cart)); ?>" />
+	
 		
 		<?php
 
