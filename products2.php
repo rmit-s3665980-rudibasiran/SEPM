@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
 	}
 	
-	if ($currentPage == "products" & $pCode <> "") {
+	if ($currentPage == "products_cart") {
         header ("Location: cart.php"); 
         exit;
     }
@@ -123,21 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </section>
 
 
-<?php
-	function slugify ($string) {
-    $string = utf8_encode($string);
-    $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);   
-    $string = preg_replace('/[^a-z0-9- ]/i', '', $string);
-    $string = str_replace(' ', '-', $string);
-    $string = trim($string, '-');
-    $string = strtolower($string);
 
-    if (empty($string)) {
-        return 'n-a';
-    }
-
-    return $string;
-}?>
 
 
 <?php include('inc/footer.php');?>
