@@ -12,24 +12,12 @@ include 'inc/header.php';
 
 $loginType = stripInput($_SESSION["loginType"]); 
 $pCode = stripInput($_SESSION["pCode"]); 
-$cart1 = stripInput($_SESSION["cart"]); 
-$cart2 = unserialize(base64_decode($_POST["cart"]));
+
+$cart = unserialize(base64_decode($_SESSION["cart"]));
 
 
-echo '<h5>cart1=['.$cart1.']</h5>';
-echo '<h5>cart2=['.$cart2.']</h5>';
-echo '<h5>pCode=['.$pCode.']</h5>';
+    
 
-    foreach($cart1 as $x=>$x_value) {
-        echo "Key=" . $x . ", Value=" . $x_value;
-        echo "<br>";
-    }
-
-
-    foreach($cart2 as $x=>$x_value) {
-        echo "Key=" . $x . ", Value=" . $x_value;
-        echo "<br>";
-    }
 ?>
 
 <style>
@@ -81,6 +69,9 @@ img:hover {
 </style>
 
 
+
+<h5>Product Chosen</h5>
+
 <table>
   <tr>
     <th>Category</th>
@@ -89,6 +80,9 @@ img:hover {
     <th>Image</th>
     <th>Description</th>
     <th>Price</th>
+    <th>Add</th>
+    <th>Quantity</th>
+    <th>Remove</th>
   </tr>
 
 
@@ -100,7 +94,7 @@ $myfile = fopen("product.txt", "r") or die("Unable to open file!");
 
 $count = 0;
 
-// Output one line until end-of-file
+// Output one line until end-of-file for selected items
 while(!feof($myfile)) {
 
     $str = "";
@@ -119,6 +113,9 @@ while(!feof($myfile)) {
             echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
             echo '<td>'               . $desc       . '</td>';
             echo '<td align="right">' . money_format('%i',$price)      . '</td>';
+            echo '<td> Add Button </td>';
+            echo '<td> Quantity </td>';
+            echo '<td> Remove Button </td>';
             echo '</tr>';
             echo '</div>';
         }
@@ -133,6 +130,74 @@ while(!feof($myfile)) {
 ?>
 </table>
 
+<br>
+<br>
+<br>
+<br>
+
+<h5>Contents of Cart</h5>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Add</th>
+    <th>Quantity</th>
+    <th>Remove</th>
+  </tr>
+
+
+
+<?php
+$str = $category = $code = $name = $image = $desc = $price = "";
+
+$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+
+$count = 0;
+
+// Output one line until end-of-file for selected items
+while(!feof($myfile)) {
+
+    $str = "";
+  	$str = fgets($myfile);
+    $count++;
+    if ($count <> 1) {
+      list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+      if ($name <> "") {
+        foreach($cart as $x=>$x_value) {
+            //echo "Key=" . $x . ", Value=" . $x_value;
+            //echo "<br>";
+        
+
+            if ($code == $x) {
+                $image_path = 'images/';
+                echo '<div class="text">';
+                echo '<tr>';
+                echo '<td>' . $category   . '</td>';
+                echo '<td>' . $code       . '</td>';
+                echo '<td>' . $name       . '</td>';
+                echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
+                echo '<td>'               . $desc       . '</td>';
+                echo '<td align="right">' . money_format('%i',$price)      . '</td>';
+                echo '<td> Add Button </td>';
+                echo '<td>'. $x_value . '</td>';
+                echo '<td> Remove Button </td>';
+                echo '</tr>';
+                echo '</div>';
+            }
+        }
+      }
+      
+    }
+
+   
+}
+  fclose($myfile);
+?>
+</table>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
