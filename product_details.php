@@ -12,12 +12,21 @@ include 'inc/header.php';
 
 $loginType = stripInput($_SESSION["loginType"]); 
 $pCode = stripInput($_SESSION["pCode"]); 
-$cart = unserialize($_SESSION["cart"]); 
+$cart1 = stripInput($_SESSION["cart"]); 
+$cart2 = unserialize(base64_decode($_POST["cart"]));
 
 
+echo '<h5>cart1=['.$cart1.']</h5>';
+echo '<h5>cart2=['.$cart2.']</h5>';
 echo '<h5>pCode=['.$pCode.']</h5>';
 
-    foreach($cart as $x=>$x_value) {
+    foreach($cart1 as $x=>$x_value) {
+        echo "Key=" . $x . ", Value=" . $x_value;
+        echo "<br>";
+    }
+
+
+    foreach($cart2 as $x=>$x_value) {
         echo "Key=" . $x . ", Value=" . $x_value;
         echo "<br>";
     }

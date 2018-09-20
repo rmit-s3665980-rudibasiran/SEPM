@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pCode = $_POST["pCode"];
 	$_SESSION["pCode"] = $pCode;
 
-
+	$cart = $_POST["cart"];
 	$_SESSION["cart"] = $cart;
 	
 
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<?php
 		$cart = array("L101"=>3,"TV101"=>2);
 		?>
-		<input type='hidden' name='cart' value="<?php echo base64_encode(serialize($cart)); ?>" />
+		<input type="hidden" name="cart" value="<?php echo base64_encode(serialize($cart)); ?>" />
 	
 		
 		<?php
