@@ -19,12 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$cart = $_POST["cart"];
 	$_SESSION["cart"] = $cart;
 	
-
 	$currentPage = $_POST["currentPage"];
 	$_SESSION["currentPage"] = $currentPage;
 
     if ($currentPage == "products" & $pCode <> "") {
-
         header ("Location: product_details.php"); 
         exit;
 	}
@@ -62,8 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<div class="container">
 		<ul class="row grid offour">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
-        <input type="hidden" id="loginType" name="loginType" value="new">
 		<input type="hidden" id="currentPage" name="currentPage" value="products">
 		<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 		<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
@@ -78,11 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$str = $category = $code = $name = $image = $desc = $price = "";
 		$myfile = fopen("product.txt", "r") or die("Unable to open file!");
 		$count = 0;
-
-		
-          
-            
-       
 
 		// Output one line until end-of-file
 			while(!feof($myfile)) {
