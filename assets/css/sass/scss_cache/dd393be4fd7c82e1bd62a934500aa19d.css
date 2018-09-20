@@ -1,0 +1,584 @@
+/* compiled by scssphp v0.7.6 on Tue, 18 Sep 2018 12:51:16 +0000 (0.0623s) */
+
+/* 
+ * SCSS
+ * Mixins only.
+ * 
+ * 1. spacers
+ * 2. box shadows
+ * 3. circle
+ * 
+ */
+.m5t {
+  margin-top: 5px !important; }
+
+.p5t {
+  padding-top: 5px !important; }
+
+.m5b {
+  margin-bottom: 5px !important; }
+
+.p5b {
+  padding-bottom: 5px !important; }
+
+.m5l {
+  margin-left: 5px !important; }
+
+.p5l {
+  padding-left: 5px !important; }
+
+.m5r {
+  margin-right: 5px !important; }
+
+.p5r {
+  padding-right: 5px !important; }
+
+.m10t {
+  margin-top: 10px !important; }
+
+.p10t {
+  padding-top: 10px !important; }
+
+.m10b {
+  margin-bottom: 10px !important; }
+
+.p10b {
+  padding-bottom: 10px !important; }
+
+.m10l {
+  margin-left: 10px !important; }
+
+.p10l {
+  padding-left: 10px !important; }
+
+.m10r {
+  margin-right: 10px !important; }
+
+.p10r {
+  padding-right: 10px !important; }
+
+.m15t {
+  margin-top: 15px !important; }
+
+.p15t {
+  padding-top: 15px !important; }
+
+.m15b {
+  margin-bottom: 15px !important; }
+
+.p15b {
+  padding-bottom: 15px !important; }
+
+.m15l {
+  margin-left: 15px !important; }
+
+.p15l {
+  padding-left: 15px !important; }
+
+.m15r {
+  margin-right: 15px !important; }
+
+.p15r {
+  padding-right: 15px !important; }
+
+.m20t {
+  margin-top: 20px !important; }
+
+.p20t {
+  padding-top: 20px !important; }
+
+.m20b {
+  margin-bottom: 20px !important; }
+
+.p20b {
+  padding-bottom: 20px !important; }
+
+.m20l {
+  margin-left: 20px !important; }
+
+.p20l {
+  padding-left: 20px !important; }
+
+.m20r {
+  margin-right: 20px !important; }
+
+.p20r {
+  padding-right: 20px !important; }
+
+.m25t {
+  margin-top: 25px !important; }
+
+.p25t {
+  padding-top: 25px !important; }
+
+.m25b {
+  margin-bottom: 25px !important; }
+
+.p25b {
+  padding-bottom: 25px !important; }
+
+.m25l {
+  margin-left: 25px !important; }
+
+.p25l {
+  padding-left: 25px !important; }
+
+.m25r {
+  margin-right: 25px !important; }
+
+.p25r {
+  padding-right: 25px !important; }
+
+.m30t {
+  margin-top: 30px !important; }
+
+.p30t {
+  padding-top: 30px !important; }
+
+.m30b {
+  margin-bottom: 30px !important; }
+
+.p30b {
+  padding-bottom: 30px !important; }
+
+.m30l {
+  margin-left: 30px !important; }
+
+.p30l {
+  padding-left: 30px !important; }
+
+.m30r {
+  margin-right: 30px !important; }
+
+.p30r {
+  padding-right: 30px !important; }
+
+.m35t {
+  margin-top: 35px !important; }
+
+.p35t {
+  padding-top: 35px !important; }
+
+.m35b {
+  margin-bottom: 35px !important; }
+
+.p35b {
+  padding-bottom: 35px !important; }
+
+.m35l {
+  margin-left: 35px !important; }
+
+.p35l {
+  padding-left: 35px !important; }
+
+.m35r {
+  margin-right: 35px !important; }
+
+.p35r {
+  padding-right: 35px !important; }
+
+.m40t {
+  margin-top: 40px !important; }
+
+.p40t {
+  padding-top: 40px !important; }
+
+.m40b {
+  margin-bottom: 40px !important; }
+
+.p40b {
+  padding-bottom: 40px !important; }
+
+.m40l {
+  margin-left: 40px !important; }
+
+.p40l {
+  padding-left: 40px !important; }
+
+.m40r {
+  margin-right: 40px !important; }
+
+.p40r {
+  padding-right: 40px !important; }
+
+.m45t {
+  margin-top: 45px !important; }
+
+.p45t {
+  padding-top: 45px !important; }
+
+.m45b {
+  margin-bottom: 45px !important; }
+
+.p45b {
+  padding-bottom: 45px !important; }
+
+.m45l {
+  margin-left: 45px !important; }
+
+.p45l {
+  padding-left: 45px !important; }
+
+.m45r {
+  margin-right: 45px !important; }
+
+.p45r {
+  padding-right: 45px !important; }
+
+.m50t {
+  margin-top: 50px !important; }
+
+.p50t {
+  padding-top: 50px !important; }
+
+.m50b {
+  margin-bottom: 50px !important; }
+
+.p50b {
+  padding-bottom: 50px !important; }
+
+.m50l {
+  margin-left: 50px !important; }
+
+.p50l {
+  padding-left: 50px !important; }
+
+.m50r {
+  margin-right: 50px !important; }
+
+.p50r {
+  padding-right: 50px !important; }
+
+.m75t {
+  margin-top: 75px !important; }
+
+.p75t {
+  padding-top: 75px !important; }
+
+.m75b {
+  margin-bottom: 75px !important; }
+
+.p75b {
+  padding-bottom: 75px !important; }
+
+.m75l {
+  margin-left: 75px !important; }
+
+.p75l {
+  padding-left: 75px !important; }
+
+.m75r {
+  margin-right: 75px !important; }
+
+.p75r {
+  padding-right: 75px !important; }
+
+.m80t {
+  margin-top: 80px !important; }
+
+.p80t {
+  padding-top: 80px !important; }
+
+.m80b {
+  margin-bottom: 80px !important; }
+
+.p80b {
+  padding-bottom: 80px !important; }
+
+.m80l {
+  margin-left: 80px !important; }
+
+.p80l {
+  padding-left: 80px !important; }
+
+.m80r {
+  margin-right: 80px !important; }
+
+.p80r {
+  padding-right: 80px !important; }
+
+.m85t {
+  margin-top: 85px !important; }
+
+.p85t {
+  padding-top: 85px !important; }
+
+.m85b {
+  margin-bottom: 85px !important; }
+
+.p85b {
+  padding-bottom: 85px !important; }
+
+.m85l {
+  margin-left: 85px !important; }
+
+.p85l {
+  padding-left: 85px !important; }
+
+.m85r {
+  margin-right: 85px !important; }
+
+.p85r {
+  padding-right: 85px !important; }
+
+.m100t {
+  margin-top: 100px !important; }
+
+.p100t {
+  padding-top: 100px !important; }
+
+.m100b {
+  margin-bottom: 100px !important; }
+
+.p100b {
+  padding-bottom: 100px !important; }
+
+.m100l {
+  margin-left: 100px !important; }
+
+.p100l {
+  padding-left: 100px !important; }
+
+.m100r {
+  margin-right: 100px !important; }
+
+.p100r {
+  padding-right: 100px !important; }
+
+.m150t {
+  margin-top: 150px !important; }
+
+.p150t {
+  padding-top: 150px !important; }
+
+.m150b {
+  margin-bottom: 150px !important; }
+
+.p150b {
+  padding-bottom: 150px !important; }
+
+.m150l {
+  margin-left: 150px !important; }
+
+.p150l {
+  padding-left: 150px !important; }
+
+.m150r {
+  margin-right: 150px !important; }
+
+.p150r {
+  padding-right: 150px !important; }
+
+.m200t {
+  margin-top: 200px !important; }
+
+.p200t {
+  padding-top: 200px !important; }
+
+.m200b {
+  margin-bottom: 200px !important; }
+
+.p200b {
+  padding-bottom: 200px !important; }
+
+.m200l {
+  margin-left: 200px !important; }
+
+.p200l {
+  padding-left: 200px !important; }
+
+.m200r {
+  margin-right: 200px !important; }
+
+.p200r {
+  padding-right: 200px !important; }
+/* @include box-shadow(0px, 0px, 20px, 0, rgba(0,0,0,.2), true); */
+/* @include circle(200px, #999); */
+/*
+ * SCSS
+ * Global + generic vars and classes only.
+ * 
+ * Debug: https://ptechstore.000webhostapp.com/css/style.php/style.scss;
+ * 
+ * Author: Wanyi 
+ * Date: ; 
+ */
+.t-primary {
+  font-size: tomato; }
+
+.b-primary {
+  font-size: tomato; }
+
+.t-secondary {
+  font-size: yellow; }
+
+.b-secondary {
+  font-size: yellow; }
+
+.t-grey {
+  font-size: #eee; }
+
+.b-grey {
+  font-size: #eee; }
+
+.t-dark {
+  font-size: #111; }
+
+.b-dark {
+  font-size: #111; }
+
+.t-white {
+  font-size: #fff; }
+
+.b-white {
+  font-size: #fff; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Helvetiva, Arial, san-serif; }
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-weight: bold; }
+
+a, a:focus, a:hover {
+  text-decoration: none; }
+
+.ahref {
+  position: relative;
+  display: inline-block;
+  padding: 8px 30px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  transition: all 0.5s ease;
+  font-weight: bold; }
+
+.ahref:hover {
+  border-color: tomato;
+  color: #fff;
+  background-color: tomato;
+  transition: all 0.5s ease; }
+
+.has-image {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+header {
+  height: 50px; }
+
+header .right a:first-child {
+  margin-right: 20px; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: tomato;
+  color: #fff;
+  transition: bottom 0.2s ease-in-out;
+  font-size: 12px; }
+
+footer.has-scroll {
+  bottom: -40px; }
+/*
+ * SCSS
+ * Serve landing.php only.
+ * 
+ * Debug: https://ptechstore.000webhostapp.com/css/style.php/style.scss;
+ * 
+ * Author: Wanyi 
+ * Date: ; 
+ */
+#hero {
+  width: 100vw;
+  height: 100%;
+  min-height: 600px;
+  background-color: #111;
+  color: #fff;
+  overflow: hidden; }
+
+#hero h1 {
+  text-transform: uppercase;
+  font-size: 4rem;
+  font-weight: bold; }
+
+#hero .circle {
+  width: 500px;
+  height: 500px;
+  background: #999;
+  -webkit-border-radius: 250px;
+  -moz-border-radius: 250px;
+  border-radius: 250px; }
+
+.global .heading {
+  position: relative;
+  display: inline-block;
+  margin: 0; }
+
+.global .heading span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  text-align: center; }
+
+.global .heading:before, .global .heading:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.global .heading:before {
+  width: 100%;
+  height: 1px;
+  background-color: #0c0c0c;
+  z-index: 0; }
+
+.global .heading:after {
+  width: 150%;
+  max-width: 400px;
+  height: 100%;
+  background-color: #fff;
+  display: inline-block;
+  z-index: 0; }
+
+.products.navcat {
+  position: relative;
+  /*background-color: $grey;*/ }
+
+.products.navcat button {
+  border: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  outline: none; }
+  .products.navcat button.is-checked {
+    color: tomato; }
+
+.products.listing ul.grid {
+  padding-left: 0; }
+  .products.listing ul.grid.offour li {
+    list-style: none; }
+    .products.listing ul.grid.offour li > div {
+      margin-bottom: 30px;
+      transition: all 0.5s ease; }
+      .products.listing ul.grid.offour li > div .image {
+        width: 100%;
+        height: 200px;
+        background-color: #eee; }
+      .products.listing ul.grid.offour li > div .content {
+        padding: 15px; }
+      .products.listing ul.grid.offour li > div:hover {
+        -webkit-box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+        transition: all 0.5s ease; }

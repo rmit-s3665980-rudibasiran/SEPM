@@ -1,0 +1,10 @@
+Product Category;Product Code;Brand;Product Name;Image Name;Product Description;Price
+Laptops;L101;Apple;Apple MacBook Pro;apple-macbook-12inch-256gb-1899.jpg;It's a Mac;1899.50
+Laptops;L102;AlienWare; Gaming Laptop;alienware-17-r4-17.3-gaming-laptop-2999.jpg;Alienware - Good for Gaming;2999
+Headphones;H101;JBL;JBL Tune;jbl-tune-600btnc-wireless-149.jpg;Perfect for the audiophile;149
+Hard Drive;HD101;Lacie;Lacie's Hard Drive;lacie-1tb-rugged-usb-c-1tb-949.jpg;Rugged Storage;949
+Hard Drive;HD202;Samsung;Samsung T5 SSD;samsung-t5-ssd-1tb-549.jpg;Chic Storage;549
+HeadPhones;H202;Sony;Sony MDRXB 55;sony-mdrxb55oap-on-ear-headphones-89.jpg;It's a Sony headphone;89
+TV;TV101;Sony;Sony X75 49";sony-x75f-49-4k-uhd-android-smart-led-tv-1198.jpg;It's a Sony TV;1198
+TV;TV202;TCL;TCL C6US 49";tcl-c6us-49-4k-uhd-android-led-tv-1098.jpg;It's not a Sony;1098
+Hard Drive;HD303;WD;WD My Passport;wd-my-passport-ssd-512gb-269.jpg;Office Storage for NetFlix;269

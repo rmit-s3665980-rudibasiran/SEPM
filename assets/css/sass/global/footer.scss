@@ -1,0 +1,12 @@
+footer {
+	position: fixed; bottom: 0;
+    width: 100%; height: 40px;
+    background: $primary; color: $white;
+    transition: bottom 0.2s ease-in-out;
+    font-size: 12px;
+    
+    &.has-scroll {
+        bottom: -40px;
+    }
+}
+

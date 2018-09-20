@@ -1,0 +1,74 @@
+/*
+ * SCSS
+ * Global + generic vars and classes only.
+ * 
+ * Debug: https://ptechstore.000webhostapp.com/css/style.php/style.scss;
+ * 
+ * Author: Wanyi 
+ * Date: ; 
+ */
+
+
+ $primary: tomato;
+ $secondary: yellow;
+ $grey: #eee;
+ $dark: #111;
+ $white: #fff;
+
+$colors: (
+	primary: tomato,
+	secondary: yellow,
+	grey: #eee,
+	dark: #111,
+	white: #fff
+);
+
+@each $element, $color in $colors {
+	.t-#{$element} {
+		font-size: $color;
+	}
+	.b-#{$element} {
+		font-size: $color;
+	}
+}
+
+$trans: all .5s ease;
+
+
+
+html, body {
+	padding: 0; margin: 0;
+	width: 100%; height: 100%;
+	-webkit-font-smoothing: antialiased;
+    	-moz-osx-font-smoothing: grayscale;
+    font-family: Helvetiva, Arial, san-serif;
+}
+
+
+h1, h2, h3 { text-transform: uppercase; font-weight: bold; }
+a, a:focus, a:hover { text-decoration: none; }
+
+
+.ahref {
+	position: relative; display: inline-block;
+	padding: 8px 30px;
+	background-color: transparent;
+	border: 1px solid $white; color: $white;
+	transition: $trans;
+
+	font-weight: bold;
+
+
+	&:hover {
+		border-color: $primary; color: $white;
+		background-color: $primary;
+		transition: $trans;
+	}
+}
+
+
+.has-image {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}

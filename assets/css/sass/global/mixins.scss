@@ -1,0 +1,51 @@
+/* 
+ * SCSS
+ * Mixins only.
+ * 
+ * 1. spacers
+ * 2. box shadows
+ * 3. circle
+ * 
+ */
+
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 80, 85, 100, 150, 200);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m#{$space}#{str-slice($side, 0, 1)} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p#{$space}#{str-slice($side, 0, 1)} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+@mixin box-shadow($top, $left, $blur, $size, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $size $color;
+        -moz-box-shadow:inset $top $left $blur $size $color;
+        box-shadow:inset $top $left $blur $size $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $size $color;
+        -moz-box-shadow: $top $left $blur $size $color;
+        box-shadow: $top $left $blur $size $color;
+    }
+}
+/* @include box-shadow(0px, 0px, 20px, 0, rgba(0,0,0,.2), true); */
+
+@mixin circle($width, $color) {
+  width: $width;
+  height: $width;
+  background: $color;
+  -webkit-border-radius: $width/2;
+     -moz-border-radius: $width/2;
+          border-radius: $width/2;
+}
+
+/* @include circle(200px, #999); */
+
+
+
