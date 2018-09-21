@@ -1,3 +1,21 @@
+		
+<style>
+.btn {
+    background-color: black;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn:hover {
+    opacity: 0.7;
+}
+</style>
+		
 		<header>
 			<div class="container h-100">
 				<div class="row h-100 justify-content-between align-items-center">
@@ -13,7 +31,7 @@
 					-->
 					
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<input type="submit" type = "button" id="cartBtn" name="cartBtn" value="Go to Cart">
+					<input type="submit" type = "button" id="cartBtn" name="cartBtn" class="btn" value="Go to Cart">
 					<input type="hidden" id="currentPage" name="currentPage" value="products_cart">
 					<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 					<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
@@ -22,13 +40,13 @@
 					?>
 					<input type="hidden" name="cart" value="<?php echo base64_encode(serialize($cart)); ?>" />
 					</form>
-					
+
 					<!--
 					<a href=""><i class="fal fa-sign-in"></i>Login</a>
 					-->
 
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<input type="submit" type = "button" id="loginBtn" name="loginBtn" value="Login">
+					<input type="submit" type = "button" id="loginBtn" name="loginBtn" class="btn" value="Login">
 					<input type="hidden" id="currentPage" name="currentPage" value="products_login">
 					<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 					<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
