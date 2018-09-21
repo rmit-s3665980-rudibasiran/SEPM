@@ -8,7 +8,6 @@ include 'inc/head.php';
 include 'inc/header.php';
 include 'inc/lib.php';
 
-
 $GLOBALS['cart'] = $_SESSION['cart']; 
 if (!isset($GLOBALS['cart']) ) {
 	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);

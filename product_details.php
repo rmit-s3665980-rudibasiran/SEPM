@@ -18,11 +18,6 @@ if (!isset($GLOBALS['cart']) ) {
 }
 $_SESSION['cart'] = $cart;
 
-
-
-$cart = $_SESSION['cart'];
-$GLOBALS['cart']  = $cart;
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $msg = "";
@@ -30,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
     $AddNewPCode = $_POST["AddNewPCode"];
     $cart = $_SESSION['cart'];
-    $GLOBALS['cart'] += [ $AddNewPCode => 1 ];
+    $cart += [ $AddNewPCode => 1 ];
     $_SESSION['cart'] = $cart;
 
     $pCode = $_POST["pCode"];
