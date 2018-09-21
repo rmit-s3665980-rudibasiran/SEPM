@@ -4,10 +4,16 @@ setlocale(LC_MONETARY,"en_AU");
 error_reporting(0);
 session_start();
 
-include 'inc/global.php';
 include 'inc/head.php';
 include 'inc/header.php';
 include 'inc/lib.php';
+
+
+$GLOBALS['cart'] = $_SESSION['cart']; 
+if (!isset($GLOBALS['cart']) ) {
+	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
+}
+$_SESSION['cart'] = $cart;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -17,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pCode = $_POST["pCode"];
 	$_SESSION["pCode"] = $pCode;
 
-	
 	$currentPage = $_POST["currentPage"];
 	$_SESSION["currentPage"] = $currentPage;
 
@@ -31,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
+
+
 
 ?>
 
@@ -82,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<li class="element-item <?php echo slugify($category);?> col-3">
 				<div>
 					<div class="image has-image" style="background-image: url(images/<?php echo $image ;?>);">
-					<input type="submit" id="pCode" name="pCode" <?php if(!$showLogin) {?> disabled="disabled" <?php } ?>   value="<?php echo $code; ?>">
+					<input type="submit" id="pCode" name="pCode"  value="<?php echo $code; ?>">
 					</div>
 					<div class="content">
 						<h5>

@@ -11,6 +11,36 @@ include 'inc/header.php';
 $loginType = stripInput($_SESSION["loginType"]); 
 $pCode = stripInput($_SESSION["pCode"]); 
 
+
+$GLOBALS['cart'] = $_SESSION['cart']; 
+if (!isset($GLOBALS['cart']) ) {
+	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
+}
+$_SESSION['cart'] = $cart;
+
+
+
+$cart = $_SESSION['cart'];
+$GLOBALS['cart']  = $cart;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $msg = "";
+    $proceed = TRUE;
+	
+    $AddNewPCode = $_POST["AddNewPCode"];
+    $cart = $_SESSION['cart'];
+    $GLOBALS['cart'] += [ $AddNewPCode => 1 ];
+    $_SESSION['cart'] = $cart;
+
+    $pCode = $_POST["pCode"];
+    $_SESSION["pCode"] = $pCode;
+    
+    // header ("Location: product_details.php"); 
+    // exit;
+   
+}
+
 ?>
 
 <style>
@@ -104,7 +134,23 @@ while(!feof($myfile)) {
             echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
             echo '<td>'               . $desc       . '</td>';
             echo '<td align="right">' . money_format('%i',$price)      . '</td>';
-            echo '<td> Add Button </td>';
+
+            $disableAddtoCart = false;
+            foreach($cart as $x=>$x_value) {  
+                if ($code == $x) {
+                    $disableAddtoCart = true;
+                }
+            }
+            ?>
+            
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
+            <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
+            </form>
+
+            <?php
+
             echo '<td> Quantity </td>';
             echo '<td> Remove Button </td>';
             echo '</tr>';
@@ -146,7 +192,24 @@ while(!feof($myfile)) {
             echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
             echo '<td>'               . $desc       . '</td>';
             echo '<td align="right">' . money_format('%i',$price)      . '</td>';
-            echo '<td> Add Button </td>';
+
+            $disableAddtoCart = false;
+            foreach($cart as $x=>$x_value) {
+                
+                if ($code == $x) {
+                    $disableAddtoCart = true;
+                }
+            }
+
+            ?>
+            
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
+            </form>
+            <?php
+
             echo '<td> Quantity </td>';
             echo '<td> Remove Button </td>';
             echo '</tr>';

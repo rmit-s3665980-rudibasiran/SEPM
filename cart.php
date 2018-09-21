@@ -1,18 +1,21 @@
-
-
 <?php
 setlocale(LC_MONETARY,"en_AU");
 error_reporting(0);
 session_start();
 
-include 'inc/global.php';
 include 'inc/lib.php';
 include 'inc/head.php';
 
-// $loginType = stripInput($_SESSION["loginType"]); 
-// $cart = unserialize(base64_decode($_SESSION["cart"]));
+
+$GLOBALS['cart'] = $_SESSION['cart']; 
+if (!isset($GLOBALS['cart']) ) {
+	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
+}
+$_SESSION['cart'] = $cart;
+
 
 ?>
+
 
 <style>
 table {
