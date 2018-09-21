@@ -17,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pCode = $_POST["pCode"];
 	$_SESSION["pCode"] = $pCode;
 
-	$cart = $_POST["cart"];
-	$_SESSION["cart"] = $cart;
 	
 	$currentPage = $_POST["currentPage"];
 	$_SESSION["currentPage"] = $currentPage;
@@ -64,12 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<input type="hidden" id="currentPage" name="currentPage" value="products">
 		<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
 		<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
-		<?php
-		$cart = array("L101"=>3,"TV101"=>2);
-		?>
-		<input type="hidden" name="cart" value="<?php echo base64_encode(serialize($cart)); ?>" />
-	
-		
 		<?php
 
 		$str = $category = $code = $name = $image = $desc = $price = "";

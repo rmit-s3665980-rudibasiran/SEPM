@@ -5,13 +5,12 @@ setlocale(LC_MONETARY,"en_AU");
 error_reporting(0);
 session_start();
 
+include 'inc/global.php';
 include 'inc/lib.php';
 include 'inc/head.php';
 
-
-
-$loginType = stripInput($_SESSION["loginType"]); 
-$cart = unserialize(base64_decode($_SESSION["cart"]));
+// $loginType = stripInput($_SESSION["loginType"]); 
+// $cart = unserialize(base64_decode($_SESSION["cart"]));
 
 ?>
 
