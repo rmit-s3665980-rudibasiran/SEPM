@@ -9,8 +9,9 @@
 
 					
 					<!--
-					<a href="""><i class="fal fa-shopping-cart"></i>Cart</a>
+					<a href=""><i class="fal fa-shopping-cart"></i>Cart</a>
 					-->
+					
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<input type="submit" type = "button" id="cartBtn" name="cartBtn" value="Go to Cart">
 					<input type="hidden" id="currentPage" name="currentPage" value="products_cart">
@@ -21,6 +22,7 @@
 					?>
 					<input type="hidden" name="cart" value="<?php echo base64_encode(serialize($cart)); ?>" />
 					</form>
+					
 					<!--
 					<a href=""><i class="fal fa-sign-in"></i>Login</a>
 					-->
