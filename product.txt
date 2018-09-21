@@ -1,10 +1,27 @@
-Product Category;Product Code;Brand;Product Name;Image Name;Product Description;Price
-Laptops;L101;Apple;Apple MacBook Pro;apple-macbook-12inch-256gb-1899.jpg;It's a Mac;1899.50
-Laptops;L102;AlienWare; Gaming Laptop;alienware-17-r4-17.3-gaming-laptop-2999.jpg;Alienware - Good for Gaming;2999
-Headphones;H101;JBL;JBL Tune;jbl-tune-600btnc-wireless-149.jpg;Perfect for the audiophile;149
-Hard Drive;HD101;Lacie;Lacie's Hard Drive;lacie-1tb-rugged-usb-c-1tb-949.jpg;Rugged Storage;949
-Hard Drive;HD202;Samsung;Samsung T5 SSD;samsung-t5-ssd-1tb-549.jpg;Chic Storage;549
-HeadPhones;H202;Sony;Sony MDRXB 55;sony-mdrxb55oap-on-ear-headphones-89.jpg;It's a Sony headphone;89
+# Product Category;Product Code;Brand;Product Name;Image Name;Product Description;Price
 TV;TV101;Sony;Sony X75 49";sony-x75f-49-4k-uhd-android-smart-led-tv-1198.jpg;It's a Sony TV;1198
-TV;TV202;TCL;TCL C6US 49";tcl-c6us-49-4k-uhd-android-led-tv-1098.jpg;It's not a Sony;1098
-Hard Drive;HD303;WD;WD My Passport;wd-my-passport-ssd-512gb-269.jpg;Office Storage for NetFlix;269
+TV;TV102;TCL;TCL C6US 49";tcl-c6us-49-4k-uhd-android-led-tv-1098.jpg;It's not a Sony;1098
+TV;TV103;Samsung;Samsung MU6290 40";Samsung-MU6290-Series-40-Class-HDR-UHD-Smart-LED-TV-v1.jpg;UHD 3840 x 2160 LED Panel;397
+TV;TV104;Sharp;Sharp P5000 43";Sharp-P5000-Series-43-Class-Full-HD-Smart-LED-TV-v1.jpg;Motion Rate of 120 Enhances Fast Motion;279
+TV;TV105;VIZIO;VIZIO D40F-F1 40";VIZIO-D-Series-40-Class-Full-HD-SmartCast-LED-TV-v1.jpg;Cast Apps with Chromecast built-in;259
+TV;TV106;Samsung;Samsung Q6FN 65";Samsung-Q6FN-Series-65-HDR-UHD-Smart-QLED-TV-v1.jpg;Screen Mirroring Technology;1679
+Headphones;H101;JBL;JBL Tune;jbl-tune-600btnc-wireless-149.jpg;Perfect for the audiophile;149
+HeadPhones;H102;Sony;Sony MDRXB 55;sony-mdrxb55oap-on-ear-headphones-89.jpg;It's a Sony headphone;89
+Headphones;H103;Senal;Senal SMH1000;Senal_SMH_1000_STUDIO_MONITOR_HEADPHONES_v1.jpg;Studio Monitor Headphones;75
+Headphones;H104;Sennheiser;Sennheiser G4me ONE;sennheiser_506080_g4me_one_headset_black_v1.jpg;Gaming Headphones;138
+Headphones;H105;Shure;Shure SE215;Shure_SE215_K_SE215_Sound_Isolating_In_Ear_Stereo.jpg;Isolating In Ear Stereo ;99
+Headphones;H106;Audio Technica;Audio Technica ATH-m50x;audio_technica_ath_m50x_closed_back_professional_studio_v1.jpg;Circumaural, Sound-Isolating Design;129
+Laptops;L101;Apple;Apple MacBook Pro;apple-macbook-12inch-256gb-1899.jpg;It's a Mac;1899.5
+Laptops;L102;AlienWare; Gaming Laptop;alienware-17-r4-17.3-gaming-laptop-2999.jpg;Alienware - Good for Gaming;2999
+Laptops;L103;Asus;Asus 15.6" TUF Gaming Notebook;ASUS-15_6-TUF-Gaming-FX504GE-Notebook-v1.jpg;Gaming focused system;899
+Laptops;L104;Lenovo;Lenovo Flex 5 2-in-1 Notebook;Lenovo-15_6-Flex-5-Multi-Touch-2-in-1-Notebook-v1.jpg;Laptop for creatives;949
+Laptops;L105;Microsoft;Microsoft Surface Go 10";Microsoft-Surface-Go-10-128gb-Multi-Touch-Tablet-v1.jpg;All around use laptop;549
+Laptops;L106;HP;HP ZBook 17 Mobile Workstation;HP-ZBook-17-Mobile-Workstation-v1.jpg;Laptop designed for 3D Modelling;2239
+Hard Drive;HD101;Lacie;Lacie's Hard Drive;lacie-1tb-rugged-usb-c-1tb-949.jpg;Rugged Storage;949
+Hard Drive;HD102;Samsung;Samsung T5 SSD;samsung-t5-ssd-1tb-549.jpg;Chic Storage;549
+Hard Drive;HD103;WD;WD My Passport;wd-my-passport-ssd-512gb-269.jpg;Office Storage for NetFlix;269
+Hard Drive;HD104;Sandisk;Sandisk 500gb SSD;sandisk_sdssde60_500g_g25_extreme_600_500gb_v1.jpg;Fast External SSD;125
+Hard Drive;HD105;Western Digital;WD 4TB My Passport;WD-4TB-My-Passport-USB-3-0-External-HDD-v1.jpg;USB 3.0 External Hard Drive;99
+Hard Drive;HD106;Seagate;Seagate 8TB Desktop HDD;Seagate-8TB-Desktop-HDD-USB3-v1.jpg;Big 8TB storage capacity;139
+Hard Drive;HD107;G-Technology;G-Technology 6TB G-Drive ;G-Technology-6TB-G-Drive-USB3-v1.jpg;Aluminum enclosure external HDD;167
+#

@@ -1,5 +1,4 @@
 
-
 <?php
 setlocale(LC_MONETARY,"en_AU");
 error_reporting(0);
@@ -74,18 +73,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		$str = $category = $code = $name = $image = $desc = $price = "";
 		$myfile = fopen("product.txt", "r") or die("Unable to open file!");
-		$count = 0;
 
 		// Output one line until end-of-file
-			while(!feof($myfile)) {
+		while(!feof($myfile)) {
 
-				$str = "";
-			  	$str = fgets($myfile);
-			    $count++;
-			    if ($count <> 1) { 
-			    	list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+			$str = "";
+			$str = fgets($myfile);
+			if (substr($str, 0, 1) <> "#") { 
+			    list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
 
-			    	?>
+		?>
 
 			<!-- start loop -->
 

@@ -94,8 +94,8 @@ while(!feof($myfile)) {
 
     $str = "";
   	$str = fgets($myfile);
-    $count++;
-    if ($count <> 1) {
+   
+    if (substr($str, 0, 1) <> "#") { 
       list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
       if ($name <> "") {
         foreach($cart as $x=>$x_value) {
