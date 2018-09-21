@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab 7 DES</title>
+		<style type="text/css">
+			html, body {
+				font-family: Helvetica, Arial, san-serif;
+				background-color: #eee;
+			}
+
+			section {
+				position: absolute; top: 50%; left: 50%;
+				transform: translate(-50%,-50%);
+				width: 50%;
+			}
+
+			form, table { width: 100%; }
+
+			table { 
+				background-color: white; 
+				border-spacing: 1px;
+				border-color: #eee;
+			}
+
+			th, td { padding-left: 10px; padding-right: 10px; height: 50px; }
+
+			th {
+				background-color: #111;
+				color: #fff; text-align: left;
+			}
+
+			form table tbody > tr.green td { 
+				background-color: tomato; 
+				color: #fff;
+			}
+
+			input {
+				-webkit-appearance: none;
+				box-shadow: none;
+				height: 30px; width: 100%;
+				border: 1px solid #aaa;
+				outline: none;
+				display: block;
+			}
+
+			button[type="submit"] { 
+				height: 30px; padding: 8px 30px;
+				display: inline-block; float: right; 
+				border: 0; border-radius: 0;
+				background-color: green; color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<h1>Lab 7: DES Encryption with Javascript</h1>
+			<p>http://titan.csit.rmit.edu.au/~s3368772/w8/client/client.html</p>
+			<form action="../server/server.php" method="POST">
+				<table>
+					<tbody>
+						<tr>
+							<td>Enter a Message:</td>
+							<td>Enter a DES encryption key: </td>
+						</tr>
+						<tr>
+							<td><input id="message" name="message" type="text"></td>
+							<td><input id="DES_Encryption_Key" name="key" type="text"></td>
+						</tr>
+						<tr>
+							<td><h4>Encrypted value</h4></td>
+							<td><h4 id="encrypted"></h4></td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" onclick="DES_encryption()">Encrypt the Message</button>
+				<hr/>
+				<hr/>
+				<hr/>
+				<hr/>
+				<hr/>
+				<hr/>
+				<hr/>
+				<form>
+					<table>
+						<tbody>
+							<tr>
+								<td>Enter a DES decryption key to decrypt: </td>
+								<td>Decrypted value: </td>
+							</tr>
+							<tr>
+								<td><input id="DES_Decryption_Key" type="text"></td>
+								<td><p id="decrypted"></p></td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="submit" onclick="DES_decryption()">Decrypt the "Encrypted value"</button>
+				</form>
+			</form>
+		</section>
+		
+		
+		
+		<script type="text/javascript" src="des.js"></script>
+		<script type="text/javascript">
+			function DES_encryption() {
+				
+				var message = document.getElementById("message").value;
+				
+				var key = document.getElementById("DES_Encryption_Key").value;
+
+				// javascript des encryption api
+				var encrypted = javascript_des_encryption(key, message);
+				
+				document.getElementById("encrypted").innerHTML = encrypted;	
+			}
+
+			function DES_decryption() {	
+				var message = document.getElementById("encrypted").innerHTML ;
+				
+				var key = document.getElementById("DES_Decryption_Key").value;
+				
+				// javascript des decryption api
+				var decrypted = javascript_des_decryption(key,message);
+			
+				document.getElementById("decrypted").innerHTML = decrypted;
+			}
+		</script> 
+
+	</body>
+</html>

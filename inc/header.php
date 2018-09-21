@@ -3,7 +3,7 @@
 .btn {
     background-color: black;
     color: white;
-    padding: 16px 20px;
+    padding: 15px 15px;
     border: none;
     cursor: pointer;
     width: 100%;

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab 5 Register</title>
+		<style type="text/css">
+			html, body {
+				font-family: Helvetica, Arial, san-serif;
+				background-color: #eee;
+			}
+
+			section {
+				position: absolute; top: 50%; left: 50%;
+				transform: translate(-50%,-50%);
+				width: 50%;
+			}
+
+			form, table { width: 100%; }
+
+			table { 
+				background-color: white; 
+				border-spacing: 1px;
+				border-color: #eee;
+			}
+
+			th, td { padding-left: 10px; padding-right: 10px; height: 50px; }
+
+			th {
+				background-color: #111;
+				color: #fff; text-align: left;
+			}
+
+			form table tbody > tr.green td { 
+				background-color: tomato; 
+				color: #fff;
+			}
+
+			input {
+				-webkit-appearance: none;
+				box-shadow: none;
+				height: 30px; width: 100%;
+				border: 1px solid #aaa;
+				outline: none;
+			}
+
+			input[type="submit"] { 
+				height: 30px; padding: 8px 30px;
+				display: inline-block; float: right; 
+				border: 0; border-radius: 0;
+				background-color: green; color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<h1>Lab 5 Register</h1>
+			<form action="register.php" method="POST">
+				<table>
+					<tbody>
+						<tr>
+							<td>Username:</td>
+							<td><input type="text" name="username" /></td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td><input type="password" name="password" /></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" value="Submit to Register">
+			</form>
+		</section>
+	
+	</body>
+</html>

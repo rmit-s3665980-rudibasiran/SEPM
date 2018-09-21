@@ -35,23 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<style>
-.btn {
-    background-color: black;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 1;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn:hover {
-    opacity: 0.7;
-}
-</style>
-
 <section class="global m50b">
 	<h2 class="heading col">
 		<span>Products</span>
@@ -106,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<li class="element-item <?php echo slugify($category);?> col-3">
 				<div>
 					<div class="image has-image" style="background-image: url(images/<?php echo $image ;?>);">
-					<input type="submit" id="pCode" name="pCode" class="btn" value="<?php echo $code; ?>">
+					<input type="submit" id="pCode" name="pCode" value="<?php echo $code; ?>">
 					</div>
 					<div class="content">
 						<h5>
