@@ -6,17 +6,17 @@ TV;TV104;Sharp;Sharp P5000 43";Sharp-P5000-Series-43-Class-Full-HD-Smart-LED-TV-
 TV;TV105;VIZIO;VIZIO D40F-F1 40";VIZIO-D-Series-40-Class-Full-HD-SmartCast-LED-TV-v1.jpg;Cast Apps with Chromecast built-in;259
 TV;TV106;Samsung;Samsung Q6FN 65";Samsung-Q6FN-Series-65-HDR-UHD-Smart-QLED-TV-v1.jpg;Screen Mirroring Technology;1679
 Headphones;H101;JBL;JBL Tune;jbl-tune-600btnc-wireless-149.jpg;Perfect for the audiophile;149
-HeadPhones;H102;Sony;Sony MDRXB 55;sony-mdrxb55oap-on-ear-headphones-89.jpg;It's a Sony headphone;89
+Headphones;H102;Sony;Sony MDRXB 55;sony-mdrxb55oap-on-ear-headphones-89.jpg;It's a Sony headphone;89
 Headphones;H103;Senal;Senal SMH1000;Senal_SMH_1000_STUDIO_MONITOR_HEADPHONES_v1.jpg;Studio Monitor Headphones;75
 Headphones;H104;Sennheiser;Sennheiser G4me ONE;sennheiser_506080_g4me_one_headset_black_v1.jpg;Gaming Headphones;138
 Headphones;H105;Shure;Shure SE215;Shure_SE215_K_SE215_Sound_Isolating_In_Ear_Stereo.jpg;Isolating In Ear Stereo ;99
 Headphones;H106;Audio Technica;Audio Technica ATH-m50x;audio_technica_ath_m50x_closed_back_professional_studio_v1.jpg;Circumaural, Sound-Isolating Design;129
-Laptops;L101;Apple;Apple MacBook Pro;apple-macbook-12inch-256gb-1899.jpg;It's a Mac;1899.5
-Laptops;L102;AlienWare; Gaming Laptop;alienware-17-r4-17.3-gaming-laptop-2999.jpg;Alienware - Good for Gaming;2999
-Laptops;L103;Asus;Asus 15.6" TUF Gaming Notebook;ASUS-15_6-TUF-Gaming-FX504GE-Notebook-v1.jpg;Gaming focused system;899
-Laptops;L104;Lenovo;Lenovo Flex 5 2-in-1 Notebook;Lenovo-15_6-Flex-5-Multi-Touch-2-in-1-Notebook-v1.jpg;Laptop for creatives;949
-Laptops;L105;Microsoft;Microsoft Surface Go 10";Microsoft-Surface-Go-10-128gb-Multi-Touch-Tablet-v1.jpg;All around use laptop;549
-Laptops;L106;HP;HP ZBook 17 Mobile Workstation;HP-ZBook-17-Mobile-Workstation-v1.jpg;Laptop designed for 3D Modelling;2239
+Laptop;L101;Apple;Apple MacBook Pro;apple-macbook-12inch-256gb-1899.jpg;It's a Mac;1899.5
+Laptop;L102;AlienWare; Gaming Laptop;alienware-17-r4-17.3-gaming-laptop-2999.jpg;Alienware - Good for Gaming;2999
+Laptop;L103;Asus;Asus 15.6" TUF Gaming Notebook;ASUS-15_6-TUF-Gaming-FX504GE-Notebook-v1.jpg;Gaming focused system;899
+Laptop;L104;Lenovo;Lenovo Flex 5 2-in-1 Notebook;Lenovo-15_6-Flex-5-Multi-Touch-2-in-1-Notebook-v1.jpg;Laptop for creatives;949
+Laptop;L105;Microsoft;Microsoft Surface Go 10";Microsoft-Surface-Go-10-128gb-Multi-Touch-Tablet-v1.jpg;All around use laptop;549
+Laptop;L106;HP;HP ZBook 17 Mobile Workstation;HP-ZBook-17-Mobile-Workstation-v1.jpg;Laptop designed for 3D Modelling;2239
 Hard Drive;HD101;Lacie;Lacie's Hard Drive;lacie-1tb-rugged-usb-c-1tb-949.jpg;Rugged Storage;949
 Hard Drive;HD102;Samsung;Samsung T5 SSD;samsung-t5-ssd-1tb-549.jpg;Chic Storage;549
 Hard Drive;HD103;WD;WD My Passport;wd-my-passport-ssd-512gb-269.jpg;Office Storage for NetFlix;269

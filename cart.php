@@ -7,67 +7,70 @@ session_start();
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon = $showLoginIcon = true;
 $userEmail = "";
-if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
+if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }	                    else { $_SESSION['cart'] = $cart;}					
 if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
 if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
 if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
 // init global variables | end
 
-// page specific
-$showCartIcon = false;
-$_SESSION['showCartIcon'] = $showCartIcon;
-
-include 'inc/lib.php';
 include 'inc/head.php';
 include 'inc/header.php';
+include 'inc/lib.php';
 
-$str = $category = $code = $name = $image = $desc = $price = "";
-$myfile = fopen("product.txt", "r") or die("Unable to open file!");
-$cartEmpty = true;
-while(!feof($myfile)) {
+// page specific
+$showCartIcon = false; 
+$_SESSION['showCartIcon'] = $showCartIcon;
 
-    $str = "";
-  	$str = fgets($myfile);
-   
-    if (substr($str, 0, 1) <> "#") { 
-        list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
-        if ($name <> "") {
-            foreach($cart as $productCode=>$numOrdered) {
-                if ($code == $productCode) {
-                    $cartEmpty = false;
-                }
-            }
-        }
+$showLoginIcon = true; 
+$_SESSION['showLoginIcon'] = $showLoginIcon;
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $msg = "";
+    $proceed = TRUE;
+    
+    $actionType = $_POST["actionType"];
+
+    if ($actionType == "Add") {
+        $AddNewPCode = $_POST["AddNewPCode"];
+        $cart = $_SESSION['cart'];
+        $cart += [ $AddNewPCode => 1 ];
+        $_SESSION['cart'] = $cart;
+    }
+    else if ($actionType == "Remove") {
+        $RemovePCode = $_POST["RemovePCode"];
+        $cart = $_SESSION['cart'];
+        unset($cart[$RemovePCode]);
+        $_SESSION['cart'] = $cart;
     }
 }
-fclose($myfile);
 
 ?>
 
-
 <style>
-table {
-    font-family: arial, sans-serif;
+#products {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    font-size: 12px;
+    width: 90%;
 }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
+#products td, #products th {
+    border: 1px solid #ddd;
     padding: 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-    font-family: arial;
-    font-size: 12px;
-}
+#products tr:nth-child(even){background-color: #f2f2f2;}
 
-tr:nth-child(odd) {
-    background-color: #FFFFFF;
-    font-family: arial;
-    font-size: 12px;
+#products tr:hover {background-color: #ddd;}
+
+#products th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
 }
 
 img {
@@ -82,7 +85,7 @@ img:hover {
 }
 
 .text {
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .dollar:before {
@@ -90,25 +93,39 @@ img:hover {
     font-size:13px;
 }
 
+.productListingBtn {
+
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    font-size: 12px;
+    border: none;
+    background-color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+}
+
+.productListingBtn:hover {background-color: red;}
+
+
 
 </style>
 
 
 <br>
 
-<h5>Contents of Cart</h5>
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Image</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Add</th>
-    <th>Quantity</th>
-    <th>Remove</th>
-  </tr>
+<table id="products" align="center">
+    <tr>
+        <th>Category</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Add</th>
+        <th>Remove</th>
+    </tr>
 
 
 
@@ -117,49 +134,86 @@ $str = $category = $code = $name = $image = $desc = $price = "";
 
 $myfile = fopen("product.txt", "r") or die("Unable to open file!");
 
-$count = 0;
-
 // Output one line until end-of-file for selected items
 while(!feof($myfile)) {
 
     $str = "";
   	$str = fgets($myfile);
-   
-    if (substr($str, 0, 1) <> "#") { 
+    if (substr($str, 0, 1) <> "#")  {
       list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
-      if ($name <> "") {
-        foreach($cart as $productCode=>$numOrdered) {
 
-            if ($code == $productCode) {
-                $image_path = 'images/';
-                echo '<div class="text">';
-                echo '<tr>';
-                echo '<td>' . $category   . '</td>';
-                echo '<td>' . $code       . '</td>';
-                echo '<td>' . $name       . '</td>';
-                echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
-                echo '<td>'               . $desc       . '</td>';
-
-                $aPrice = getFloatFromString($price);
-
-                echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
-                echo '<td> Add Button </td>';
-                echo '<td>'. $numOrdered . '</td>';
-                echo '<td> Remove Button </td>';
-                echo '</tr>';
-                echo '</div>';
-            }
-        }
-      }
       
-    }
 
-   
+      if ($name <> "") {
+
+        $disableAddtoCart = false;
+        $enableRemovefromCart = false;
+        $inCart = false;
+        $quantity = 0;
+        foreach($cart as $productCode=>$numOrdered) {
+          if ($code == $productCode) {
+              $quantity = $numOrdered;
+              $disableAddtoCart = true;
+              $enableRemovefromCart = true;
+              $inCart = true;
+          }
+        }
+
+        if ($inCart) {
+            $image_path = 'images/';
+            echo '<div class="text">';
+            echo '<tr>';
+            echo '<td>' . $category   . '</td>';
+            echo '<td>' . $code       . '</td>';
+            echo '<td>' . $name       . '</td>';
+            echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
+            echo '<td>'               . $desc       . '</td>';
+            
+			$aPrice = getFloatFromString($price);
+			
+            echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
+
+           
+            ?>
+            
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="Add">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
+            <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
+            </form>
+
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="Remove">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
+            <td><input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
+            </form>
+
+            <?php
+            echo '</tr>';
+            echo '</div>';
+        }
+
+      } 
+    }
 }
-  fclose($myfile);
 ?>
+
 </table>
+<table id="products" align="center">
+     <tr align="right">
+        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
+    </tr>
+</table>
+
+
+
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
+
+
+
+
 

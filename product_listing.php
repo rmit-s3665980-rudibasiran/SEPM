@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="row justify-content-center align-items-center">
 			<div class="col-auto button-group filters-button-group">
 			  	<button class="button is-checked" data-filter="*">ALL</button>
-			  	<button class="button" data-filter=".laptops">Laptops</button>
+			  	<button class="button" data-filter=".laptops">Laptop</button>
 			  	<button class="button" data-filter=".hard-drive">Hard Drive</button>
 			  	<button class="button" data-filter=".headphones">Headphones</button>
 			  	<button class="button" data-filter=".tv">TV</button>

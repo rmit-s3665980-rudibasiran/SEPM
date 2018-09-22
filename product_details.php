@@ -97,6 +97,21 @@ img:hover {
     font-size:13px;
 }
 
+.productListingBtn {
+
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+font-size: 12px;
+border: none;
+background-color: black;
+padding: 10px 20px;
+cursor: pointer;
+display: inline-block;
+color: white;
+}
+
+.productListingBtn:hover {background-color: red;}
+
 </style>
 
 
@@ -255,6 +270,11 @@ fclose($myfile);
 ?>
 </table>
 
+<table id="products" align="center">
+     <tr align="right">
+        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
+    </tr>
+</table>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
