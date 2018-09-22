@@ -1,18 +1,46 @@
 <?php
 setlocale(LC_MONETARY,"en_AU");
-error_reporting(0);
+// error_reporting(0);
 session_start();
+
+// init global variables | start
+$cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+$showCartIcon = $showLoginIcon = true;
+$userEmail = "";
+if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
+if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
+if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
+if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
+// init global variables | end
+
+// page specific
+$showCartIcon = false;
+$_SESSION['showCartIcon'] = $showCartIcon;
 
 include 'inc/lib.php';
 include 'inc/head.php';
+include 'inc/header.php';
 
+$str = $category = $code = $name = $image = $desc = $price = "";
+$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+$cartEmpty = true;
+while(!feof($myfile)) {
 
-$GLOBALS['cart'] = $_SESSION['cart']; 
-if (!isset($GLOBALS['cart']) ) {
-	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
+    $str = "";
+  	$str = fgets($myfile);
+   
+    if (substr($str, 0, 1) <> "#") { 
+        list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+        if ($name <> "") {
+            foreach($cart as $productCode=>$numOrdered) {
+                if ($code == $productCode) {
+                    $cartEmpty = false;
+                }
+            }
+        }
+    }
 }
-$_SESSION['cart'] = $cart;
-
+fclose($myfile);
 
 ?>
 
@@ -100,12 +128,9 @@ while(!feof($myfile)) {
     if (substr($str, 0, 1) <> "#") { 
       list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
       if ($name <> "") {
-        foreach($cart as $x=>$x_value) {
-            //echo "Key=" . $x . ", Value=" . $x_value;
-            //echo "<br>";
-        
+        foreach($cart as $productCode=>$numOrdered) {
 
-            if ($code == $x) {
+            if ($code == $productCode) {
                 $image_path = 'images/';
                 echo '<div class="text">';
                 echo '<tr>';
@@ -114,9 +139,12 @@ while(!feof($myfile)) {
                 echo '<td>' . $name       . '</td>';
                 echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
                 echo '<td>'               . $desc       . '</td>';
-                echo '<td align="right">' . money_format('%i',$price)      . '</td>';
+
+                $aPrice = getFloatFromString($price);
+
+                echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
                 echo '<td> Add Button </td>';
-                echo '<td>'. $x_value . '</td>';
+                echo '<td>'. $numOrdered . '</td>';
                 echo '<td> Remove Button </td>';
                 echo '</tr>';
                 echo '</div>';

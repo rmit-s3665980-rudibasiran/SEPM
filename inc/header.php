@@ -1,29 +1,10 @@
 		
 <?php
-include 'inc/global.php';
+// init global variables | start
+$showCartIcon = $_SESSION['showCartIcon']; 
+$showLoginIcon = $_SESSION['showLoginIcon'];
+// init global variables | end
 ?>
-
-<style>
-.btn {
-    background-color: black;
-    color: white;
-    padding: 8px 35px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 1;
-	text-align: center;
-	font-size: 16px;
-	margin: 4px 2px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn:hover {
-	background-color: red;
-	border: 1px;
-    opacity: 0.7;
-}
-</style>
 		
 		<header>
 			<div class="container h-100">
@@ -34,8 +15,8 @@ include 'inc/global.php';
 					</div>
 					<nav class="right col d-flex justify-content-end">
 
-					<a href="cart.php"><i class="fal fa-shopping-cart"></i>Cart</a>
-					<a href="login.php" <?php if(!$showLogin) {?> style="display:none;" <?php } ?> ><i class="fal fa-sign-in"></i>Login</a>
+					<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i>Cart</a>
+					<a href="login.php" <?php if(!$showLoginIcon) {?> style="display:none;" <?php } ?> ><i class="fal fa-sign-in"></i>Login</a>
 					
 					</nav>
 				</div>

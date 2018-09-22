@@ -1,18 +1,30 @@
 
 <?php
 setlocale(LC_MONETARY,"en_AU");
-error_reporting(0);
+// error_reporting(0);
 session_start();
+
+// init global variables | start
+$cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+$showCartIcon = $showLoginIcon = true;
+$userEmail = "";
+if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
+if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
+if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
+if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
+// init global variables | end
+
+// page specific
+$showCartIcon = true; 
+$_SESSION['showCartIcon'] = $showCartIcon;
+
+$showLoginIcon = true; 
+$_SESSION['showLoginIcon'] = $showLoginIcon;
 
 include 'inc/head.php';
 include 'inc/header.php';
 include 'inc/lib.php';
 
-$GLOBALS['cart'] = $_SESSION['cart']; 
-if (!isset($GLOBALS['cart']) ) {
-	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
-}
-$_SESSION['cart'] = $cart;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -96,7 +108,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<?php echo $name ;?>
 
 						</h5>
-						<h4><?php echo money_format('%i',$price) ;?></h4>
+						<?php
+						$aPrice = getFloatFromString($price);
+						?>
+						<h4><?php echo money_format('%i',$aPrice) ;?></h4>
 					</div>
 				</div>
 			</li>

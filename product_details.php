@@ -1,38 +1,52 @@
 <?php
 setlocale(LC_MONETARY,"en_AU");
-error_reporting(0);
+// error_reporting(0);
 session_start();
 
-include 'inc/lib.php';
+// init global variables | start
+$cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+$showCartIcon = $showLoginIcon = true;
+$userEmail = "";
+if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }	                    else { $_SESSION['cart'] = $cart;}					
+if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
+if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
+if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
+// init global variables | end
+
 include 'inc/head.php';
 include 'inc/header.php';
+include 'inc/lib.php';
 
-
-$loginType = stripInput($_SESSION["loginType"]); 
+// page specific
 $pCode = stripInput($_SESSION["pCode"]); 
+$showCartIcon = true; 
+$_SESSION['showCartIcon'] = $showCartIcon;
 
+$showLoginIcon = true; 
+$_SESSION['showLoginIcon'] = $showLoginIcon;
 
-$GLOBALS['cart'] = $_SESSION['cart']; 
-if (!isset($GLOBALS['cart']) ) {
-	$cart = array("rudi"=>1, "huani"=>2, "wanyi"=>3, "john"=>4, "Ahdeiah"=>5);
-}
-$_SESSION['cart'] = $cart;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $msg = "";
     $proceed = TRUE;
-	
-    $AddNewPCode = $_POST["AddNewPCode"];
-    $cart = $_SESSION['cart'];
-    $cart += [ $AddNewPCode => 1 ];
-    $_SESSION['cart'] = $cart;
-
+    
+    $actionType = $_POST["actionType"];
     $pCode = $_POST["pCode"];
     $_SESSION["pCode"] = $pCode;
-    
-    // header ("Location: product_details.php"); 
-    // exit;
+
+    if ($actionType == "Add") {
+        $AddNewPCode = $_POST["AddNewPCode"];
+        $cart = $_SESSION['cart'];
+        $cart += [ $AddNewPCode => 1 ];
+        $_SESSION['cart'] = $cart;
+    }
+    else if ($actionType == "Remove") {
+        $RemovePCode = $_POST["RemovePCode"];
+        $cart = $_SESSION['cart'];
+        unset($cart[$RemovePCode]);
+        $_SESSION['cart'] = $cart;
+    }
    
 }
 
@@ -83,11 +97,10 @@ img:hover {
     font-size:13px;
 }
 
-
 </style>
 
 
-<br><br><br>
+<br>
 
 <table id="products" align="center">
     <tr>
@@ -98,7 +111,6 @@ img:hover {
         <th>Description</th>
         <th>Price</th>
         <th>Add</th>
-        <th>Quantity</th>
         <th>Remove</th>
     </tr>
 
@@ -128,26 +140,38 @@ while(!feof($myfile)) {
             echo '<td>' . $name       . '</td>';
             echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
             echo '<td>'               . $desc       . '</td>';
-            echo '<td align="right">' . money_format('%i',$price)      . '</td>';
+            
+			$aPrice = getFloatFromString($price);
+			
+            echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
 
             $disableAddtoCart = false;
-            foreach($cart as $x=>$x_value) {  
-                if ($code == $x) {
+            $enableRemovefromCart = false;
+            $quantity = 0;
+            foreach($cart as $productCode=>$numOrdered) {
+                if ($code == $productCode) {
+                    $quantity = $numOrdered;
                     $disableAddtoCart = true;
+                    $enableRemovefromCart = true;
                 }
             }
             ?>
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="Add">
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
             <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
             <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
             </form>
 
-            <?php
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="Remove">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
+            <td><input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
+            </form>
 
-            echo '<td> Quantity </td>';
-            echo '<td> Remove Button </td>';
+            <?php
             echo '</tr>';
             echo '</div>';
         }
@@ -159,7 +183,7 @@ while(!feof($myfile)) {
 
 
     <tr>
-        <th colspan="9">Other Suggestions in the same Category</th>
+        <th colspan="8">Other Suggestions in the same Category</th>
     </tr>
 
 <?php
@@ -186,27 +210,38 @@ while(!feof($myfile)) {
             echo '<td>' . $name       . '</td>';
             echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
             echo '<td>'               . $desc       . '</td>';
-            echo '<td align="right">' . money_format('%i',$price)      . '</td>';
+            
+			$aPrice = getFloatFromString($price);
+						
+            echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
 
             $disableAddtoCart = false;
-            foreach($cart as $x=>$x_value) {
-                
-                if ($code == $x) {
+            $enableRemovefromCart = false;
+            $quantity = 0;
+            foreach($cart as $productCode=>$numOrdered) {
+                if ($code == $productCode) {
+                    $quantity = $numOrdered;
                     $disableAddtoCart = true;
+                    $enableRemovefromCart = true;
                 }
             }
 
             ?>
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
+            <input type="hidden" id="actionType" name="actionType" value="Add">
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
             <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
+            </form>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="Remove">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
+            <td><input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
             </form>
             <?php
 
-            echo '<td> Quantity </td>';
-            echo '<td> Remove Button </td>';
             echo '</tr>';
             echo '</div>';
         }
