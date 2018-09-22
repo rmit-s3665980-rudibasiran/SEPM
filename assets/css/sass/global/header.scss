@@ -1,13 +1,18 @@
 header {
-	height: 50px;
+	height: 80px;
+	background-color: $dark; color: $primary;
+
 
 	.left {
 
 	}
 
 	.right {
-		a:first-child {
-			margin-right: 20px;
+		a {
+			color: $white;
+			&:first-child {
+				margin-right: 20px;
+			}
 		}
 	}
 }

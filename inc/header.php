@@ -8,10 +8,12 @@ $showLoginIcon = $_SESSION['showLoginIcon'];
 		
 		<header>
 			<div class="container h-100">
-				<div class="row h-100 justify-content-between align-items-center">
+				<div class="top row h-100 justify-content-between align-items-center">
 					
 					<div class="left col">
-						<a href="index.php"><img src="images/logo.jpg" style="width:50px" /></a>
+						<a href="index.php">
+							<img src="images/logo.svg" id="logo" />
+						</a>
 					</div>
 					<nav class="right col d-flex justify-content-end">
 
@@ -22,4 +24,6 @@ $showLoginIcon = $_SESSION['showLoginIcon'];
 				</div>
 			</div>
 		</header>
+
+		
 

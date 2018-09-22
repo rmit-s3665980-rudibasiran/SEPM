@@ -9,26 +9,24 @@
  */
 
 
- $primary: tomato;
- $secondary: yellow;
+ $primary: #50e3c2;
  $grey: #eee;
- $dark: #111;
+ $dark: #393f4c;
  $white: #fff;
 
 $colors: (
-	primary: tomato,
-	secondary: yellow,
+	primary: #50e3c2,
 	grey: #eee,
-	dark: #111,
+	dark: #393f4c,
 	white: #fff
 );
 
 @each $element, $color in $colors {
 	.t-#{$element} {
-		font-size: $color;
+		color: $color;
 	}
 	.b-#{$element} {
-		font-size: $color;
+		background-color: $color;
 	}
 }
 
@@ -48,6 +46,7 @@ html, body {
 h1, h2, h3 { text-transform: uppercase; font-weight: bold; }
 a, a:focus, a:hover { text-decoration: none; }
 
+img { width: 100%; }
 
 .ahref {
 	position: relative; display: inline-block;

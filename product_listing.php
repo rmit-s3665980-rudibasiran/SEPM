@@ -52,7 +52,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<section class="global m50b">
+
+<section id="title" class="products navcat b-primary p10t p10b">
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-auto button-group filters-button-group">
+			  	<button class="button is-checked" data-filter="*">ALL</button>
+			  	<button class="button" data-filter=".laptop">Laptop</button>
+			  	<button class="button" data-filter=".hard-drive">Hard Drive</button>
+			  	<button class="button" data-filter=".headphones">Headphones</button>
+			  	<button class="button" data-filter=".tv">TV</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="global m50t m50b">
 	<h2 class="heading col">
 		<span>Products</span>
 	</h2>
@@ -61,13 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <section class="products navcat p10t p10bt m50b">
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-auto button-group filters-button-group">
-			  	<button class="button is-checked" data-filter="*">ALL</button>
-			  	<button class="button" data-filter=".laptops">Laptop</button>
-			  	<button class="button" data-filter=".hard-drive">Hard Drive</button>
-			  	<button class="button" data-filter=".headphones">Headphones</button>
-			  	<button class="button" data-filter=".tv">TV</button>
-			</div>
+			
 		</div>
 	</div>
 </section>
@@ -99,19 +108,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			<li class="element-item <?php echo slugify($category);?> col-3">
 				<div>
+					<input type="submit" id="pCode" name="pCode" value="<?php echo $code; ?>">
 					<div class="image has-image" style="background-image: url(images/<?php echo $image ;?>);">
-					<input type="submit" id="pCode" name="pCode"  value="<?php echo $code; ?>">
 					</div>
-					<div class="content">
-						<h5>
-							<small><?php echo $brand ;?></small><br/>
-							<?php echo $name ;?>
-
-						</h5>
-						<?php
-						$aPrice = getFloatFromString($price);
-						?>
-						<h4><?php echo money_format('%i',$aPrice) ;?></h4>
+					<div class="content row justify-content-between align-items-center">
+						<div class="col-6">
+							<h6><?php echo $name ;?></h6>
+						</div>
+						<div class="col-6">
+							<small><?php echo $brand ;?></small>
+							<?php $aPrice = getFloatFromString($price); ?>
+							<p class="price"><?php echo money_format('%i',$aPrice) ;?></p>
+						</div>
+						
 					</div>
 				</div>
 			</li>

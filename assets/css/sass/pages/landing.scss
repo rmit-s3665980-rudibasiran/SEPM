@@ -8,21 +8,38 @@
  * Date: ; 
  */
 
-
+#logo {
+	width: 50px; height: 50px;
+}
 
 #hero {
 	width: 100vw; height: 100%; min-height: 600px;
-	background-color: #111; color: #fff;
+	background-color: $dark; color: $white;
 	overflow: hidden;
 
+	.left {
+		.branding {
+			margin-bottom: 50px;
 
-	h1 {
-		text-transform: uppercase;
-		font-size: 4rem; font-weight: bold;
+			span { font-weight: bold; }
+		}
+
+		h1 {
+			text-transform: uppercase;
+			font-size: 4rem; font-weight: bold;
+		}
+	}
+	
+
+
+
+	.right {
+		img { width: 100%; }
 	}
 
 	.circle {
 	  	@include circle(500px, #999);
+	  	background-color: $primary;
 	}
 }
 
@@ -46,7 +63,7 @@
 		&:before {
 
 			width: 100%; height: 1px;
-			background-color: #0c0c0c;
+			background-color: $dark;
 			z-index: 0; 
 		}
 
@@ -69,12 +86,14 @@
 		/*background-color: $grey;*/
 
 		button {
+			background-color: transparent;
 			border: 0; border-radius: 0;
 			text-transform: uppercase;
 			outline: none; 
 
 			&.is-checked {
-				color: tomato;
+				font-weight: bold;
+				text-decoration: underline;
 			}
 		}
 	}
@@ -85,28 +104,63 @@
 
 			&.offour {
 				li {
-					list-style: none; 
+					list-style: none; margin-bottom: 50px;
+
 					> div {
+						position: relative; 
 						margin-bottom: 30px;
 						transition: $trans;
+						border: 1px solid $grey;
+						overflow: hidden;
 
+						input[type="submit"] {
+							position: absolute; width: 100%; height: 100%;
+							border: 0; display: block;
+							background-color: transparent;
+							font-size: 0;
+							cursor: pointer;
+						}
 
 						.image {
 							width: 100%; height: 200px;
-							background-color: #eee;
+							background-color: $white;
+							background-size: cover;
 						}
 
 						.content {
+							background-color: $dark; color: $white;
 							padding: 15px;
+
+							.title { font-weight: bold; }
+							.price { color: $primary; }
+							
 						}
 
 						&:hover {
-							@include box-shadow(0px, 0px, 20px, 0, rgba(0,0,0,.2), false);
+							@include box-shadow(0px, 0px, 25px, 0, rgba(0,0,0,.1), false);
 							transition: $trans;
 						}
 					}
 					
 				}
+			}
+		}
+	}
+
+	&.detail {
+		img { width: 100%; display: block; }
+		.product-image {
+			width: 100%; height: 250px;
+			
+			img {
+				width: 100%; height: 100%;
+				object-fit: cover; object-position: center;
+			}
+		}
+		.image-list {
+			padding-left: 0; margin-top: 50px;
+			li {
+				list-style: none;
 			}
 		}
 	}

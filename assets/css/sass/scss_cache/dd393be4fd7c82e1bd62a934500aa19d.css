@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.7.6 on Tue, 18 Sep 2018 12:51:16 +0000 (0.0623s) */
+/* compiled by scssphp v0.7.6 on Sat, 22 Sep 2018 13:45:31 +0000 (0.0915s) */
 
 /* 
  * SCSS
@@ -404,34 +404,28 @@
  * Date: ; 
  */
 .t-primary {
-  font-size: tomato; }
+  color: #50e3c2; }
 
 .b-primary {
-  font-size: tomato; }
-
-.t-secondary {
-  font-size: yellow; }
-
-.b-secondary {
-  font-size: yellow; }
+  background-color: #50e3c2; }
 
 .t-grey {
-  font-size: #eee; }
+  color: #eee; }
 
 .b-grey {
-  font-size: #eee; }
+  background-color: #eee; }
 
 .t-dark {
-  font-size: #111; }
+  color: #393f4c; }
 
 .b-dark {
-  font-size: #111; }
+  background-color: #393f4c; }
 
 .t-white {
-  font-size: #fff; }
+  color: #fff; }
 
 .b-white {
-  font-size: #fff; }
+  background-color: #fff; }
 
 html, body {
   padding: 0;
@@ -449,6 +443,9 @@ h1, h2, h3 {
 a, a:focus, a:hover {
   text-decoration: none; }
 
+img {
+  width: 100%; }
+
 .ahref {
   position: relative;
   display: inline-block;
@@ -460,9 +457,9 @@ a, a:focus, a:hover {
   font-weight: bold; }
 
 .ahref:hover {
-  border-color: tomato;
+  border-color: #50e3c2;
   color: #fff;
-  background-color: tomato;
+  background-color: #50e3c2;
   transition: all 0.5s ease; }
 
 .has-image {
@@ -471,17 +468,21 @@ a, a:focus, a:hover {
   background-repeat: no-repeat; }
 
 header {
-  height: 50px; }
+  height: 80px;
+  background-color: #393f4c;
+  color: #50e3c2; }
 
-header .right a:first-child {
-  margin-right: 20px; }
+header .right a {
+  color: #fff; }
+  header .right a:first-child {
+    margin-right: 20px; }
 
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 40px;
-  background: tomato;
+  background: #50e3c2;
   color: #fff;
   transition: bottom 0.2s ease-in-out;
   font-size: 12px; }
@@ -497,18 +498,30 @@ footer.has-scroll {
  * Author: Wanyi 
  * Date: ; 
  */
+#logo {
+  width: 50px;
+  height: 50px; }
+
 #hero {
   width: 100vw;
   height: 100%;
   min-height: 600px;
-  background-color: #111;
+  background-color: #393f4c;
   color: #fff;
   overflow: hidden; }
 
-#hero h1 {
+#hero .left .branding {
+  margin-bottom: 50px; }
+  #hero .left .branding span {
+    font-weight: bold; }
+
+#hero .left h1 {
   text-transform: uppercase;
   font-size: 4rem;
   font-weight: bold; }
+
+#hero .right img {
+  width: 100%; }
 
 #hero .circle {
   width: 500px;
@@ -516,7 +529,8 @@ footer.has-scroll {
   background: #999;
   -webkit-border-radius: 250px;
   -moz-border-radius: 250px;
-  border-radius: 250px; }
+  border-radius: 250px;
+  background-color: #50e3c2; }
 
 .global .heading {
   position: relative;
@@ -541,7 +555,7 @@ footer.has-scroll {
 .global .heading:before {
   width: 100%;
   height: 1px;
-  background-color: #0c0c0c;
+  background-color: #393f4c;
   z-index: 0; }
 
 .global .heading:after {
@@ -557,28 +571,69 @@ footer.has-scroll {
   /*background-color: $grey;*/ }
 
 .products.navcat button {
+  background-color: transparent;
   border: 0;
   border-radius: 0;
   text-transform: uppercase;
   outline: none; }
   .products.navcat button.is-checked {
-    color: tomato; }
+    font-weight: bold;
+    text-decoration: underline; }
 
 .products.listing ul.grid {
   padding-left: 0; }
   .products.listing ul.grid.offour li {
-    list-style: none; }
+    list-style: none;
+    margin-bottom: 50px; }
     .products.listing ul.grid.offour li > div {
+      position: relative;
       margin-bottom: 30px;
-      transition: all 0.5s ease; }
+      transition: all 0.5s ease;
+      border: 1px solid #eee;
+      overflow: hidden; }
+      .products.listing ul.grid.offour li > div input[type="submit"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        background-color: transparent;
+        font-size: 0;
+        cursor: pointer; }
       .products.listing ul.grid.offour li > div .image {
         width: 100%;
         height: 200px;
-        background-color: #eee; }
+        background-color: #fff;
+        background-size: cover; }
       .products.listing ul.grid.offour li > div .content {
+        background-color: #393f4c;
+        color: #fff;
         padding: 15px; }
+        .products.listing ul.grid.offour li > div .content .title {
+          font-weight: bold; }
+        .products.listing ul.grid.offour li > div .content .price {
+          color: #50e3c2; }
       .products.listing ul.grid.offour li > div:hover {
-        -webkit-box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0px 0px 25px 0 rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 0px 25px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 25px 0 rgba(0, 0, 0, 0.1);
         transition: all 0.5s ease; }
+
+.products.detail img {
+  width: 100%;
+  display: block; }
+
+.products.detail .product-image {
+  width: 100%;
+  height: 250px; }
+  .products.detail .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; }
+
+.products.detail .image-list {
+  padding-left: 0;
+  margin-top: 50px; }
+  .products.detail .image-list li {
+    list-style: none; }
