@@ -13,17 +13,19 @@ if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLogin
 if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
 // init global variables | end
 
-include 'inc/head.php';
-include 'inc/header.php';
-include 'inc/lib.php';
 
 // page specific
+include 'inc/lib.php';
 $pCode = stripInput($_SESSION["pCode"]); 
 $showCartIcon = true; 
 $_SESSION['showCartIcon'] = $showCartIcon;
 
 $showLoginIcon = true; 
 $_SESSION['showLoginIcon'] = $showLoginIcon;
+
+include 'inc/head.php';
+include 'inc/header.php';
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

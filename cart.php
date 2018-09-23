@@ -76,6 +76,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     color: white;
 }
 
+
+#productListing {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    font-size: 12px;
+    width: 90%;
+}
+
+#productListing td, #productListing th {
+    border: 0px 
+    padding: 8px;
+}
+
+#productListing th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+}
+
+
 img {
     border: 0px solid #ddd;
     border-radius: 4px;
@@ -117,6 +139,41 @@ img:hover {
 
 
 <br>
+
+<?php
+$str = $category = $code = $name = $image = $desc = $price = "";
+
+$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+$cartEmpty = true;
+while(!feof($myfile)) {
+    $str = "";
+    $str = fgets($myfile);
+    if (substr($str, 0, 1) <> "#")  {
+        list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+        if ($name <> "") {
+            foreach($cart as $productCode=>$numOrdered) {
+                if ($code == $productCode) {
+                    $cartEmpty = false;
+                }
+            }
+        }
+    }
+}
+   
+?>
+
+<div id="showEmptyCartMessage" <?php if(!$cartEmpty) {?> style="display:none;" <?php } ?> >
+<table id="productListingCartEmpty" align="center">
+     <tr align="middle">
+        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Cart is empty; Go to Product Listing</button></a></td>
+    </tr>
+</table>
+
+
+</div>
+
+<div id="showCart" <?php if($cartEmpty) {?> style="display:none;" <?php } ?> >
+
 
 <table id="products" align="center">
     <tr>
@@ -204,11 +261,16 @@ while(!feof($myfile)) {
 ?>
 
 </table>
-<table id="products" align="center">
+
+</div>
+
+<div id="showBacktoProductListing" <?php if($cartEmpty) {?> style="display:none;" <?php } ?> >
+<table id="productListing" align="center">
      <tr align="right">
         <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
     </tr>
 </table>
+</div>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
