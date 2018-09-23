@@ -44,7 +44,6 @@ body, html {
     margin: 20px;
     max-width: 300px;
     padding: 16px;
-    background-image: url("images/background.png");
 }
 
 
@@ -87,9 +86,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=date]:focus {
 session_start();
 include 'inc/lib.php';
 
-$id = $name = $date_of_birth = "";
-$addr_t = $addr_postal = "";
-$addr_state = $addr_ctry = $contact_n = $email = $psw = "";
+$recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
 $timestamp = "";
 
 $loginType = stripInput($_SESSION["loginType"]); 
@@ -138,7 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else if ($loginType = "login") {
         
-    
         $sql =  "UPDATE     PEOPLE " .
                 "SET        NAME = '" . $name . "'," .
                 "           DATE_OF_BIRTH = '" . $date_of_birth . "'," .
@@ -154,11 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     if ($proceed) {
-        // $conn = OpenCon();     
         $updateOK = true;
         if (updateOK) {
-            CloseCon($conn);
-    
             $_SESSION['loginType'] = "login";
             $_SESSION['email'] = $email;
             $_SESSION['timestamp'] = getTimeStamp(); 
@@ -246,27 +239,22 @@ function myFunction() {
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="name"><b>Name</b></label>
             <input type="text" name="name" value="<?php echo $name; ?>">
 
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="date_of_birth"><b>Date of Birth</b></label>
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="dob"><b>Date of Birth</b></label>
             <input type="date" name="dob" value="<?php echo $dob; ?>">
 
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="address"><b>Address</b></label>
+            <input type="text" name="address" value="<?php echo $address; ?>">            
             
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="addr_t1"><b>Address</b></label>
-            <input type="text" name="address" value="<?php echo $address; ?>">
-            
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="addr_postal"><b>Postal Code</b></label>
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="postal"><b>Postal Code</b></label>
             <input type="text" name="postal" value="<?php echo $postal; ?>">
 
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="addr_ctry"><b>Suburb</b></label>
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="suburb"><b>Suburb</b></label>
             <input type="text" name="suburb" value="<?php echo $suburb; ?>">
-
             
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="addr_state"><b>State</b></label>
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="state"><b>State</b></label>
             <input type="text" name="state" value="<?php echo $state; ?>">
             
-
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="contact_n"><b>Contact Number</b></label>
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="contact"><b>Contact Number</b></label>
             <input type="text" name="contact" value="<?php echo $contact; ?>">
             
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Password</label>

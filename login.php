@@ -45,7 +45,6 @@ body, html {
     margin: 20px;
     max-width: 300px;
     padding: 16px;
-    background-image: url("images/background.png");
 }
 
 /* Full-width input fields */
