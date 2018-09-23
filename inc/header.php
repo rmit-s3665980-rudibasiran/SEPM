@@ -1,12 +1,12 @@
 		
 <?php
 // init global variables | start
-$showCartIcon = $_SESSION['showCartIcon']; 
 $name = $_SESSION['name'];
 // init global variables | end
 
+$showLoginIcon = true;
 $showName = false;
-if ($name <> "@" && $name <> "") {
+if ($name <> "") {
 	$showLoginIcon = false;
 	$showName = true;
 }

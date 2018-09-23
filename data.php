@@ -92,6 +92,7 @@ $timestamp = "";
 
 $loginType = stripInput($_SESSION["loginType"]); 
 $email = stripInput($_SESSION["email"]);
+$name = stripInput($_SESSION["name"]);
 $timestamp = stripInput($_SESSION["timestamp"]);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -244,13 +245,17 @@ function myFunction() {
             <button type="submit" class="btn" >Save</button>
         </div>
     </form>
+    
 </div>
 </td>
+
+
 
 <td>
 <div class="bg-img">
     <div class="container2">
         <a href="index.php"><img src="images/palmtechlogo.png"></a>
+        <a href="product_listing.php"><button class="btn">Back to Product Listing</button></a>
     </div>
 </div>
 </td>
