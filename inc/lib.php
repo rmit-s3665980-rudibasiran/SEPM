@@ -87,15 +87,17 @@ function isCartEmpty ($data) {
 
 function findUserRecord($psw, $email) {
 
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
+
     $record = "..."; // not found
-    $recEmail = $recPSW = "";
+    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
 	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
 
 	while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
-			list($recEmail, $recPSW) = explode(";", $str.";");
+			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv ) = explode(";", $str.";;;;;;;;;;");
 			if ($recEmail == $email) {
 				if ($recPSW == $psw) {
 					$record = $psw; // found
