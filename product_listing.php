@@ -26,6 +26,9 @@ else {
 }
 $_SESSION["showLoginIcon"] = $showLoginIcon;
 $_SESSION["showName"] = $showName;
+$_SESSION["cart"] = $cart;
+$_SESSION["email"] = $email;
+$_SESSION["name"] = $name;
 // init global variables | end
 
 // page specific
