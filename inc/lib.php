@@ -32,6 +32,14 @@ function getFloatFromString($string) {
 			return (float) preg_replace('/[^0-9.]/', '', $string);
 }
 
+function  printCart ($data) {
+	echo "Contents of Cart: <br>";
+	foreach($data as $productCode=>$numOrdered) {
+		echo $productCode . "==>" .$numOrdered ."<br>";
+	}
+}
+
+
 function isCartEmpty ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
 	$myfile = fopen("product.txt", "r") or die("Unable to open file!");

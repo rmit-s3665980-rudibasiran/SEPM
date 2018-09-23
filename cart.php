@@ -47,6 +47,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unset($cart[$RemovePCode]);
         $_SESSION['cart'] = $cart;
     }
+    else if ($actionType == "IncrementQuantity") {
+        $currCode = $_POST["currCode"];
+        $currQuantity = (int) $_POST["currQuantity"];
+        $currQuantity++;
+        $cart = $_SESSION['cart'];
+        $cart += [ $currCode => $currQuantity ];
+        $_SESSION['cart'] = $cart;
+
+        printCart($cart);       
+    }
+    
 }
 
 ?>
@@ -57,16 +68,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     border-collapse: collapse;
     font-size: 12px;
     width: 90%;
+    background-color: #f2f2f2;
+ 
 }
 
 #products td, #products th {
-    border: 1px solid #ddd;
+    
     padding: 8px;
+    
 }
 
-#products tr:nth-child(even){background-color: #f2f2f2;}
-
-#products tr:hover {background-color: #ddd;}
+#products tr:nth-child(even){background-color: white;}
 
 #products th {
     padding-top: 12px;
@@ -137,6 +149,21 @@ img:hover {
 
 </style>
 
+
+<section id="title" class="products navcat b-primary p10t p10b">
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+SHOPPING CART
+		</div>
+	</div>
+</section>
+
+<section class="global m50t m50b">
+	<h2 class="heading col">
+		<span>ITEMS</span>
+	</h2>
+</section>
+
 <br>
 
 <table id="productListingCartEmpty" align="center" <?php if(!isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
@@ -147,18 +174,6 @@ img:hover {
 
 
 <table id="products" align="center" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
-    <tr>
-        <th>Category</th>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Add</th>
-        <th>Remove</th>
-    </tr>
-
-
 
 <?php
 $str = $category = $code = $name = $image = $desc = $price = "";
@@ -194,12 +209,13 @@ while(!feof($myfile)) {
             $image_path = 'images/';
             echo '<div class="text">';
             echo '<tr>';
-            echo '<td>' . $category   . '</td>';
-            echo '<td>' . $code       . '</td>';
+            echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
+            echo '<td>|</td>';
             echo '<td>' . $name       . '</td>';
-            echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
-            echo '<td>'               . $desc       . '</td>';
+   
             
+            
+
 			$aPrice = getFloatFromString($price);
 			
             echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
@@ -208,10 +224,21 @@ while(!feof($myfile)) {
             ?>
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="actionType" name="actionType" value="Add">
+            <input type="hidden" id="actionType" name="actionType" value="DecrementQuantity">
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
-            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
-            <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
+            <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
+            <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
+            <td><input type="submit" id="" name="" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-"></td>
+            </form>
+
+            <td> <?php echo $quantity; ?></td>
+
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" id="actionType" name="actionType" value="IncrementQuantity">
+            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
+            <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
+            <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
+            <td><input type="submit" id="" name=""  value="+"></td>
             </form>
 
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -224,6 +251,9 @@ while(!feof($myfile)) {
             <?php
             echo '</tr>';
             echo '</div>';
+            echo '<tr><td colspan="8">&nbsp</td></tr>';
+            
+
         }
 
       } 
