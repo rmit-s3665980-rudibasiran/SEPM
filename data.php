@@ -93,7 +93,6 @@ $addr_state = $addr_ctry = $contact_n = $email = $psw = "";
 $timestamp = "";
 
 $loginType = stripInput($_SESSION["loginType"]); 
-
 $email = stripInput($_SESSION["email"]);
 $timestamp = stripInput($_SESSION["timestamp"]);
     
@@ -195,7 +194,6 @@ if ($loginType == "login") {
 			
                 $recEmail = $email; // found
                 $d = new DateTime($date_of_birth);
-                $timestamp = $d->getTimestamp(); // Unix timestamp
                 $dob = $d->format('Y-d-m'); // 9999-31-12
             }
 			else {
@@ -241,7 +239,6 @@ function myFunction() {
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="container">
             <h2 style="font-family: Arial; color: Black;font-size: 20px;">MEMBER DETAILS</h2>
-            <h3 style="font-family: Arial; color: Black;font-size: 10px;"><?php echo $timestamp; ?> </h3>
 
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="email"><b>Email</b></label>
             <input type="text" name="email" value="<?php echo $email; ?>"  <?php echo $readonly; ?> >

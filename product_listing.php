@@ -7,11 +7,11 @@ session_start();
 // init global variables | start
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon = $showLoginIcon = true;
-$userEmail = "";
+$email = "";
 if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
 if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
 if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
-if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
+if (isset($_SESSION['email']) ) 			{ $email = $_SESSION['email']; }			
 // init global variables | end
 
 // page specific
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<ul class="row grid offour">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		<input type="hidden" id="currentPage" name="currentPage" value="products">
-		<input type="hidden" id="userEmail" name="userEmail" value="<?php echo $userEmail ;?>">
+		<input type="hidden" id="email" name="email" value="<?php echo $email ;?>">
 		<input type="hidden" id="userName" name="userName" value="<?php echo $userName ;?>">
 		<?php
 

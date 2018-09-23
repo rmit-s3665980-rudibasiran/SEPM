@@ -6,11 +6,11 @@ session_start();
 // init global variables | start
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon = $showLoginIcon = true;
-$userEmail = "";
+$email = "";
 if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }	                    else { $_SESSION['cart'] = $cart;}					
 if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
 if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
-if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
+if (isset($_SESSION['email']) ) 		    { $email = $_SESSION['email']; }			
 // init global variables | end
 
 
