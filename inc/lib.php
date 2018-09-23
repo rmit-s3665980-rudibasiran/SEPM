@@ -26,10 +26,32 @@ function slugify ($string) {
 	}
   
 	  	return $string;
-  }
+}
 
-	function getFloatFromString($string) {
+function getFloatFromString($string) {
 			return (float) preg_replace('/[^0-9.]/', '', $string);
+}
+
+function isCartEmpty ($data) {
+	$str = $category = $code = $name = $image = $desc = $price = "";
+	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$cartEmpty = true;
+	while(!feof($myfile)) {
+    	$str = "";
+    	$str = fgets($myfile);
+    	if (substr($str, 0, 1) <> "#")  {
+        	list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+        	if ($name <> "") {
+            	foreach($data as $productCode=>$numOrdered) {
+                	if ($code == $productCode) {
+                    	$cartEmpty = false;
+               		}
+           		}
+        	}
+		}
 	}
+	
+	return $cartEmpty;
+}
 
 ?>
