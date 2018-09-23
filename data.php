@@ -86,6 +86,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=date]:focus {
 session_start();
 include 'inc/lib.php';
 
+$proceed = false;
 $recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
 $timestamp = "";
 
@@ -120,12 +121,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             fclose($myfile);
             $proceed = true;
             $timestamp = getTimeStamp();
+            $_SESSION['email'] = $email;
+            $_SESSION['name'] = $name;
         }
         else {
             $proceed = false;
         }
         if ($proceed) {
-            $_SESSION['errorMsg'] = "Email Address " .$email . "already exists.";
+            $_SESSION['errorMsg'] = "Email Address [" .$email . "] already exists.";
             header ("Location: error.php"); 
             exit;
         }
@@ -133,6 +136,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else if ($loginType = "login") {
         
         // do update
+        $_SESSION['email'] = $email;
+        $_SESSION['name'] = $name;
         $_SESSION['errorMsg'] = "Update Error";
         $proceed = TRUE;
     }
@@ -147,22 +152,24 @@ if ($loginType == "login") {
     $dob = "";
 	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
 
-    $found = false;
-	while(!feof($myfile) || $found) {
+    $proceed = false;
+	while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
 			list($recEmail, $psw, $name, $date_of_birth, $address, $suburb, $postal, $state, $contact, $card, $cvv) = explode(";", $str.";;;;;;;;;;");
 			if ($recEmail == $email) {
-                $d = new DateTime($date_of_birth);
-                $dob = $d->format('Y-d-m'); // 9999-31-12
+                $dob = $date_of_birth;
                 $proceed = true;
-                $found = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['name'] = $name;
+                break;
             }
-		}
+        }
     }
     fclose($myfile);
-    if (!proceed) {
+
+    if (!$proceed) {
         $_SESSION['errorMsg'] = "Data not found for " . $email . ".";
         header ("Location: error.php"); 
         exit;
@@ -215,11 +222,11 @@ function myFunction() {
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="address"><b>Address</b></label>
             <input type="text" name="address" value="<?php echo $address; ?>">            
             
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="postal"><b>Postal Code</b></label>
-            <input type="text" name="postal" value="<?php echo $postal; ?>">
-
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="suburb"><b>Suburb</b></label>
             <input type="text" name="suburb" value="<?php echo $suburb; ?>">
+
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="postal"><b>Postal Code</b></label>
+            <input type="text" name="postal" value="<?php echo $postal; ?>">
             
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="state"><b>State</b></label>
             <input type="text" name="state" value="<?php echo $state; ?>">

@@ -1,2 +1,6 @@
 #Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
-rudibasiran@hotmail.com;ttt;Rudi Basiran;04/08/1970;51 Gaffney Street;Coburg;3058;VIC;0404084350;1111-1111-1111-1111;444
+rudibasiran@facebook.com;ttt;Rudi Basiran;1970-08-04;48 Gaffney Street;Coburg;3058;VIC;0404084351;1111-1111-1111-1111;222
+huanineupane@facebook.com;ttt;Huani Neupane;1990-01-21;28 Kathmandu;Sunshine;3020;VIC;0404084352;2222-2222-2222-2222;333
+ahdeiahgurgani@facebook.com;ttt;Ahdeiah Gurgani;1992-06-23;26 Aylmer Road;Cranbourne;3975;VIC;0404084353;3333-3333-3333-3333;444
+wanyibeh@facebook.com;ttt;Wan Yi Beh;1992-05-15;26 Flagstaff Gardens;Melbourne;3000;VIC;0404084354;4444-4444-4444-4444;555
+johntubera@facebook.com;ttt;John Tubera;1994-10-07;24 Glenroy Heights;Glenroy; 3046;VIC;0404084355;5555-5555-5555-5555;666

@@ -4,24 +4,34 @@ setlocale(LC_MONETARY,"en_AU");
 session_start();
 
 // init global variables | start
+include 'inc/lib.php';
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
-$showCartIcon = $showLoginIcon = true;
-$email = "";
-if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }	                    else { $_SESSION['cart'] = $cart;}					
+$showCartIcon = $showLoginIcon = $showName = true;
+$email = $name = "@";
+if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
 if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 		
 if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLoginIcon']; }	
-if (isset($_SESSION['email']) ) 		    { $email = $_SESSION['email']; }			
+if (isset($_SESSION['showName']) ) 	        { $showName = $_SESSION['showName']; }	
+if (isset($_SESSION['email']) ) 			{ $email = $_SESSION['email']; }			
+if (isset($_SESSION['name']) ) 				{ $name = $_SESSION['name']; }	
+
+if ($email <> "@") {
+	$showLoginIcon = false;
+	$showName = true;
+}
+else {
+	$showLoginIcon = true;
+	$showName = false;
+}
+$_SESSION["showLoginIcon"] = $showLoginIcon;
+$_SESSION["showName"] = $showName;
 // init global variables | end
 
 
 // page specific
-include 'inc/lib.php';
 $pCode = stripInput($_SESSION["pCode"]); 
 $showCartIcon = true; 
 $_SESSION['showCartIcon'] = $showCartIcon;
-
-$showLoginIcon = true; 
-$_SESSION['showLoginIcon'] = $showLoginIcon;
 
 include 'inc/head.php';
 include 'inc/header.php';
