@@ -148,7 +148,9 @@ img:hover {
     color: white;
 }
 
-.productListingBtn:hover {background-color: red;}
+.productListingBtn:hover {background-color: #00ffcc; color: black;}
+
+.productListingBtn:disabled {background-color: lightgray; color: black;}
 
 
 
@@ -234,7 +236,7 @@ while(!feof($myfile)) {
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
             <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
             <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-            <td><input type="submit" id="" name="" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-"></td>
+            <td><input type="submit" id="" name="" class="productListingBtn" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-"></td>
             </form>
 
             <td> <?php echo $quantity; ?></td>
@@ -244,14 +246,14 @@ while(!feof($myfile)) {
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
             <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
             <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-            <td><input type="submit" id="" name=""  value="+"></td>
+            <td><input type="submit" id="" name=""  class="productListingBtn" value="+"></td>
             </form>
 
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="hidden" id="actionType" name="actionType" value="Remove">
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
             <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
-            <td><input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
+            <td><input type="submit" id=""  name="" class="productListingBtn" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
             </form>
 
             <?php
