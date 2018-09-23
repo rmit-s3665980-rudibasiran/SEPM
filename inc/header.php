@@ -17,8 +17,8 @@ $showLoginIcon = $_SESSION['showLoginIcon'];
 					</div>
 					<nav class="right col d-flex justify-content-end">
 
-					<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i>Cart</a>
-					<a href="login.php" <?php if(!$showLoginIcon) {?> style="display:none;" <?php } ?> ><i class="fal fa-sign-in"></i>Login</a>
+					<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i>&nbspCart</a>
+					<a href="login.php" <?php if(!$showLoginIcon) {?> style="display:none;" <?php } ?> ><i class="fal fa-sign-in"></i>&nbspLogin</a>
 					
 					</nav>
 				</div>
