@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $currQuantity = (int) $_POST["currQuantity"];
         $currQuantity++;
         $cart = $_SESSION['cart'];
-        $cart += [ $currCode => $currQuantity ];
+        $cart[$currCode] = $currQuantity ;
         $_SESSION['cart'] = $cart;
     }
     else if ($actionType == "DecrementQuantity") {
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $currQuantity = (int) $_POST["currQuantity"];
         $currQuantity--;
         $cart = $_SESSION['cart'];
-        $cart += [ $currCode => $currQuantity ];
+        $cart[$currCode] = $currQuantity;
         $_SESSION['cart'] = $cart;
     }
 }
