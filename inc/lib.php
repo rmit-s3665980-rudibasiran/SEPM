@@ -33,10 +33,11 @@ function getFloatFromString($string) {
 }
 
 function  printCart ($data) {
-	echo "Contents of Cart: <br>";
+	echo "Contents of Cart | Start: <br>";
 	foreach($data as $productCode=>$numOrdered) {
 		echo $productCode . "==>" .$numOrdered ."<br>";
 	}
+	echo "Contents of Cart | End<br>";
 }
 
 
