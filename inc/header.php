@@ -12,7 +12,7 @@ $showLoginIcon = $_SESSION['showLoginIcon'];
 					
 					<div class="left col">
 						<a href="index.php">
-							<img src="images/logo.svg" id="logo" />
+							<img src="images/logo.svg" id="logo" width="50px" height= "50px" />
 						</a>
 					</div>
 					<nav class="right col d-flex justify-content-end">

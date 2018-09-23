@@ -13,9 +13,7 @@ if (isset($_SESSION['showLoginIcon']) ) 	{ $showLoginIcon = $_SESSION['showLogin
 if (isset($_SESSION['userEmail']) ) 		{ $userEmail = $_SESSION['userEmail']; }			
 // init global variables | end
 
-include 'inc/head.php';
-include 'inc/header.php';
-include 'inc/lib.php';
+
 
 // page specific
 $showCartIcon = false; 
@@ -23,6 +21,11 @@ $_SESSION['showCartIcon'] = $showCartIcon;
 
 $showLoginIcon = true; 
 $_SESSION['showLoginIcon'] = $showLoginIcon;
+
+
+include 'inc/head.php';
+include 'inc/header.php';
+include 'inc/lib.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -207,13 +210,5 @@ while(!feof($myfile)) {
     </tr>
 </table>
 
-
-
-
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
-
-
-
-
-
