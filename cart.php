@@ -173,7 +173,8 @@ SHOPPING CART
 
 <table id="productListingCartEmpty" align="center" <?php if(!isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
      <tr align="middle">
-     <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Cart is Empty; Go Back to Product Listing</button></a></td>
+     <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">
+        Your cart is empty. Let's look at some of our best-sellers.</button></a></td>
     </tr>
 </table>
 
@@ -264,14 +265,22 @@ while(!feof($myfile)) {
       } 
     }
 }
-?>
+ 
+    $totalPrice = calcCart($cart);
+    $tPrice = getFloatFromString($totalPrice);
+    ?>
+
+    <tr align="right">
+        <td colspan="8"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
+    </tr>
 
 </table>
 
 
+
 <table id="productListing" align="center" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
      <tr align="right">
-        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
+        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Continue Shopping</button></a></td>
     </tr>
 </table>
 

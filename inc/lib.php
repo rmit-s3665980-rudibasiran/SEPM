@@ -32,6 +32,28 @@ function getFloatFromString($string) {
 			return (float) preg_replace('/[^0-9.]/', '', $string);
 }
 
+function  calcCart ($data) {
+	$str = $category = $code = $name = $image = $desc = $price = "";
+	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$total = 0;
+	while(!feof($myfile)) {
+    	$str = "";
+    	$str = fgets($myfile);
+    	if (substr($str, 0, 1) <> "#")  {
+        	list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+        	if ($name <> "") {
+            	foreach($data as $productCode=>$numOrdered) {
+                	if ($code == $productCode) {
+                    	$total = $total + ($price * $numOrdered);
+               		}
+           		}
+        	}
+		}
+	}
+	
+	return $total;
+}
+
 function  printCart ($data) {
 	echo "Contents of Cart | Start: <br>";
 	foreach($data as $productCode=>$numOrdered) {
