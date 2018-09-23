@@ -128,18 +128,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
         if($proceed) {
 
-            $name = "...";
-            $name = findUserRecord($psw, $email);
+            $record = "";
+            $record = findUserRecord($psw, $email);
        
             if ($loginType == "login") {
-                if ($name == "...") {
+                if ($record == "RecordNotFound") {
                     $msg = "Record not found for " . $email; 
                 
                 }
-                else if ($name == $email) {
+                else if ($record == "IncorrectCredentials") {
                     $msg = "Incorrect credentials for " . $email; 
                 }
-                else {
+                else if ($record == "PasswordCorrect") {
                     $_SESSION['loginType'] = $loginType;
                     $_SESSION['email'] = $email;
                     $_SESSION['timestamp'] = "";

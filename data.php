@@ -92,111 +92,81 @@ $timestamp = "";
 $loginType = stripInput($_SESSION["loginType"]); 
 $email = stripInput($_SESSION["email"]);
 $timestamp = stripInput($_SESSION["timestamp"]);
-    
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
-    $name = stripInput($_POST["name"]);
-    $date_of_birth = $_POST["date_of_birth"];
-    $addr_t = stripInput($_POST["addr_t"]);
-    $addr_postal = stripInput($_POST["addr_postal"]);
-    $addr_state = stripInput($_POST["addr_state"]);
-    $addr_ctry = stripInput($_POST["addr_ctry"]);
-    $contact_n = stripInput($_POST["contact_n"]);
     $email = stripInput($_POST["email"]);
+    $name = stripInput($_POST["name"]);
+    $dob = $_POST["dob"];
+    $address = stripInput($_POST["address"]);
+    $postal = stripInput($_POST["postal"]);
+    $suburb = stripInput($_POST["suburb"]);
+    $state = stripInput($_POST["state"]);
+    $contact = stripInput($_POST["contact"]);
     $psw = stripInput($_POST["psw"]);
-        
     
     if ($loginType == "new") {
         $readonly = "";
         $_SESSION['email'] = "";
         $_SESSION['timestamp'] = "";
-        
-        // $id = getNextID($email);
-        $sql = "INSERT INTO PEOPLE (ID, NAME, DATE_OF_BIRTH, ADDR_T,  ADDR_POSTAL, ADDR_STATE, ADDR_CTRY, CONTACT_N, EMAIL, PIN) " .
-                "VALUES " .
-                " ( '" . $id . "'," . 
-                "'" . $name . "'," .
-                "'" . $date_of_birth . "'," .
-                "'" . $addr_t . "'," .
-                "'" . $addr_postal . "'," .
-                "'" . $addr_state . "'," .
-                "'" . $addr_ctry . "'," .
-                "'" . $contact_n . "'," .
-                "'" . $email . "'," .
-                "'" . $psw . "'" .
-                ")" ;
-                
         $_SESSION['errorMsg'] = $sql;  
-                
-        
-        $proceed = TRUE;
-        
-    }
-    else if ($loginType = "login") {
-        
-        $sql =  "UPDATE     PEOPLE " .
-                "SET        NAME = '" . $name . "'," .
-                "           DATE_OF_BIRTH = '" . $date_of_birth . "'," .
-                "           ADDR_T1 = '" . $addr_t . "'," .
-                "           ADDR_POSTAL = '" . $addr_postal . "'," .
-                "           ADDR_STATE = '" . $addr_state . "'," .
-                "           ADDR_CTRY = '" . $addr_ctry . "'," .
-                "           CONTACT_N = '" . $contact_n . "'" .
-                "WHERE      EMAIL = '" . $email . "'";
-                
-                $_SESSION['errorMsg'] = "Error 150:" . $sql;
-                $proceed = TRUE;
-    }
-    
-    if ($proceed) {
-        $updateOK = true;
-        if (updateOK) {
-            $_SESSION['loginType'] = "login";
-            $_SESSION['email'] = $email;
-            $_SESSION['timestamp'] = getTimeStamp(); 
-           
-            header ("Location: data.php"); 
-            exit;
-        } else {
-            $_SESSION['errorMsg'] = "Error 166: [" . $sql . "]";
+
+        // do insert
+        $record = findUserRecord($psw, $email);
+        if ($record = "RecordNotFound") {
+            $myfile = fopen("user.txt", "a") or die("Unable to open file!");
+            $txt = $email .";". $name .";". $dob .";". $address .";". $postal .";". $suburb .";". $state .";". $contact .";". $psw .";";
+            fwrite($myfile, $txt);
+            fclose($myfile);
+            $proceed = true;
+            $timestamp = getTimeStamp();
+        }
+        else {
+            $proceed = false;
+        }
+        if ($proceed) {
+            $_SESSION['errorMsg'] = "Email Address " .$email . "already exists.";
             header ("Location: error.php"); 
             exit;
         }
     }
-
+    else if ($loginType = "login") {
+        
+        // do update
+        $_SESSION['errorMsg'] = "Update Error";
+        $proceed = TRUE;
+    }
+    
 }
-
 
 if ($loginType == "login") {
 
-
-    #Email;Password;Name;Address;Suburb;Postal;Contact;Card Number;CVV
-
-    $record = "..."; // not found
+    $timestamp = "";
+    $readonly = "readonly";
     $recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
     $dob = "";
 	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
 
-	while(!feof($myfile)) {
+    $found = false;
+	while(!feof($myfile) || $found) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
 			list($recEmail, $psw, $name, $date_of_birth, $address, $suburb, $postal, $state, $contact, $card, $cvv) = explode(";", $str.";;;;;;;;;;");
 			if ($recEmail == $email) {
-			
-                $recEmail = $email; // found
                 $d = new DateTime($date_of_birth);
                 $dob = $d->format('Y-d-m'); // 9999-31-12
+                $proceed = true;
+                $found = true;
             }
-			else {
-				$_SESSION['errorMsg'] = "Error 218: [Data not found for " . $email . "]";
-                header ("Location: error.php"); 
-                exit;
-			
-			}
 		}
-	}
+    }
+    fclose($myfile);
+    if (!proceed) {
+        $_SESSION['errorMsg'] = "Data not found for " . $email . ".";
+        header ("Location: error.php"); 
+        exit;
+    }
 }
 else if ($loginType == "new") {
     $readonly = "";
@@ -204,11 +174,10 @@ else if ($loginType == "new") {
     $_SESSION['timestamp'] = "";
 }
 else {
-    $_SESSION['errorMsg'] = "Error 218: [" . $email . "]";
+    $_SESSION['errorMsg'] = "Error 404";
     header ("Location: error.php"); 
     exit;
 }
-
 
 ?>
 
@@ -232,6 +201,7 @@ function myFunction() {
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="container">
             <h2 style="font-family: Arial; color: Black;font-size: 20px;">MEMBER DETAILS</h2>
+            <h2 style="font-family: Arial; color: Black;font-size: 10px;"><?php echo $timestamp; ?> </h2>
 
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="email"><b>Email</b></label>
             <input type="text" name="email" value="<?php echo $email; ?>"  <?php echo $readonly; ?> >

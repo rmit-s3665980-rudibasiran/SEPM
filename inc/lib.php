@@ -89,7 +89,7 @@ function findUserRecord($psw, $email) {
 
 	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
 
-    $record = "..."; // not found
+    $record = "RecordNotFound"; // not found
     $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
 	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
 
@@ -99,11 +99,12 @@ function findUserRecord($psw, $email) {
 		if (substr($str, 0, 1) <> "#")  {
 			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv ) = explode(";", $str.";;;;;;;;;;");
 			if ($recEmail == $email) {
+				$record = "RecordFound";
 				if ($recPSW == $psw) {
-					$record = $psw; // found
+					$record = "PasswordCorrect"; // found
 				}
 				else {
-					$record = $email; // found but incorrect password
+					$record = "IncorrectCredentials"; // found but incorrect password
 				}
 			}
 		}
