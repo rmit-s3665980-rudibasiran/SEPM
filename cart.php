@@ -22,8 +22,11 @@ $_SESSION["name"] = $name;
 $showCartIcon = false; 
 $_SESSION['showCartIcon'] = $showCartIcon;
 
-$showLoginIcon = true; 
-$_SESSION['showLoginIcon'] = $showLoginIcon;
+$showCheckOut = true;
+if ($email == "") {
+    $showCheckOut = false;
+    echo "showCheckOut ==> false";    
+}
 
 
 include 'inc/head.php';
@@ -285,11 +288,12 @@ while(!feof($myfile)) {
 
 <table id="productListing" align="center" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
      <tr align="right">
-        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Continue Shopping</button></a></td>
+        <td colspan="8">
+        <a href="product_listing.php"><button class="productListingBtn">Continue Shopping</button></a>
+        <a href="checkout.php" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>><button class="productListingBtn">Checkout</button></a>
+        </td>
     </tr>
 </table>
-
-
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
