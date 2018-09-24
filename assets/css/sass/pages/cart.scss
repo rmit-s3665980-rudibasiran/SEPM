@@ -1,0 +1,34 @@
+/*
+ * SCSS
+ * Serve landing.php only.
+ * 
+ * Debug: https://ptechstore.000webhostapp.com/css/style.php/style.scss;
+ * 
+ * Author: Wanyi 
+ * Date: ; 
+ */
+
+
+
+
+#cart {
+	table {
+		tr {
+			td {
+				
+				vertical-align: middle;
+				border: 0;
+
+				&:last-child { text-align: right; }
+
+
+				input {
+					border: 0; background-color: transparent;
+				}
+			}
+		}
+	}
+}
+
+
+

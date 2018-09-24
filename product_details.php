@@ -212,7 +212,7 @@ while(!feof($myfile)) {
                     <hr/>
                     <div class="cta row p10t p10b">
                         <div class="col-auto">
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="Add">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
@@ -221,7 +221,7 @@ while(!feof($myfile)) {
                             </form>
                         </div>
                         <div class="col-auto">
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">

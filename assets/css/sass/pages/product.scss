@@ -8,6 +8,34 @@
  * Date: ; 
  */
 
+form.cartcta {
+ 	position: relative; display: inline-block;							
+ 	padding: 8px 25px; transition: $trans;
+
+ 	svg, p { position: relative; z-index: 2; }
+
+ 	input {
+ 		position: absolute; top: 0; left: 0;
+ 		width: 100%; height: 100%;
+ 		background-color: $primary; color: $dark;
+ 		border: 0; cursor: pointer;
+ 		transition: $trans;
+
+ 		&[disabled=disabled][type=submit] {
+ 			background-color: #eee;
+ 		}
+ 	}
+
+ 	&:hover {
+ 		color: $white;
+ 		input {
+ 			background-color: $dark; 
+ 			transition: $trans;
+ 		}
+ 		
+ 	}
+}
+
 
 .products {
 
@@ -40,33 +68,7 @@
 				}
 				.cta {
 					.col-auto {
-						form {
-							position: relative; display: inline-block;							
-							padding: 8px 25px; transition: $trans;
-
-							svg, p { position: relative; z-index: 2; }
-
-							input {
-								position: absolute; top: 0; left: 0;
-								width: 100%; height: 100%;
-								background-color: $primary; color: $dark;
-								border: 0; cursor: pointer;
-								transition: $trans;
-
-								&[disabled=disabled][type=submit] {
-									background-color: #eee;
-								}
-							}
-
-							&:hover {
-								color: $white;
-								input {
-									background-color: $dark; 
-									transition: $trans;
-								}
-								
-							}
-						}
+						
 					}
 					
 				}
