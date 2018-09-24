@@ -8,10 +8,10 @@ include 'inc/lib.php';
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon  = true;
 $email = $name = "";
-if (isset($_SESSION['cart']) ) 				{ $cart = $_SESSION['cart']; }						
-if (isset($_SESSION['email']) ) 			{ $email = $_SESSION['email']; }			
-if (isset($_SESSION['name']) ) 				{ $name = $_SESSION['name']; }	
-if (isset($_SESSION['showCartIcon']) ) 		{ $showCartIcon = $_SESSION['showCartIcon']; } 
+if (isset($_SESSION['cart']) )              { $cart = $_SESSION['cart']; }                      
+if (isset($_SESSION['email']) )             { $email = $_SESSION['email']; }            
+if (isset($_SESSION['name']) )              { $name = $_SESSION['name']; }  
+if (isset($_SESSION['showCartIcon']) )      { $showCartIcon = $_SESSION['showCartIcon']; } 
 
 $_SESSION["cart"] = $cart;
 $_SESSION["email"] = $email;
@@ -162,19 +162,22 @@ img:hover {
 
 </style>
 
-
 <section id="title" class="products navcat b-primary p10t p10b">
-	<div class="container">
-		<div class="row justify-content-center align-items-center">
-SHOPPING CART
-		</div>
-	</div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <h3 class="heading">
+                    Shopping Cart
+                </h3>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="global m50t m50b">
-	<h2 class="heading col">
-		<span>ITEMS</span>
-	</h2>
+    <h2 class="heading col">
+        <span>ITEMS</span>
+    </h2>
 </section>
 
 <br>
@@ -198,7 +201,7 @@ $myfile = fopen("product.txt", "r") or die("Unable to open file!");
 while(!feof($myfile)) {
 
     $str = "";
-  	$str = fgets($myfile);
+    $str = fgets($myfile);
     if (substr($str, 0, 1) <> "#")  {
       list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
 
@@ -230,8 +233,8 @@ while(!feof($myfile)) {
             
             
 
-			$aPrice = getFloatFromString($price);
-			
+            $aPrice = getFloatFromString($price);
+            
             echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
 
            
