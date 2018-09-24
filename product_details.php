@@ -163,13 +163,13 @@ while(!feof($myfile)) {
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col">
-                <h3 class="heading">
+                <h4 class="heading">
                     <a href="product_listing.php">Products</a>
                     <i class="fal fa-angle-right"></i> 
                     <span><?php echo $category ;?></span>
                     <i class="fal fa-angle-right"></i>
                     <span><?php echo $code ;?></span>
-                </h3>
+                </h4>
             </div>
         </div>
     </div>

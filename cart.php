@@ -78,9 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col">
-                <h3 class="heading">
+                <h4 class="heading">
                     Shopping Cart
-                </h3>
+                </h4>
             </div>
         </div>
     </div>
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $image_path = 'images/';
                         echo '<div class="text">';
                         echo '<tr>';
-                        echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
+                        echo '<td width="50px"><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
                         echo '<td><strong>' . $name       . '</strong></td>';
                
                         
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $aPrice = getFloatFromString($price);
                         ?>
                         
-                        <td>
+                        <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <input type="hidden" id="actionType" name="actionType" value="DecrementQuantity">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
@@ -160,9 +160,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
                         </td>
 
-                        <td> <?php echo $quantity; ?></td>
+                        <td align="center"><?php echo $quantity; ?></td>
 
-                        <td>
+                        <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <input type="hidden" id="actionType" name="actionType" value="IncrementQuantity">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
-                                <p><i class="far fa-trash-alt"></i></p>
+                                <i class="far fa-trash-alt"></i>
                                 <input type="submit" id=""  name="" class="productListingBtn" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
                             </form>
                         </td>
@@ -211,8 +211,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
                 <tr>
-                    <td><a href="product_listing.php"><button class="productListingBtn">Continue Shopping</button></a></td>
-                    <td><a href="checkout.php" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>><button class="productListingBtn">Checkout</button></a></td>
+                    <td><a href="product_listing.php" class="ahref solid primary">Continue Shopping</a></td>
+                    <td><a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>><button class="productListingBtn">Checkout</button></a></td>
                 </tr>
             </table>
         </div>

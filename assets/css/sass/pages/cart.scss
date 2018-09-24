@@ -21,7 +21,9 @@
 
 				&:last-child { text-align: right; }
 
-
+				form.cartcta svg {
+					color: red; 
+				}
 				input {
 					border: 0; background-color: transparent;
 				}

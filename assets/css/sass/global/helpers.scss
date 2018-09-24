@@ -52,7 +52,7 @@ img { width: 100%; }
 .ahref {
 	position: relative; display: inline-block;
 	padding: 8px 30px;
-	background-color: transparent;
+	background-color: $primary;
 	border: 1px solid $white; color: $white;
 	transition: $trans;
 
