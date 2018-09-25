@@ -25,7 +25,6 @@ $_SESSION['showCartIcon'] = $showCartIcon;
 $showCheckOut = true;
 if ($email == "") {
     $showCheckOut = false;
-    echo "showCheckOut ==> false";    
 }
 
 
@@ -100,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <table id="productListingCartEmpty" <?php if(!isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
                  <tr align="middle">
-                 <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">
+                 <td colspan="8"><a href="product_listing.php">
                     Your cart is empty. Let's look at some of our best-sellers.</button></a></td>
                 </tr>
             </table>
@@ -156,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name="" class="productListingBtn" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
+                                <input type="submit" id="" name="" class="ahref solid primary" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
                             </form>
                         </td>
 
@@ -168,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name=""  class="productListingBtn" value="+">
+                                <input type="submit" id="" name=""  class="ahref solid primary" value="+">
                             </form>
                         </td>
                         
@@ -179,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
                                 <i class="far fa-trash-alt"></i>
-                                <input type="submit" id=""  name="" class="productListingBtn" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
+                                <input type="submit" id=""  name="" class="ahref solid primary" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
                             </form>
                         </td>
 
@@ -212,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>
                 <tr>
                     <td><a href="product_listing.php" class="ahref solid primary">Continue Shopping</a></td>
-                    <td><a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>><button class="productListingBtn">Checkout</button></a></td>
+                    <td><a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a></td>
                 </tr>
             </table>
         </div>

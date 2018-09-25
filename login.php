@@ -89,11 +89,12 @@ include 'inc/lib.php';
 
 $msg = $email = $psw = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    
     $msg = "";
     $proceed = TRUE;
     
     $loginType = $_POST["loginType"];
+    
     
     if ($loginType == "new") {
         $_SESSION['loginType'] = $loginType;

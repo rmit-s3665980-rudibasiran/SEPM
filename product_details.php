@@ -216,8 +216,11 @@ while(!feof($myfile)) {
                                 <input type="hidden" id="actionType" name="actionType" value="Add">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
-                                <p><i class="far fa-cart-plus"></i> Add to Cart</p>
+                                <div>
                                 <input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="">
+                                <p><i class="far fa-cart-plus"></i> Add to Cart</p>
+                                </div>
+                                
                             </form>
                         </div>
                         <div class="col-auto">

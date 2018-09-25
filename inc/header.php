@@ -2,6 +2,7 @@
 <?php
 // init global variables | start
 $name = $_SESSION['name'];
+$cart = $_SESSION['cart'];
 // init global variables | end
 
 $showLoginIcon = true;
@@ -23,7 +24,8 @@ if ($name <> "") {
 			</div>
 			<nav class="right col d-flex justify-content-end">
 
-			<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i>&nbspCart</a>
+			<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i>
+				&nbspCart <?php echo "[". (count($cart) - 1) ."]" ;?>  </a>
 			<a href="login.php" <?php if(!$showLoginIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-sign-in"></i>&nbspLogin</a>
 			<a href="data.php" <?php if(!$showName) {?> style="display:none;" <?php } ?>><i class="fas fa-user"></i>&nbsp &nbsp<?php echo $name; ?></a>
 

@@ -100,7 +100,7 @@ function findUserRecord($psw, $email) {
 			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv ) = explode(";", $str.";;;;;;;;;;");
 			if ($recEmail == $email) {
 				$record = "RecordFound";
-				if ($recPSW == $psw) {
+				if ($recPSW == md5($psw)) {
 					$record = "PasswordCorrect"; // found
 				}
 				else {
