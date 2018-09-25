@@ -48,7 +48,8 @@ function myFunction() {
   border: 1px solid #666;
   color: #666;
   text-align: center;
-  font: 12px Arial, sans-serif;
+  font: 12px Arial, sans-serif; 
+  
 }
 
 #myCart {
@@ -59,7 +60,7 @@ function myFunction() {
     right: 0;
     bottom: 0;
     padding: 50px 0;
-    text-align: center;
+    text-align: left;
 	background-color: $primary
 	border: 1px solid #666;
     margin-top: 10px;
@@ -105,7 +106,7 @@ function myFunction() {
 	$cart = $_SESSION['cart'];
 	$str = $category = $code = $name = $image = $desc = $price = "";
 	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
-
+	$total = 0;
 	while(!feof($myfile)) {
     	$str = "";
     	$str = fgets($myfile);
@@ -117,7 +118,8 @@ function myFunction() {
             	$inCart = false;
             	foreach($cart as $productCode=>$numOrdered) {
                 	if ($code == $productCode) {
-                    	$quantity = $numOrdered;
+						$quantity = $numOrdered;
+						$total = $total + ($quantity * getFloatFromString($price));
                     	$inCart = true;
                 	}
 
@@ -129,12 +131,22 @@ function myFunction() {
            
                     $aPrice = getFloatFromString($price);
                     
-                    echo '<td>' . money_format('%i',$aPrice). '</td>';
+					echo '<td>' . money_format('%i',$aPrice);
+					if ($quantity > 1) {
+						echo ' x ' . $quantity;
+					}
+					echo '</td>';
                     echo '</tr>';
                 }
         	}
     	}
 	}
+
+	echo '<tr>';
+    echo '<td> Total: </td>';
+    echo '<td>' . money_format('%i',$total). '</td>';
+	echo '</tr>';
+					
 	?>
 	</table>
 	
