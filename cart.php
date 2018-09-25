@@ -72,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-
 <section id="title" class="products navcat b-primary p10t p10b">
     <div class="container">
         <div class="row justify-content-center align-items-center">
@@ -96,14 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <div class="container">
         <div class="row">
-
-            <table id="cartEmpty" class="table table-striped" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?>>
-                 <tr>
-                 <td style="text-align: left;">
-                 <a href="product_listing.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.
-                 </a></td>
-                </tr>
-            </table>
+            <div class="row justify-content-center align-items-center">
+                <div id="divCartEmpty" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?> >
+                    <a href="product_listing.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.</a>
+                </div>
+            </div>
 
             <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
 
@@ -227,13 +223,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </section>
 
 
-<table id="productListing" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
-     <tr align="right">
-        <td colspan="8">
-        
-        </td>
-    </tr>
-</table>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>    

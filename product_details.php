@@ -330,12 +330,6 @@ fclose($myfile);
 ?>
 </table>
 
-<!-- <table id="products" align="center">
-     <tr align="right">
-        <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
-    </tr>
-</table> -->
-
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>
 
