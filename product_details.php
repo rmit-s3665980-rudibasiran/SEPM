@@ -134,17 +134,9 @@ while(!feof($myfile)) {
         if ($code == $pCode) {
             $overallCategory = $category;
             $image_path = 'images/';
-            // echo '<div class="text">';
-            // echo '<tr>';
-            // echo '<td>' . $category   . '</td>';
-            // echo '<td>' . $code       . '</td>';
-            // echo '<td>' . $name       . '</td>';
-            // echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
-            // echo '<td>'               . $desc       . '</td>';
+           
             
             $aPrice = getFloatFromString($price);
-            
-            // echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
 
             $disableAddtoCart = false;
             $enableRemovefromCart = false;
@@ -242,33 +234,15 @@ while(!feof($myfile)) {
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <hr/>
 
+<section class="global m50t m50b">
+    <h2 class="heading col">
+        <span>Suggestions for <?php echo $overallCategory; ?></span>
+    </h2>
+</section>
+
+    
 <table id="products" align="center">
     <tr>
         <th>Category</th>
@@ -282,76 +256,7 @@ while(!feof($myfile)) {
     </tr>
 
 
-
-<?php
-$str = $category = $code = $name = $image = $desc = $price = "";
-
-$overallCategory = "";
-$myfile = fopen("product.txt", "r") or die("Unable to open file!");
-
-// Output one line until end-of-file for selected items
-while(!feof($myfile)) {
-
-    $str = "";
-  	$str = fgets($myfile);
-    if (substr($str, 0, 1) <> "#")  {
-      list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
-      if ($name <> "") {
-        if ($code == $pCode) {
-            $overallCategory = $category;
-            $image_path = 'images/';
-            echo '<div class="text">';
-            echo '<tr>';
-            echo '<td>' . $category   . '</td>';
-            echo '<td>' . $code       . '</td>';
-            echo '<td>' . $name       . '</td>';
-            echo '<td><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:150px"></td>';
-            echo '<td>'               . $desc       . '</td>';
-            
-			$aPrice = getFloatFromString($price);
-			
-            echo '<td align="right">' . money_format('%i',$aPrice)      . '</td>';
-
-            $disableAddtoCart = false;
-            $enableRemovefromCart = false;
-            $quantity = 0;
-            foreach($cart as $productCode=>$numOrdered) {
-                if ($code == $productCode) {
-                    $quantity = $numOrdered;
-                    $disableAddtoCart = true;
-                    $enableRemovefromCart = true;
-                }
-            }
-            ?>
-            
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="actionType" name="actionType" value="Add">
-            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
-            <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
-            <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
-            </form>
-
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="actionType" name="actionType" value="Remove">
-            <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
-            <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
-            <td><input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="Remove from Cart"></td>
-            </form>
-
-            <?php
-            echo '</tr>';
-            echo '</div>';
-        }
-
-      } 
-    }
-}
-?>
-
-
-    <tr>
-        <th colspan="8">Other Suggestions in the same Category</th>
-    </tr>
+   
 
 <?php
 $str = $category = $code = $name = $image = $desc = $price = "";
@@ -401,6 +306,7 @@ while(!feof($myfile)) {
             <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
             <td><input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="Add to Cart"></td>
             </form>
+
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="hidden" id="actionType" name="actionType" value="Remove">
             <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
@@ -422,11 +328,11 @@ fclose($myfile);
 ?>
 </table>
 
-<table id="products" align="center">
+<!-- <table id="products" align="center">
      <tr align="right">
         <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">Back to Product Listing</button></a></td>
     </tr>
-</table>
+</table> -->
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>

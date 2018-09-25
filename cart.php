@@ -97,14 +97,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row">
 
-            <table id="productListingCartEmpty" <?php if(!isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
-                 <tr align="middle">
-                 <td colspan="8"><a href="product_listing.php">
-                    Your cart is empty. Let's look at some of our best-sellers.</button></a></td>
+            <table id="cartEmpty" class="table table-striped" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?>>
+                 <tr>
+                 <td style="text-align: left;">
+                 <a href="product_listing.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.
+                 </a></td>
                 </tr>
             </table>
 
-            <table id="products" class="table table-striped" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
+            <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
 
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";

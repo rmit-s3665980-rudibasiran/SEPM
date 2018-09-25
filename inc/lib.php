@@ -62,6 +62,28 @@ function  printCart ($data) {
 	echo "Contents of Cart | End<br>";
 }
 
+function countCart ($data) {
+	$str = $category = $code = $name = $image = $desc = $price = "";
+	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$count = 0;
+	while(!feof($myfile)) {
+    	$str = "";
+    	$str = fgets($myfile);
+    	if (substr($str, 0, 1) <> "#")  {
+        	list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+        	if ($name <> "") {
+            	foreach($data as $productCode=>$numOrdered) {
+                	if ($code == $productCode) {
+                    	$count++;
+               		}
+           		}
+        	}
+		}
+	}
+	
+	return $count;
+}
+
 
 function isCartEmpty ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
