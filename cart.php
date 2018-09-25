@@ -28,8 +28,6 @@ if ($email == "") {
 }
 
 
-include 'inc/head.php';
-include 'inc/header.php';
 
 
 
@@ -69,6 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['cart'] = $cart;
     }
 }
+
+include 'inc/head.php';
+include 'inc/header.php';
 
 ?>
 
