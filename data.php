@@ -255,7 +255,7 @@ function myFunction() {
 <div class="bg-img">
     <div class="container2">
         <a href="index.php"><img src="images/palmtechlogo.png"></a>
-        <a href="product_listing.php"><button class="btn">Back to Product Listing</button></a>
+        <a href="products.php"><button class="btn">Back to Product Listing</button></a>
     </div>
 </div>
 </td>
