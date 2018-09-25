@@ -6,19 +6,28 @@ $cart = $_SESSION['cart'];
 // init global variables | end
 
 $showLoginIcon = true;
+
 $showName = false;
 if ($name <> "") {
 	$showLoginIcon = false;
 	$showName = true;
 }
+
+$hideCartItemCount = true;
+if ($showCartIcon) {
+	if (countCart($cart) > 0) {
+		$hideCartItemCount = false;
+	}
+}
+
 ?>
 
 <style>
 .numberCircle {
   border-radius: 50%;
   behavior: url(PIE.htc);
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   padding: 5px;
   background: #fff;
   border: 1px solid #666;
@@ -39,16 +48,7 @@ if ($name <> "") {
 			</div>
 			<nav class="right col d-flex justify-content-end">
 
-			<?php
-				$showCartItemCount = false;
-				if ($showCartIcon) {
-					if (countCart($cart) > 0) {
-						$showCartItemCount = true;
-					}
-				}
-			?>
-			
-			<a href="" <?php if(!showCartItemCount) {?> style="display:none;" <?php } ?>>
+			<a href="" <?php if($hideCartItemCount) {?> style="display:none;" <?php } ?>>
 				<div class="numberCircle"><?php echo countCart($cart) ;?></div>
 			</a>
 
