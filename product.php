@@ -123,7 +123,7 @@ color: white;
 $str = $category = $code = $name = $image = $desc = $price = "";
 
 $overallCategory = "";
-$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 
 // Output one line until end-of-file for selected items
 while(!feof($myfile)) {
@@ -158,7 +158,7 @@ while(!feof($myfile)) {
         <div class="row justify-content-center align-items-center">
             <div class="col">
                 <h4 class="heading">
-                    <a href="product_listing.php">Products</a>
+                    <a href="products.php">Products</a>
                     <i class="fal fa-angle-right"></i> 
                     <span><?php echo $category ;?></span>
                     <i class="fal fa-angle-right"></i>
@@ -240,7 +240,7 @@ while(!feof($myfile)) {
 
 <section class="global m50t m50b">
     <h2 class="heading col">
-        <span>More <?php echo $overallCategory; ?> </span>
+        <span>More <?php echo $overallCategory; ?> (s) </span>
     </h2>
 </section>
 
@@ -265,7 +265,7 @@ $str = $category = $code = $name = $image = $desc = $price = "";
 
 fclose($myfile);
 
-$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 
 // Output one line until end-of-file for selected items
 while(!feof($myfile)) {

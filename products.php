@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$_SESSION["currentPage"] = $currentPage;
 
     if ($currentPage == "products" & $pCode <> "") {
-        header ("Location: product_details.php"); 
+        header ("Location: product.php"); 
         exit;
 	}
 	
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<?php
 
 		$str = $category = $code = $name = $image = $desc = $price = "";
-		$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+		$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 
 		// Output one line until end-of-file
 		while(!feof($myfile)) {

@@ -22,7 +22,22 @@ if ($showCartIcon) {
 
 ?>
 
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myCart");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+
+
 <style>
+
+
 .numberCircle {
   border-radius: 50%;
   behavior: url(PIE.htc);
@@ -36,6 +51,24 @@ if ($showCartIcon) {
   font: 12px Arial, sans-serif;
 }
 
+#myCart {
+    width: 50%;
+    height: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 50px 0;
+    text-align: center;
+	background-color: $primary
+	border: 1px solid #666;
+    margin-top: 10px;
+	margin-left: 200px;
+	opacity: 1;
+	font: 12px Arial, sans-serif;
+}
+
+
 </style>
 <header>
 	<div class="container h-100">
@@ -48,7 +81,7 @@ if ($showCartIcon) {
 			</div>
 			<nav class="right col d-flex justify-content-end">
 
-			<a href="" <?php if($hideCartItemCount) {?> style="display:none;" <?php } ?>>
+			<a href="#" onclick="myFunction();" <?php if($hideCartItemCount) {?> style="display:none;" <?php } ?>>
 				<div class="numberCircle"><?php echo countCart($cart) ;?></div>
 			</a>
 
@@ -61,8 +94,54 @@ if ($showCartIcon) {
 			</nav>
 					
 		</div>
+
+			
+
+	</div>
+
+	<div id="myCart" style="display:none;">
+	<table id="miniCart">
+	<?php
+	$cart = $_SESSION['cart'];
+	$str = $category = $code = $name = $image = $desc = $price = "";
+	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
+
+	while(!feof($myfile)) {
+    	$str = "";
+    	$str = fgets($myfile);
+    	if (substr($str, 0, 1) <> "#")  {
+      		list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
+    
+        	if ($name <> "") {
+            	$quantity = 0;
+            	$inCart = false;
+            	foreach($cart as $productCode=>$numOrdered) {
+                	if ($code == $productCode) {
+                    	$quantity = $numOrdered;
+                    	$inCart = true;
+                	}
+
+                	
+				}
+				if ($inCart) {
+                    echo '<tr>';
+                    echo '<td>' . $name . '</td>';
+           
+                    $aPrice = getFloatFromString($price);
+                    
+                    echo '<td>' . money_format('%i',$aPrice). '</td>';
+                    echo '</tr>';
+                }
+        	}
+    	}
+	}
+	?>
+	</table>
+	
 	</div>
 </header>
+
+
 
 		
 

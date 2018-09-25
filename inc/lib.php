@@ -34,7 +34,7 @@ function getFloatFromString($string) {
 
 function  calcCart ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
-	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 	$total = 0;
 	while(!feof($myfile)) {
     	$str = "";
@@ -64,7 +64,7 @@ function  printCart ($data) {
 
 function countCart ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
-	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 	$count = 0;
 	while(!feof($myfile)) {
     	$str = "";
@@ -91,7 +91,7 @@ function findUserRecord($psw, $email) {
 
     $record = "RecordNotFound"; // not found
     $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
-	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
 
 	while(!feof($myfile)) {
 		$str = "";

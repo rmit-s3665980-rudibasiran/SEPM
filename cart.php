@@ -98,7 +98,7 @@ include 'inc/header.php';
         <div class="row">
             <div class="row justify-content-center align-items-center">
                 <div id="divCartEmpty" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?> >
-                    <a href="product_listing.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.</a>
+                    <a href="products.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.</a>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@ include 'inc/header.php';
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";
 
-            $myfile = fopen("product.txt", "r") or die("Unable to open file!");
+            $myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 
             // Output one line until end-of-file for selected items
             while(!feof($myfile)) {
@@ -116,8 +116,6 @@ include 'inc/header.php';
                 $str = fgets($myfile);
                 if (substr($str, 0, 1) <> "#")  {
                   list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
-
-                  
 
                   if ($name <> "") {
 
@@ -144,8 +142,8 @@ include 'inc/header.php';
                         
                         
 
-                        $aPrice = getFloatFromString($price);
-                        ?>
+                    $aPrice = getFloatFromString($price);
+            ?>
                         
                         <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -214,7 +212,7 @@ include 'inc/header.php';
                     <td></td>
                     <td></td>
                     <td colspan="2">
-                    <a href="product_listing.php" class="ahref solid primary">Continue Shopping</a>
+                    <a href="products.php" class="ahref solid primary">Continue Shopping</a>
                     <a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a>
                     </td>
                 </tr>

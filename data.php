@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // do insert
         $record = findUserRecord($psw, $email);
         if ($record = "RecordNotFound") {
-            $myfile = fopen("user.txt", "a") or die("Unable to open file!");
+            $myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
             $txt = $email .";". $name .";". $dob .";". $address .";". $postal .";". $suburb .";". $state .";". $contact .";". $psw .";";
             fwrite($myfile, $txt);
             fclose($myfile);
@@ -151,7 +151,7 @@ if ($loginType == "login") {
     $readonly = "readonly";
     $recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
     $dob = "";
-	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
 
     $proceed = false;
 	while(!feof($myfile)) {
