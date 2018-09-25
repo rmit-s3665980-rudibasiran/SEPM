@@ -24,8 +24,7 @@ $pCode = stripInput($_SESSION["pCode"]);
 $showCartIcon = true; 
 $_SESSION['showCartIcon'] = $showCartIcon;
 
-include 'inc/head.php';
-include 'inc/header.php';
+
 
 
 
@@ -52,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
    
 }
+
+include 'inc/head.php';
+include 'inc/header.php';
 
 ?>
 
@@ -238,7 +240,7 @@ while(!feof($myfile)) {
 
 <section class="global m50t m50b">
     <h2 class="heading col">
-        <span>Suggestions for <?php echo $overallCategory; ?></span>
+        <span>More <?php echo $overallCategory; ?> </span>
     </h2>
 </section>
 

@@ -207,12 +207,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    
                     <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
                 <tr>
-                    <td><a href="product_listing.php" class="ahref solid primary">Continue Shopping</a></td>
-                    <td><a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2">
+                    <a href="product_listing.php" class="ahref solid primary">Continue Shopping</a>
+                    <a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a>
+                    </td>
                 </tr>
             </table>
         </div>
