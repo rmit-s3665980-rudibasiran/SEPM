@@ -22,28 +22,6 @@ $_SESSION["name"] = $name;
 $showCartIcon = false; 
 $_SESSION['showCartIcon'] = $showCartIcon;
 
-$showReceipt = false;
-if (isset($_SESSION['showReceipt']) )       { $showReceipt = $_SESSION["showReceipt"]; }
-
-$receiptNo = "";
-if (isset($_SESSION['receiptNo']) )         {$receiptNo = $_SESSION["receiptNo"];}
-
-$_SESSION["showReceipt"] = $showReceipt;
-$_SESSION["receiptNo"] = $receiptNo;
-
-$headingLabel1 = "";
-$headingLabel2 = "";
-
-if ($showReceipt) {
-    $headingLabel1 = "Receipt";
-    $headingLabel2 = "Order #" . $receiptNo;
-    
-}
-else {
-    $headingLabel1 = "Shopping Cart";
-    $headingLabel2 = "ITEMS";
-}
-
 
 $showCheckOut = true;
 if ($email == "") {
@@ -94,13 +72,12 @@ include 'inc/header.php';
 ?>
 
 
-
 <section id="title" class="products navcat b-primary p10t p10b">
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col">
                 <h4 class="heading">
-                    <?php echo $headingLabel1;  ?>
+                    Shopping Cart
                 </h4>
             </div>
         </div>
@@ -110,7 +87,8 @@ include 'inc/header.php';
 
 <section class="global m50t m50b">
     <h2 class="heading col">
-        <span><?php echo $headingLabel2;  ?></span>
+        <span>ITEMS
+        </span>
     </h2>
 </section>
 
@@ -165,7 +143,6 @@ include 'inc/header.php';
                     $aPrice = getFloatFromString($price);
             ?>
                         
-                        <div id="CartRemove" <?php if($showReceipt) {?> style="display:none;" <?php } ?> >
                         <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <input type="hidden" id="actionType" name="actionType" value="DecrementQuantity">
@@ -175,11 +152,9 @@ include 'inc/header.php';
                                 <input type="submit" id="" name="" class="ahref solid primary" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
                             </form>
                         </td>
-                        </div>
-
+                       
                         <td align="center"><?php echo $quantity; ?></td>
 
-                        <div id="CartAdd" <?php if($showReceipt) {?> style="display:none;" <?php } ?> >
                         <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <input type="hidden" id="actionType" name="actionType" value="IncrementQuantity">
@@ -189,9 +164,8 @@ include 'inc/header.php';
                                 <input type="submit" id="" name=""  class="ahref solid primary" value="+">
                             </form>
                         </td>
-                        </div>
                         
-                        <div id="CartTrash" <?php if($showReceipt) {?> style="display:none;" <?php } ?> >
+                       
                         <td>
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
@@ -201,7 +175,6 @@ include 'inc/header.php';
                                 <input type="submit" id=""  name="" class="ahref solid primary" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
                             </form>
                         </td>
-                        </div>
                         <td><strong><?php echo money_format('%i',$aPrice);?></strong></td>
 
                         <?php
@@ -221,26 +194,20 @@ include 'inc/header.php';
                 ?>
 
                 <tr>
-                    <div id="CartTReceiptControl1" <?php if($showReceipt) {?> style="display:none;" <?php } ?> >
                     <td></td>
                     <td></td>
                     <td></td>
-                    </div>
                     <td></td>
-                    <td></td>
-                    
+                    <td></td>    
                     <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
                 <tr>
-                    <div id="CartTReceiptControl2" <?php if($showReceipt) {?> style="display:none;" <?php } ?> >
                     <td></td>
                     <td></td>
                     <td></td>
-                    </div>
                     <td></td>
                     <td></td>
                     <td colspan="2">
-                    <a href="receipt.php" class="ahref solid primary">Test Show Receipt</a>
                     <a href="products.php" class="ahref solid primary">Continue Shopping</a>
                     <a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a>
                     </td>
@@ -249,24 +216,6 @@ include 'inc/header.php';
         </div>
     </div>
 </section>
-
-<?php
-
-if ($showReceipt) {
-    $cart = $_SESSION['cart'];
-    foreach($cart as $productCode=>$numOrdered) {
-        unset($cart[$productCode]);
-    }
-    $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
-    $_SESSION['cart'] = $cart;
-
-    $showReceipt = false;
-    $_SESSION["showReceipt"] = $showReceipt;
-    $receiptNo = "";
-    $_SESSION["receiptNo"] = $receiptNo;
-}
-
-?>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>    
