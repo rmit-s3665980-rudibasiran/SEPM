@@ -160,10 +160,7 @@ include 'inc/header.php';
                         echo '<div class="text">';
                         echo '<tr>';
                         echo '<td width="50px"><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
-                        echo '<td><strong>' . $name       . '</strong></td>';
-               
-                        
-                        
+                        echo '<td><strong>' . $name       . '</strong></td>';         
 
                     $aPrice = getFloatFromString($price);
             ?>
@@ -255,7 +252,6 @@ include 'inc/header.php';
 
 <?php
 
-$showReceipt = true;
 if ($showReceipt) {
     $cart = $_SESSION['cart'];
     foreach($cart as $productCode=>$numOrdered) {
