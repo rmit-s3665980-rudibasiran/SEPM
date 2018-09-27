@@ -32,10 +32,10 @@ body, html {
 setlocale(LC_MONETARY,"en_AU");
 // error_reporting(0);
 session_start();
-
+include 'inc/lib.php';
 include 'inc/head.php';
 include 'inc/header.php';
-include 'inc/lib.php';
+
 
 $msg = "";
 $debugMode = TRUE;

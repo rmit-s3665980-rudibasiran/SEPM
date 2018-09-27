@@ -87,18 +87,18 @@ function countCart ($data) {
 
 function findUserRecord($psw, $email) {
 
-	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV;Registration Date;End-of-Record
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry;CVV;Registration Date;End-of-Record
 
     $record = "RecordNotFound"; // not found
-    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = $regnDate = $recordEnd = "";
+    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cardExpiry = $cvv = $regnDate = $recordEnd = "";
 	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
 
 	while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
-			$delimiter = ";;;;;;;;;;;;";
-			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
+			$delimiter = ";;;;;;;;;;;;;";
+            list($recEmail, $recPSW, $name, $dob, $address, $suburb, $postal, $state, $contact, $card, $cardExpiry, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
 			if ($recEmail == $email) {
 				$record = "RecordFound";
 				if ($recPSW == md5($psw)) {
@@ -110,6 +110,7 @@ function findUserRecord($psw, $email) {
 			}
 		}
 	}
+	fclose($myfile);
     return $record;
 }
 
