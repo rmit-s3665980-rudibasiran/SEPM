@@ -62,7 +62,7 @@ include 'inc/header.php';
     position: absolute;
     left: 0;
     margin: 20px;
-    max-width: 480px;
+    max-width: 400px;
     padding: 16px;
     background-color: white;
 }
@@ -72,7 +72,7 @@ include 'inc/header.php';
     position: absolute;
     right: 0;
     margin: 20px;
-    max-width: 480px;
+    max-width: 200px;
     padding: 16px;
     background-color: white;
 }
@@ -117,12 +117,14 @@ include 'inc/header.php';
     
     <div class="containerAddr">
     <div class="row">
-    <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
+    <table id="address"  style="widtg=90%">
     <tr><td colspan=3>Address</td></tr>
     <tr><td colspan=3><?php echo $address ?></td></tr>
  
     <tr><td>Suburb</td><td>Postal Code</td> <td>State</td></tr>
     <tr><td><?php echo $suburb; ?></td><td><?php echo $postal; ?></td><td><?php echo $state; ?></td></tr>
+
+    <tr><td colspan=2><a href="products.php" class="ahref solid primary">Go Back</a></td></tr>
     
     </table>
     </div>
@@ -134,7 +136,7 @@ include 'inc/header.php';
     
     <div class="containerCard">
     <div class="row">
-    <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
+    <table id="card"  >
     <tr><td colspan=2>Card Details</td></tr>
     <tr><td colspan=2>Card Image</td></tr>
     <tr><td colspan=2>Card Details</td></tr>
@@ -158,7 +160,7 @@ include 'inc/header.php';
    
         <div class="row">
            
-            <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
+            <table id="products"  >
 
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";
@@ -198,7 +200,6 @@ include 'inc/header.php';
                     $aPrice = getFloatFromString($price);
             ?>
                        
-                        <td align="center"><?php echo $quantity; ?></td>
                        
                         <td><strong><?php echo money_format('%i',$aPrice);?></strong></td>
 
@@ -230,9 +231,6 @@ include 'inc/header.php';
     </div>
     
 </section>
-
-
-
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>    
