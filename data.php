@@ -87,69 +87,19 @@ session_start();
 include 'inc/lib.php';
 
 $proceed = false;
-$recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
+$recEmail = $psw = $name = $dob = $address = $suburb = $postal = $state = $contact = $card = $cvv = $regnDate = "";
 $timestamp = "";
 
-$loginType = stripInput($_SESSION["loginType"]); 
-$email = stripInput($_SESSION["email"]);
-$name = stripInput($_SESSION["name"]);
-$timestamp = stripInput($_SESSION["timestamp"]);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
- 
-    $email = stripInput($_POST["email"]);
-    $name = stripInput($_POST["name"]);
-    $dob = $_POST["dob"];
-    $address = stripInput($_POST["address"]);
-    $postal = stripInput($_POST["postal"]);
-    $suburb = stripInput($_POST["suburb"]);
-    $state = stripInput($_POST["state"]);
-    $contact = stripInput($_POST["contact"]);
-    $psw = stripInput($_POST["psw"]);
-    
-    if ($loginType == "new") {
-        $readonly = "";
-        $_SESSION['email'] = "";
-        $_SESSION['timestamp'] = "";
-        $_SESSION['errorMsg'] = $sql;  
-
-        // do insert
-        $record = findUserRecord($psw, $email);
-        if ($record = "RecordNotFound") {
-            $myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
-            $txt = $email .";". $name .";". $dob .";". $address .";". $postal .";". $suburb .";". $state .";". $contact .";". $psw .";";
-            fwrite($myfile, $txt);
-            fclose($myfile);
-            $proceed = true;
-            $timestamp = getTimeStamp();
-            $_SESSION['email'] = $email;
-            $_SESSION['name'] = $name;
-        }
-        else {
-            $proceed = false;
-        }
-        if ($proceed) {
-            $_SESSION['errorMsg'] = "Email Address [" .$email . "] already exists.";
-            header ("Location: error.php"); 
-            exit;
-        }
-    }
-    else if ($loginType = "login") {
-        
-        // do update
-        $_SESSION['email'] = $email;
-        $_SESSION['name'] = $name;
-        $_SESSION['errorMsg'] = "Update Error";
-        $proceed = TRUE;
-    }
-    
-}
+$loginType = $email = $name = "";
+if (isset($_SESSION['loginType']) )             { $loginType = $_SESSION['loginType']; }       
+if (isset($_SESSION['email']) )                 { $email = $_SESSION['email']; }  
+if (isset($_SESSION['name']) )                  { $name = $_SESSION['name']; }   
 
 if ($loginType == "login") {
 
     $timestamp = "";
     $readonly = "readonly";
-    $recEmail = $psw = $name = $date_of_birth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
+    $recEmail = $psw = $name = $dob = $address = $suburb = $postal = $state = $contact = $card = $cvv = $regnDate = $recordEnd = "";
     $dob = "";
 	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
 
@@ -158,9 +108,10 @@ if ($loginType == "login") {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
-			list($recEmail, $psw, $name, $date_of_birth, $address, $suburb, $postal, $state, $contact, $card, $cvv) = explode(";", $str.";;;;;;;;;;");
+            #Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV;Registration Date;End-of-Record
+            $delimiter = ";;;;;;;;;;;;";
+            list($recEmail, $psw, $name, $dob, $address, $suburb, $postal, $state, $contact, $card, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
 			if ($recEmail == $email) {
-                $dob = $date_of_birth;
                 $proceed = true;
                 $_SESSION['email'] = $email;
                 $_SESSION['name'] = $name;
@@ -181,17 +132,91 @@ else if ($loginType == "new") {
     $_SESSION['email'] = "";
     $_SESSION['timestamp'] = "";
 }
-else {
-    $_SESSION['errorMsg'] = "Error 404";
-    header ("Location: error.php"); 
-    exit;
+// else {
+//     $_SESSION['errorMsg'] = "Error 404";
+//     header ("Location: error.php"); 
+//     exit;
+// }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $actionType = stripInput($_SESSION["actionType"]); 
+    
+    
+    if ($actionType == "Logout") {
+        $_SESSION['email'] = "";
+        $_SESSION['name'] = "";
+        header ("Location: products.php"); 
+        exit;
+
+    }
+    else if ($actionType == "GoBackProducts") {
+        header ("Location: products.php"); 
+        exit;
+    }
+    else {
+        $email = stripInput($_POST["email"]);
+        $name = stripInput($_POST["name"]);
+        $dob = $_POST["dob"];
+        $address = stripInput($_POST["address"]);
+        $postal = stripInput($_POST["postal"]);
+        $suburb = stripInput($_POST["suburb"]);
+        $state = stripInput($_POST["state"]);
+        $contact = stripInput($_POST["contact"]);
+        $psw = stripInput($_POST["psw"]);
+        $cvv = stripInput($_POST["cvv"]);
+        $card = stripInput($_POST["card"]);
+
+        if ($loginType == "new") {
+            $readonly = "";
+            $_SESSION['email'] = "";
+            $_SESSION['timestamp'] = "";
+            $_SESSION['errorMsg'] = $sql;  
+    
+            // do insert
+            #Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV;Registration Date;End-of-Record
+            $record = findUserRecord($psw, $email);
+            if ($record = "RecordNotFound") {
+                $myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
+                $txt = $email .";". md5($psw) .";". $name .";". $dob .";". $address .";". $suburb .";". $postal .";". $state .";". 
+                $contact .";". $card .";". $cvv .";" . getTimeStamp() . ";End-of-Record";
+                fwrite($myfile, $txt);
+                fclose($myfile);
+                $proceed = true;
+                $timestamp = getTimeStamp();
+                $_SESSION['email'] = $email;
+                $_SESSION['name'] = $name;
+                $_SESSION['loginType'] = "login";
+            }
+            else {
+                $_SESSION['errorMsg'] = "Email Address [" .$email . "] already exists.";
+                header ("Location: error.php"); 
+                exit;
+            }
+        }
+        else if ($loginType = "login") {
+            
+            // do update
+            $_SESSION['email'] = $email;
+            $_SESSION['name'] = $name;
+            $_SESSION['errorMsg'] = "Update Error";
+            $proceed = TRUE;
+        }
+    }
 }
+
 
 ?>
 
 <script>
 function myFunction() {
-    var x = document.getElementById("myPSW");
+    var x = document.getElementById("myCard");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+
+    var x = document.getElementById("myCVV");
     if (x.type === "password") {
         x.type = "text";
     } else {
@@ -234,14 +259,24 @@ function myFunction() {
             
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="contact"><b>Contact Number</b></label>
             <input type="text" name="contact" value="<?php echo $contact; ?>">
+
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="regnDate"><b>Registration Date</b></label>
+            <input type="date" name="regnDate" value="<?php echo $regnDate; ?>"   <?php echo $readonly; ?> >
             
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Credit Card</label>
+            <input type="password" name="psw" id="myCard" value="<?php echo $card; ?>" >
+
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="cvv"><b>CVV</label>
+            <input type="password" name="cvv" id="myCVV" value="<?php echo $cvv; ?>"  >
+
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Password</label>
-            <input type="password" name="psw" id="myPSW" value="<?php echo $psw; ?>" <?php echo $readonly; ?> >
+            <input type="password" name="cvv" id="psw" value="<?php echo $psw; ?>"  <?php echo $readonly; ?> >
             
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="show_psw"><b>Show Password</b></label>
-            <input type="checkbox" name = "show_psw" onclick="myFunction()">
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="showCard"><b>Show Credit Card Information</b></label>
+            <input type="checkbox" name = "showCard" onclick="myFunction()">
       
             <h2 style="font-family: Arial; color: White;"></h2>
+            <input type="hidden" id="actionType" name="actionType" value="saveData">
             <button type="submit" class="btn" >Save</button>
         </div>
     </form>
@@ -255,8 +290,17 @@ function myFunction() {
 <div class="bg-img">
     <div class="container2">
         <a href="index.php"><img src="images/palmtechlogo.png"></a>
-        <a href="products.php"><button class="btn">Back to Product Listing</button></a>
-    </div>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <input type="hidden" id="actionType" name="actionType" value="GoBackProducts">
+        <button type="submit" class="btn" >Back to Product Listing</button>
+        </form>
+        <br>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <input type="hidden" id="actionType" name="actionType" value="Logout">
+        <button type="submit" class="btn" >Logout</button>
+        </form>
+
+         </div>
 </div>
 </td>
 

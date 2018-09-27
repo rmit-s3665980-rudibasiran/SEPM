@@ -36,13 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $actionType = $_POST["actionType"];
 
-    if ($actionType == "Add") {
-        $AddNewPCode = $_POST["AddNewPCode"];
-        $cart = $_SESSION['cart'];
-        $cart += [ $AddNewPCode => 1 ];
-        $_SESSION['cart'] = $cart;
-    }
-    else if ($actionType == "Remove") {
+   if ($actionType == "Remove") {
         $RemovePCode = $_POST["RemovePCode"];
         $cart = $_SESSION['cart'];
         unset($cart[$RemovePCode]);
@@ -209,7 +203,13 @@ include 'inc/header.php';
                     <td></td>
                     <td colspan="2">
                     <a href="products.php" class="ahref solid primary">Continue Shopping</a>
-                    <a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>>Checkout</a>
+                    <?php
+                    $checkoutMsg = "Please login first to checkout";
+                    if ($showCheckOut) {
+                        $checkoutMsg = "Check Out";
+                    }
+                    echo '<a href="' . (!$showCheckOut ? '#' : 'checkout.php') . '" class="ahref solid primary">' . $checkoutMsg . '</a>';
+                    ?>
                     </td>
                 </tr>
             </table>

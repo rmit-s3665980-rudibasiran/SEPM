@@ -87,17 +87,18 @@ function countCart ($data) {
 
 function findUserRecord($psw, $email) {
 
-	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV;Registration Date;End-of-Record
 
     $record = "RecordNotFound"; // not found
-    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
+    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = $regnDate = $recordEnd = "";
 	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
 
 	while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
-			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv ) = explode(";", $str.";;;;;;;;;;");
+			$delimiter = ";;;;;;;;;;;;";
+			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
 			if ($recEmail == $email) {
 				$record = "RecordFound";
 				if ($recPSW == md5($psw)) {

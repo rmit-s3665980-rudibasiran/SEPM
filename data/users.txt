@@ -1,6 +1,6 @@
-#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
-rudibasiran@facebook.com;9990775155c3518a0d7917f7780b24aa;Rudi Basiran;1970-08-04;48 Gaffney Street;Coburg;3058;VIC;0404084351;1111-1111-1111-1111;222
-huanineupane@facebook.com;9990775155c3518a0d7917f7780b24aa;Huani Neupane;1990-01-21;28 Kathmandu;Sunshine;3020;VIC;0404084352;2222-2222-2222-2222;333
-ahdeiahgurgani@facebook.com;9990775155c3518a0d7917f7780b24aa;Ahdeiah Gurgani;1992-06-23;26 Aylmer Road;Cranbourne;3975;VIC;0404084353;3333-3333-3333-3333;444
-wanyibeh@facebook.com;9990775155c3518a0d7917f7780b24aa;Wan Yi Beh;1992-05-15;26 Flagstaff Gardens;Melbourne;3000;VIC;0404084354;4444-4444-4444-4444;555
-johntubera@facebook.com;9990775155c3518a0d7917f7780b24aa;John Tubera;1994-10-07;24 Glenroy Heights;Glenroy; 3046;VIC;0404084355;5555-5555-5555-5555;666
+#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV;Registration Date;End-of-Record
+rudibasiran@facebook.com;9990775155c3518a0d7917f7780b24aa;Rudi Basiran;1970-08-04;48 Gaffney Street;Coburg;3058;VIC;0404084351;1111-1111-1111-1111;222;2018-09-01;End-of-Record
+huanineupane@facebook.com;9990775155c3518a0d7917f7780b24aa;Huani Neupane;1990-01-21;28 Kathmandu;Sunshine;3020;VIC;0404084352;2222-2222-2222-2222;333;2018-09-02;End-of-Record
+ahdeiahgurgani@facebook.com;9990775155c3518a0d7917f7780b24aa;Ahdeiah Gurgani;1992-06-23;26 Aylmer Road;Cranbourne;3975;VIC;0404084353;3333-3333-3333-3333;444;2018-09-03;End-of-Record
+wanyibeh@facebook.com;9990775155c3518a0d7917f7780b24aa;Wan Yi Beh;1992-05-15;26 Flagstaff Gardens;Melbourne;3000;VIC;0404084354;4444-4444-4444-4444;555;2018-09-04;End-of-Record
+johntubera@facebook.com;9990775155c3518a0d7917f7780b24aa;John Tubera;1994-10-07;24 Glenroy Heights;Glenroy; 3046;VIC;0404084355;5555-5555-5555-5555;666;2018-09-05;End-of-Record
