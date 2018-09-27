@@ -84,6 +84,42 @@ function countCart ($data) {
 	return $count;
 }
 
+function writeNewUserRecord($data) {
+
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry; CVV;Registration Date;End-of-Record
+	$myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
+	fwrite($myfile, "\n".$txt);
+	fclose($myfile);
+}
+
+function updateUserRecord($email, $newData) {
+
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
+	while(!feof($myfile)) {
+		$str = "";
+		$oldData = "";
+    	$str = fgets($myfile);
+		if (substr($str, 0, 1) <> "#")  {
+			$delimiter = ";;;;;;;;;;;;;";
+            list($recEmail, $recPSW, $name, $dob, $address, $suburb, $postal, $state, $contact, $card, $cardExpiry, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
+			if ($recEmail == $email) {
+				$oldData = $str;
+				break;
+			}
+		}
+	}
+	fclose($myfile);
+
+	$fname = "data/users.txt";
+	$fhandle = fopen($fname,"r");
+	$content = fread($fhandle,filesize($fname));
+	
+	$content = str_replace($oldData, $newData, $content);
+	
+	$fhandle = fopen($fname,"w");
+	fwrite($fhandle,$content);
+	fclose($fhandle);
+}
 
 function findUserRecord($psw, $email) {
 
