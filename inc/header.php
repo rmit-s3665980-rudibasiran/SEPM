@@ -1,9 +1,13 @@
 		
 <?php
 // init global variables | start
-$name = $_SESSION['name'];
-$cart = $_SESSION['cart'];
-$showCartIcon = $_SESSION['showCartIcon'];
+$cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+$showCartIcon  = true;
+$email = $name = "";
+if (isset($_SESSION['name']) )              { $name = $_SESSION['name']; }     
+if (isset($_SESSION['cart']) )              { $cart = $_SESSION['cart']; }     
+if (isset($_SESSION['showCartIcon']) )      { $showCartIcon = $_SESSION['showCartIcon']; }     
+
 // init global variables | end
 
 $showLoginIcon = true;

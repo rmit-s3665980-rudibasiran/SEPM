@@ -134,9 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $msg = "Incorrect credentials for " . $adminEmail; 
                 }
                 else if ($record == "PasswordCorrect") {
-                    $_SESSION['adminLoginType'] = $adminLoginType;
+                    $_SESSION['adminLoginType'] = "adminLogin";
                     $_SESSION['adminEmail'] = $adminEmail;
-                    $_SESSION['timestamp'] = "";
            
                     header ("Location: admindata.php"); 
                     exit;
