@@ -14,6 +14,7 @@
     </div>
 </div>
 
+<h1>List of Users</h1>
 
 <?php
 session_start();
