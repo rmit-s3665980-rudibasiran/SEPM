@@ -6,6 +6,7 @@ session_start();
 // init global variables | start
 include 'inc/lib.php';
 $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+$cartItems = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon  = true;
 $email = $name = "";
 if (isset($_SESSION['cart']) )              { $cart = $_SESSION['cart']; }                      
@@ -23,14 +24,23 @@ $showCartIcon = false;
 $_SESSION['showCartIcon'] = $showCartIcon;
 
 $receiptNo = "1234";
-if (isset($_SESSION['receiptNo']) )              { $receiptNo = $_SESSION['receiptNo']; } 
+
+if ($receiptNo <> "") {
+    $cart = $_SESSION['cart'];
+    
+    $cartItems = $cart; // for showing receipt
+    foreach($cart as $productCode=>$numOrdered) {
+        unset($cart[$productCode]);
+    }
+    $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
+    $_SESSION['cart'] = $cart;
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $msg = "";
     $proceed = TRUE;
-    
- 
+
 }
 
 include 'inc/head.php';
@@ -63,13 +73,8 @@ include 'inc/header.php';
     
     <div class="container">
         <div class="row">
-            <div class="row justify-content-center align-items-center">
-                <div id="divCartEmpty" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?> >
-                    <a href="products.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.</a>
-                </div>
-            </div>
 
-            <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
+            <table id="products" class="table table-striped" <?php if(countCart($cartItems) == 0) {?> style="display:none;" <?php } ?>>
 
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";
@@ -90,7 +95,7 @@ include 'inc/header.php';
                     $enableRemovefromCart = false;
                     $inCart = false;
                     $quantity = 0;
-                    foreach($cart as $productCode=>$numOrdered) {
+                    foreach($cartItems as $productCode=>$numOrdered) {
                       if ($code == $productCode) {
                           $quantity = $numOrdered;
                           $disableAddtoCart = true;
@@ -125,7 +130,7 @@ include 'inc/header.php';
                 }
             }
              
-                $totalPrice = calcCart($cart);
+                $totalPrice = calcCart($cartItems);
                 $tPrice = getFloatFromString($totalPrice);
                 ?>
 
@@ -135,14 +140,8 @@ include 'inc/header.php';
                     <td></td>    
                     <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
-                <tr>
-                    
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                    <a href="products.php" class="ahref solid primary">Continue Shopping</a>
-                    </td>
-                </tr>
+
+                   
             </table>
         </div>
     </div>

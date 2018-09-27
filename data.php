@@ -102,11 +102,11 @@ if ($loginType == "login") {
     $timestamp = "";
     $readonly = "readonly";
     $recEmail = $psw = $name = $dob = $address = $suburb = $postal = $state = $contact = $card = $cvv = $regnDate = $recordEnd = "";
-    $dob = "";
-	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
-
+    
     $proceed = false;
-	while(!feof($myfile)) {
+
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
+    while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
