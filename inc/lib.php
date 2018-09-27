@@ -121,6 +121,37 @@ function updateUserRecord($email, $newData) {
 	fclose($fhandle);
 }
 
+
+function findAdminRecord($psw, $email) {
+
+	#Email;Password;Name;End-of-Record
+
+    $record = "RecordNotFound"; // not found
+    $recEmail = $recPSW = $name =  $recordEnd = "";
+	$myfile = fopen("data/admin.txt", "r") or die("Unable to open file!");
+
+	while(!feof($myfile)) {
+		$str = "";
+    	$str = fgets($myfile);
+		if (substr($str, 0, 1) <> "#")  {
+			$delimiter = ";;;";
+            list($recEmail, $recPSW, $name, $recordEnd) = explode(";", $str.$delimiter);
+			if ($recEmail == $email) {
+				$record = "RecordFound";
+				if ($recPSW == md5($psw)) {
+					$record = "PasswordCorrect"; // found
+				}
+				else {
+					$record = "IncorrectCredentials"; // found but incorrect password
+				}
+			}
+		}
+	}
+	fclose($myfile);
+	return $record;
+	
+
+}
 function findUserRecord($psw, $email) {
 
 	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry;CVV;Registration Date;End-of-Record
