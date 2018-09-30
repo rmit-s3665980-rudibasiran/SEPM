@@ -59,7 +59,6 @@ include 'inc/header.php';
 
 <style>
 #products {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     font-size: 12px;
     width: 90%;
@@ -82,20 +81,6 @@ include 'inc/header.php';
     color: white;
 }
 
-img {
-    border: 0px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px;
-}
-
-img:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
-
-.text {
-    font-size: 12px;
-}
 
 .dollar:before {
     content:'$';
@@ -103,8 +88,6 @@ img:hover {
 }
 
 .productListingBtn {
-
-font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 border-collapse: collapse;
 font-size: 12px;
 border: none;
@@ -173,7 +156,7 @@ while(!feof($myfile)) {
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-start">
 
-            <div class="left col-12 col-md-4">
+            <div class="left col-12 col-md-4 col-lg-4">
                 <div class="product-image">
                     <img class="active" src="<?php echo $image_path, $image ;?>">
                 </div>
@@ -189,7 +172,7 @@ while(!feof($myfile)) {
                     </li>
                 </ul>
             </div>
-            <div class="right col-12 col-md-6">
+            <div class="right col-12 col-md-7 col-lg-6">
                 <div class="content">
                     <div class="name row p10t p10b">
                         <h4 class="col"><?php echo $name ;?></h4>
@@ -210,11 +193,7 @@ while(!feof($myfile)) {
                                 <input type="hidden" id="actionType" name="actionType" value="Add">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="AddNewPCode" name="AddNewPCode" value="<?php echo $code; ?>">
-                                <div>
-                                <input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="">
-                                <p><i class="far fa-cart-plus"></i> Add to Cart</p>
-                                </div>
-                                
+                                <input type="submit" id="" name="" <?php if($disableAddtoCart) {?> disabled="disabled" <?php } ?>  value="&#xf217; Add to Cart">
                             </form>
                         </div>
                         <div class="col-auto">
@@ -222,8 +201,7 @@ while(!feof($myfile)) {
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
-                                <p><i class="far fa-trash-alt"></i> Remove from Cart</p>
-                                <input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
+                                <input type="submit" id=""  name="" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="&#xf2ed; Remove from Cart">
                             </form>
                         </div>
                     </div>

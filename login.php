@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palm Tech</title>
 
-<style>
+<!-- <style>
 body, html {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
@@ -78,14 +73,19 @@ input[type=text]:focus, input[type=password]:focus {
 .btn:hover {
     opacity: 0.7;
 }
-</style>
-</head>
-<body>
+</style> -->
+
 
 <?php
+
+// wanyibeh@palmtech.com / ttt
+
+
 session_start();
 
 include 'inc/lib.php';
+include 'inc/head.php';
+
 
 
 $msg = $email = $psw = "";
@@ -157,46 +157,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<table>
-<tr>
 
-<td>
-<div class="bg-img">
-    <div class="container2">
-        <a href="index.php"><img src="images/palmtechlogo.png"></a>
+<header>
+    <div class="container h-100">
+        <div class="top row h-100 justify-content-between align-items-center">
+            <div class="col text-center">
+                <a href="index.php">
+                    <img src="images/logo.svg" id="logo" width="50px" height= "50px" />
+                </a>
+            </div>    
+        </div>
     </div>
-</div>
-</td>
+</header>
 
-<td>
-
-
-<div class="bg-img">
+<section id="title" class="products navcat b-primary p10t p10b">
     <div class="container">
-    
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-       
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" value="<?php echo $email; ?>">
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Password</label>
-            <input type="password" placeholder="Enter Password" name="psw" value="<?php echo $psw; ?>">
-            <input type="hidden" id="loginType" name="loginType" value="login">
-            <button type="submit" name ="submit" value="login" class="btn">Login</button>
-            
-        </form>
-        
-       <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b> </b></h1>
-       
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="loginType" name="loginType" value="new">
-            <button type="submit" name ="register" value="register" class="btn">Register</button>
-        </form>
-        
-        <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msg; ?></b></h1>
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <h4 class="heading">
+                    Member Login
+                </h4>
+            </div>
+        </div>
     </div>
-</div>
-</td>
+</section>
 
-</tr>
-</table>
+
+<section class="m50t m50b">
+    <div class="container">
+        <div class="row justify-content-start align-items-center">
+            <form method="post" class="col-12 col-md-6" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Email" name="email" value="<?php echo $email; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="psw">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="psw" value="<?php echo $psw; ?>">
+                    <input type="hidden" id="loginType" name="loginType" value="login">
+                </div>
+                <button type="submit" name ="submit" value="login"  class="ahref solid dark">Login</button>
+            </form>
+        </div>
+        <div class="row justify-content-end align-items-center">
+            <div class="col-12 col-md-6">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <input type="hidden" id="loginType" name="loginType" value="new">
+                    <button type="submit" name ="register" value="register" class="ahref solid dark">Register</button>
+                </form>
+                <h2><b></b></h2>
+                <h2><b><?php echo $msg; ?></b></h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<?php 
+include 'inc/footer.php';
+include 'inc/foot.php';
+;?>
+

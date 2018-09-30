@@ -32,6 +32,17 @@ $colors: (
 
 $trans: all .5s ease;
 
+@keyframes fadeIn {
+	from {
+    	opacity: 0;
+    	transform: translate3d(0, -3%, 0);
+  	}
+  	to {
+    	opacity: 1;
+    	transform: translate3d(0, 0, 0);
+  	}
+}
+
 
 
 html, body {
@@ -52,12 +63,23 @@ img { width: 100%; }
 .ahref {
 	position: relative; display: inline-block;
 	padding: 8px 30px;
-	background-color: $primary;
+	background-color: transparent;
 	border: 1px solid $white; color: $white;
 	transition: $trans;
 
 	font-weight: bold;
 
+	svg { margin-left: 15px;}
+
+	&.dark {
+		border-color: $dark;
+		background-color: $dark;
+	}
+
+	&.primary {
+		border-color: $primary;
+		background-color: $primary;
+	}
 
 	&:hover {
 		border-color: $primary; color: $white;

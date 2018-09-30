@@ -9,28 +9,117 @@
  */
 
 
-
-
 #cart {
 	table {
 		tr {
+			background-color: $grey; 
+			border-bottom: 5px solid $white;
+			
 			td {
-				
 				vertical-align: middle;
 				border: 0;
 
 				&:last-child { text-align: right; }
 
-				form.cartcta svg {
-					color: red; 
+				form.cartcta {
 				}
 				input {
+					color: $dark;
 					border: 0; background-color: transparent;
+				}
+			}
+
+			&.total {
+				background-color: $white;
+			}
+			&.cta {
+				background-color: $dark;
+			}
+		}
+
+
+	}
+
+}
+
+
+#visa-icon{
+  .st0{fill:#194BA0;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#F9A61C;}
+}
+
+#mc-icon{
+  .st0{fill:#0E0D0E;}
+	.st1{fill:#E61E25;}
+	.st2{fill:#F49C1E;}
+	.st3{fill:#F26122;}
+}
+
+
+.checkout {
+	padding: 15px;
+	.row {
+		> div {
+			font-weight: bold; 
+			label { 
+				font-size: 12px; 
+				color: #999; 
+			}
+			> div:last-child {
+				border-bottom: 1px solid $dark;
+			}
+		}
+	}
+	&#shipping {
+		background-color: rgba($primary, .3);
+	}
+
+	&#carddeets {
+		background-color: #161e2f;
+		.row {
+			margin-top: 25px;
+
+			&:last-child {
+				margin-top: 50px;
+			}
+
+			> div {
+				> div:last-child {
+					border-color: #999;
+				}
+
+				> span {
+					padding: 15px 15px 10px; display: block;
+					text-align: center; 
+					border: 1px solid rgba($primary,.5);
+					transition: all .5s ease;
+					cursor: pointer;
+
+					&:hover {
+						box-shadow: 0 5px 20px 0 #000;
+						transition: all .5s ease;
+					}
+
+
+					svg { width: 74px; }
+				}
+
+				
+
+				a {
+					text-align: center;
+					width: 100%; color: $dark;
+					background-color: #50e3c2;
 				}
 			}
 		}
 	}
+
 }
+
+
+
 
 
 

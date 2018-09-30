@@ -69,7 +69,7 @@ include 'inc/header.php';
 </section>
 
 
-<section id="cart">
+<section id="cart" class="m100b">
     
     <div class="container">
         <div class="row">
@@ -121,7 +121,6 @@ include 'inc/header.php';
                         <?php
                         echo '</tr>';
                         echo '</div>';
-                        echo '<tr><td colspan="8">&nbsp</td></tr>';
                         
 
                     }
@@ -134,11 +133,8 @@ include 'inc/header.php';
                 $tPrice = getFloatFromString($totalPrice);
                 ?>
 
-                <tr>
-             
-                    <td></td>
-                    <td></td>    
-                    <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
+                <tr class="total">
+                    <td colspan="4"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
 
                    

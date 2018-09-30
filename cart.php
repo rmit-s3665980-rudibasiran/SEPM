@@ -97,7 +97,7 @@ include 'inc/header.php';
                 </div>
             </div>
 
-            <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
+            <table id="products" class="table" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
 
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";
@@ -132,30 +132,30 @@ include 'inc/header.php';
                         echo '<div class="text">';
                         echo '<tr>';
                         echo '<td width="50px"><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
-                        echo '<td><strong>' . $name       . '</strong></td>';         
+                        echo '<td colspan="2"><strong>' . $name       . '</strong></td>';         
 
                     $aPrice = getFloatFromString($price);
             ?>
                         
                         <td align="center">
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="DecrementQuantity">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name="" class="ahref solid primary" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
+                                <input type="submit" id="" name="" class="ahref solid primary" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="&#xf068; ">
                             </form>
                         </td>
                        
                         <td align="center"><?php echo $quantity; ?></td>
 
                         <td align="center">
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="IncrementQuantity">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name=""  class="ahref solid primary" value="+">
+                                <input type="submit" id="" name=""  class="ahref solid primary" value="&#xf067; ">
                             </form>
                         </td>
                         
@@ -165,8 +165,7 @@ include 'inc/header.php';
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
-                                <i class="far fa-trash-alt"></i>
-                                <input type="submit" id=""  name="" class="ahref solid primary" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
+                                <input type="submit" id=""  name="" class="ahref solid primary" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="&#xf2ed; Remove from Cart">
                             </form>
                         </td>
                         <td><strong><?php echo money_format('%i',$aPrice);?></strong></td>
@@ -174,7 +173,6 @@ include 'inc/header.php';
                         <?php
                         echo '</tr>';
                         echo '</div>';
-                        echo '<tr><td colspan="8">&nbsp</td></tr>';
                         
 
                     }
@@ -187,28 +185,21 @@ include 'inc/header.php';
                 $tPrice = getFloatFromString($totalPrice);
                 ?>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>    
-                    <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
+                <tr class="total"> 
+                    <td colspan="8"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                    <a href="products.php" class="ahref solid primary">Continue Shopping</a>
+                <tr class="cta">
+                    <td align="left" colspan="4">
+                        <a href="products.php" class="ahref solid dark">Continue shopping</a>
+                    </td>
+                    <td align="right" colspan="4">
+                    
                     <?php
-                    $checkoutMsg = "Please login first to checkout";
+                    $checkoutMsg = "Login to proceed to checkout";
                     if ($showCheckOut) {
                         $checkoutMsg = "Check Out";
                     }
-                    echo '<a href="' . (!$showCheckOut ? '#' : 'checkout.php') . '" class="ahref solid primary">' . $checkoutMsg . '</a>';
+                    echo '<a href="' . (!$showCheckOut ? '#' : 'checkout.php') . '" class="ahref solid primary">' . $checkoutMsg . ' <i class="fal fa-arrow-right"></i></a>';
                     ?>
                     </td>
                 </tr>

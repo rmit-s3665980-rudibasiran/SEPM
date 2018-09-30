@@ -75,14 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</h2>
 </section>
 
-<section class="products navcat p10t p10bt m50b">
-	<div class="container">
-		<div class="row justify-content-center align-items-center">
-			
-		</div>
-	</div>
-</section>
-
 
 <section class="products listing">
 	<div class="container">
@@ -108,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			<!-- start loop -->
 
-			<li class="element-item <?php echo slugify($category);?> col-3">
+			<li class="element-item <?php echo slugify($category);?> col-12 col-md-6 col-lg-3">
 				<div>
 					<input type="submit" id="pCode" name="pCode" value="<?php echo $code; ?>">
 					<div class="image has-image" style="background-image: url(images/<?php echo $image ;?>);">

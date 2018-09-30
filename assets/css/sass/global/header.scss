@@ -10,9 +10,53 @@ header {
 	.right {
 		a {
 			color: $white;
+			margin-right: 20px;
 			&:first-child {
-				margin-right: 20px;
+				margin-right: 5px;
+			}
+			&:last-child {
+				margin-right: 0;
 			}
 		}
 	}
 }
+
+
+.numberCircle {
+  	border-radius: 50%;
+  	behavior: url(PIE.htc);
+  	width: 25px; height: 25px;
+  	padding: 5px;
+  	background: $primary;
+  	color: #666;
+  	text-align: center;
+	font-weight: bold;  
+    line-height: 15px;
+    font-size: 14px;
+}
+
+#myCart {
+	position: absolute; top: 40px; right: 50px;
+	background-color: $white;
+	font-size: 12px;
+	z-index: 5;
+	@include box-shadow(0px, 0px, 20px, 0, rgba(0,0,0,.2), false);
+	animation: fadeIn 500ms linear forwards;
+
+	&:before {
+		content:"\A";
+		position: absolute; top: -8px; left: 50%;
+		transform: translateX(-50%) rotate(-25deg);
+		-webkit-transform: translateX(-50%) rotate(-25deg);
+		-moz-transform: translateX(-50%) rotate(-25deg);
+		-ms-transform: translateX(-50%) rotate(-25deg);
+	    border-style: solid;
+	    border-width: 10px 12px 10px 0;
+	    border-color: transparent $white transparent transparent;
+	    
+	    
+	}
+
+	table { margin-bottom: 0; }
+}
+

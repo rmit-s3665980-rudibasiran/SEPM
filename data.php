@@ -1,90 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palm Tech</title>
-<style>
-body, html {
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("images/background.png");
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.bg-img {
-    /* The image used */
-    background-image: url("images/background.png");
-
-    min-height: 380px; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: 100% 100%;
-    box-shadow: 5px 5px 5px grey;
-}
-
-/* Add styles to the form container */
-.container {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    max-width: 480px;
-    padding: 16px;
-    background-color: white;
-}
-
-.container2 {
-    position: absolute;
-    left: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-}
-
-
-/* Full-width input fields */
-input[type=text], input[type=password], input[type=date] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-}
-
-input[type=text]:focus, input[type=password]:focus, input[type=date]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-/* Set a style for the submit button */
-.btn {
-    background-color: black;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 1;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn:hover {
-    opacity: 0.7;
-}
-</style>
-</head>
-<body>
-
 <?php
 session_start();
 include 'inc/lib.php';
+include 'inc/head.php';
 
 $proceed = false;
 $recEmail = $psw = $name = $dob = $address = $suburb = $postal = $state = $contact = $card = $cardExpiry = $cvv = $regnDate = "";
@@ -318,105 +235,178 @@ function myFunction() {
 }
 </script>
 
-<table>
-<tr>
-
-<td>
-
-<div class="bg-img">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <div class="container">
-            <h2 style="font-family: Arial; color: Black;font-size: 20px;">MEMBER DETAILS</h2>
-            <h2 style="font-family: Arial; color: Black;font-size: 10px;"><?php echo $timestamp; ?> </h2>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="email"><b>Email</b></label>
-            <input type="text" name="email" value="<?php echo $email; ?>"  <?php echo $readonly; ?> >
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgEmail; ?></b></h1>
-    
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="name"><b>Name</b></label>
-            <input type="text" name="name" value="<?php echo $name; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgName; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="dob"><b>Date of Birth</b></label>
-            <input type="date" name="dob" value="<?php echo $dob; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgDOB; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="address"><b>Address</b></label>
-            <input type="text" name="address" value="<?php echo $address; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgAddr; ?></b></h1>
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="suburb"><b>Suburb</b></label>
-            <input type="text" name="suburb" value="<?php echo $suburb; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgSuburb; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="postal"><b>Postal Code</b></label>
-            <input type="text" name="postal" value="<?php echo $postal; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgPostal; ?></b></h1>
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="state"><b>State</b></label>
-            <input type="text" name="state" value="<?php echo $state; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgState; ?></b></h1>
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="contact"><b>Contact Number</b></label>
-            <input type="text" name="contact" value="<?php echo $contact; ?>">
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgContact; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="regnDate"><b>Registration Date</b></label>
-            <input type="date" name="regnDate" value="<?php echo $regnDate; ?>"   readonly >
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Credit Card</label>
-            <input type="password" name="card" id="card" value="<?php echo $card; ?>" >
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgCard; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="cvv"><b>CVV</label>
-            <input type="password" name="cvv" id="cvv" value="<?php echo $cvv; ?>"  >
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgCVV; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="cardExpiry"><b>Expiry Date</b></label>
-            <input type="date" name="cardExpiry" value="<?php echo $cardExpiry; ?>"  >
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgExpiry; ?></b></h1>
-
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Password</label>
-            <input type="password" name="psw" id="psw" value="<?php echo $psw; ?>"  <?php echo $readonly; ?> >
-            <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msgPSW; ?></b></h1>
-            
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="showCard"><b>Show Credit Card Information</b></label>
-            <input type="checkbox" name = "showCard" onclick="myFunction()">
-      
-            <h2 style="font-family: Arial; color: White;"></h2>
-            <input type="hidden" id="actionType" name="actionType" value="saveData">
-            <button type="submit" class="btn" >Save</button>
+<header>
+    <div class="container h-100">
+        <div class="top row h-100 justify-content-between align-items-center">
+            <div class="col text-center">
+                <a href="index.php">
+                    <img src="images/logo.svg" id="logo" width="50px" height= "50px" />
+                </a>
+            </div>    
         </div>
-    </form>
-    
-</div>
-</td>
+    </div>
+</header>
+
+<section id="title" class="products navcat b-primary p10t p10b">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <h4 class="heading">
+                    Register as Our Member
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="register" class="form m50t m50b">
+    <div class="container">
+        <div class="row justify-content-left align-items-center">
+
+            <form method="post" class="col-12" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <h2><?php echo $timestamp; ?> </h2>
+
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="email" value="<?php echo $email; ?>"  <?php echo $readonly; ?> >
+                        <p class="error"><?php echo $msgEmail; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="name" value="<?php echo $name; ?>">
+                        <p class="error"><?php echo $msgName; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dob" class="col-sm-2 col-form-label">Date of Birth*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="date" name="dob" value="<?php echo $dob; ?>">
+                        <p class="error"><?php echo $msgDOB; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="address" value="<?php echo $address; ?>">
+                        <p class="error"><?php echo $msgAddr; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="suburb" class="col-sm-2 col-form-label">Suburb*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="suburb" value="<?php echo $suburb; ?>">
+                        <p class="error"><?php echo $msgSuburb; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="postal" class="col-sm-2 col-form-label">Postal Code*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="postal" value="<?php echo $postal; ?>">
+                        <p class="error"><?php echo $msgPostal; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="state" class="col-sm-2 col-form-label">State*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="state" value="<?php echo $state; ?>">
+                        <p class="error"><?php echo $msgState; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="contact" class="col-sm-2 col-form-label">Contact Number*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="contact" value="<?php echo $contact; ?>">
+                        <p class="error"><?php echo $msgContact; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="regnDate" class="col-sm-2 col-form-label">Registration Date</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="date" name="regnDate" value="<?php echo $regnDate; ?>"   readonly >
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="psw" class="col-sm-2 col-form-label">Credit Card</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" name="card" id="card" value="<?php echo $card; ?>" >
+                        <p class="error"><?php echo $msgCard; ?></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="cvv" class="col-sm-2 col-form-label">CVV*</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" name="cvv" id="cvv" value="<?php echo $cvv; ?>"  >
+                        <p class="error"><?php echo $msgCVV; ?></p>
+                    </div>
+                </div>
 
 
+                <div class="form-group row">
+                    <label for="cardExpiry" class="col-sm-2 col-form-label">Expiry Date*</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="cardExpiry" value="<?php echo $cardExpiry; ?>"  >
+                        <p class="error"><?php echo $msgExpiry; ?></p>
+                    </div>
+                </div>
 
-<td>
-<div class="bg-img">
-    <div class="container2">
-        <a href="index.php"><img src="images/palmtechlogo.png"></a>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <input type="hidden" id="actionType" name="actionType" value="GoBackProducts">
-        <button type="submit" class="btn" >Back to Product Listing</button>
-        </form>
-        <br>
-        <h1 style="font-family: Arial; color: white;font-size: 12px;">
-            <b><?php echo $successfulRegistration ?> </b></h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"   
-            <?php if($loginType <> "login") {?> style="display:none;" <?php } ?>>
-        <input type="hidden" id="actionType" name="actionType" value="Logout">
-        <button type="submit" class="btn" >Logout</button>
-        </form>
+                <div class="form-group row">
+                    <label for="psw" class="col-sm-2 col-form-label">Password*</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="psw" id="psw" value="<?php echo $psw; ?>"  <?php echo $readonly; ?> >
+                        <p class="error"><?php echo $msgPSW; ?></p>
+                    </div>
+                </div>
 
-         </div>
-</div>
-</td>
+                <div class="form-group row">
+                    <label for="showCard" class="col-sm-2 col-form-label">Show Credit Card Information</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" class="form-control" name = "showCard" onclick="myFunction()">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row justify-content-left align-items-center">
 
-<tr>
-</table>
+            <h2 style="font-family: Arial; color: White;"></h2>
+            <div class="col-12 col-md-3">
+                <input type="hidden" id="actionType" name="actionType" value="saveData">
+                <button type="submit" class="ahref solid primary" >Save Details</button>
+            </div>
+
+            <div class="col-12 col-md-9 d-flex justify-content-end">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style="margin-right: 5px;">
+                    <input type="hidden" class="form-control" id="actionType" name="actionType" value="GoBackProducts">
+                    <button type="submit" class="ahref solid dark" >Back to Product Listing</button>
+                </form>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"   
+                <?php if($loginType <> "login") {?> style="display:none;" <?php } ?>>
+                    <input type="hidden" id="actionType" name="actionType" value="Logout">
+                    <button type="submit" class="ahref solid dark" >Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-left align-items-center">
+            <h4 class="success">
+                <?php echo $successfulRegistration ?>
+            </h4>
+        </div>
+    </div>
+</section>
+
+
 
 </body>
 </html>
