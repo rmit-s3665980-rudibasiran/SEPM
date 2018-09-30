@@ -14,7 +14,7 @@
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue nisi vitae euismod sollicitudin. Sed porta neque dolor, id consequat mauris facilisis eu. Sed ut turpis finibus, tincidunt velit eu, dictum nisi.
 					</p>
-					<a href="product_listing.php" class="ahref m20t">Shop Now ></a>
+					<a href="products.php" class="ahref m20t">Shop Now ></a>
 				</div>
 				<div class="right col-6 h-100 d-flex align-items-center">
 					<img src="images/hero-right.png" />

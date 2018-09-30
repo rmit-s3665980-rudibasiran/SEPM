@@ -34,7 +34,7 @@ function getFloatFromString($string) {
 
 function  calcCart ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
-	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 	$total = 0;
 	while(!feof($myfile)) {
     	$str = "";
@@ -62,11 +62,10 @@ function  printCart ($data) {
 	echo "Contents of Cart | End<br>";
 }
 
-
-function isCartEmpty ($data) {
+function countCart ($data) {
 	$str = $category = $code = $name = $image = $desc = $price = "";
-	$myfile = fopen("product.txt", "r") or die("Unable to open file!");
-	$cartEmpty = true;
+	$myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
+	$count = 0;
 	while(!feof($myfile)) {
     	$str = "";
     	$str = fgets($myfile);
@@ -75,32 +74,71 @@ function isCartEmpty ($data) {
         	if ($name <> "") {
             	foreach($data as $productCode=>$numOrdered) {
                 	if ($code == $productCode) {
-                    	$cartEmpty = false;
+                    	$count++;
                		}
            		}
         	}
 		}
 	}
 	
-	return $cartEmpty;
+	return $count;
 }
 
-function findUserRecord($psw, $email) {
+function writeNewUserRecord($data) {
 
-	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;CVV
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry; CVV;Registration Date;End-of-Record
+	$myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
+	fwrite($myfile, "\n".$txt);
+	fclose($myfile);
+}
+
+function updateUserRecord($email, $newData) {
+
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
+	while(!feof($myfile)) {
+		$str = "";
+		$oldData = "";
+    	$str = fgets($myfile);
+		if (substr($str, 0, 1) <> "#")  {
+			$delimiter = ";;;;;;;;;;;;;";
+            list($recEmail, $recPSW, $name, $dob, $address, $suburb, $postal, $state, $contact, $card, $cardExpiry, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
+			if ($recEmail == $email) {
+				$oldData = $str;
+				break;
+			}
+		}
+	}
+	fclose($myfile);
+
+	$fname = "data/users.txt";
+	$fhandle = fopen($fname,"r");
+	$content = fread($fhandle,filesize($fname));
+	
+	$content = str_replace($oldData, $newData, $content);
+	
+	$fhandle = fopen($fname,"w");
+	fwrite($fhandle,$content);
+	fclose($fhandle);
+}
+
+
+function findAdminRecord($psw, $email) {
+
+	#Email;Password;Name;End-of-Record
 
     $record = "RecordNotFound"; // not found
-    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cvv = "";
-	$myfile = fopen("user.txt", "r") or die("Unable to open file!");
+    $recEmail = $recPSW = $name =  $recordEnd = "";
+	$myfile = fopen("data/admin.txt", "r") or die("Unable to open file!");
 
 	while(!feof($myfile)) {
 		$str = "";
     	$str = fgets($myfile);
 		if (substr($str, 0, 1) <> "#")  {
-			list( $recEmail, $recPSW, $name, $dateOfBirth, $address, $suburb, $postal, $state, $contact, $card, $cvv ) = explode(";", $str.";;;;;;;;;;");
+			$delimiter = ";;;";
+            list($recEmail, $recPSW, $name, $recordEnd) = explode(";", $str.$delimiter);
 			if ($recEmail == $email) {
 				$record = "RecordFound";
-				if ($recPSW == $psw) {
+				if ($recPSW == md5($psw)) {
 					$record = "PasswordCorrect"; // found
 				}
 				else {
@@ -109,6 +147,37 @@ function findUserRecord($psw, $email) {
 			}
 		}
 	}
+	fclose($myfile);
+	return $record;
+	
+
+}
+function findUserRecord($psw, $email) {
+
+	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry;CVV;Registration Date;End-of-Record
+
+    $record = "RecordNotFound"; // not found
+    $recEmail = $recPSW = $name = $dateOfBirth = $address = $suburb = $postal = $state = $contact = $card = $cardExpiry = $cvv = $regnDate = $recordEnd = "";
+	$myfile = fopen("data/users.txt", "r") or die("Unable to open file!");
+
+	while(!feof($myfile)) {
+		$str = "";
+    	$str = fgets($myfile);
+		if (substr($str, 0, 1) <> "#")  {
+			$delimiter = ";;;;;;;;;;;;;";
+            list($recEmail, $recPSW, $name, $dob, $address, $suburb, $postal, $state, $contact, $card, $cardExpiry, $cvv, $regnDate, $recordEnd) = explode(";", $str.$delimiter);
+			if ($recEmail == $email) {
+				$record = "RecordFound";
+				if ($recPSW == md5($psw)) {
+					$record = "PasswordCorrect"; // found
+				}
+				else {
+					$record = "IncorrectCredentials"; // found but incorrect password
+				}
+			}
+		}
+	}
+	fclose($myfile);
     return $record;
 }
 

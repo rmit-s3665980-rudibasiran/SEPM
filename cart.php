@@ -22,16 +22,11 @@ $_SESSION["name"] = $name;
 $showCartIcon = false; 
 $_SESSION['showCartIcon'] = $showCartIcon;
 
+
 $showCheckOut = true;
 if ($email == "") {
     $showCheckOut = false;
-    echo "showCheckOut ==> false";    
 }
-
-
-include 'inc/head.php';
-include 'inc/header.php';
-
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,13 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $actionType = $_POST["actionType"];
 
-    if ($actionType == "Add") {
-        $AddNewPCode = $_POST["AddNewPCode"];
-        $cart = $_SESSION['cart'];
-        $cart += [ $AddNewPCode => 1 ];
-        $_SESSION['cart'] = $cart;
-    }
-    else if ($actionType == "Remove") {
+   if ($actionType == "Remove") {
         $RemovePCode = $_POST["RemovePCode"];
         $cart = $_SESSION['cart'];
         unset($cart[$RemovePCode]);
@@ -71,6 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+include 'inc/head.php';
+include 'inc/header.php';
+
 ?>
 
 
@@ -86,9 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </section>
 
+
 <section class="global m50t m50b">
     <h2 class="heading col">
-        <span>ITEMS</span>
+        <span>ITEMS
+        </span>
     </h2>
 </section>
 
@@ -97,20 +91,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <div class="container">
         <div class="row">
+            <div class="row justify-content-center align-items-center">
+                <div id="divCartEmpty" <?php if (countCart($cart) > 0) {?> style="display:none;" <?php } ?> >
+                    <a href="products.php" class="ahref m20t">Your cart is empty. Let's look at some of our best-sellers.</a>
+                </div>
+            </div>
 
-            <table id="productListingCartEmpty" <?php if(!isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
-                 <tr align="middle">
-                 <td colspan="8"><a href="product_listing.php"><button class="productListingBtn">
-                    Your cart is empty. Let's look at some of our best-sellers.</button></a></td>
-                </tr>
-            </table>
-
-            <table id="products" class="table table-striped" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
+            <table id="products" class="table table-striped" <?php if(countCart($cart) == 0) {?> style="display:none;" <?php } ?>>
 
             <?php
             $str = $category = $code = $name = $image = $desc = $price = "";
 
-            $myfile = fopen("product.txt", "r") or die("Unable to open file!");
+            $myfile = fopen("data/products.txt", "r") or die("Unable to open file!");
 
             // Output one line until end-of-file for selected items
             while(!feof($myfile)) {
@@ -119,8 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $str = fgets($myfile);
                 if (substr($str, 0, 1) <> "#")  {
                   list($category, $code, $brand, $name, $image, $desc, $price) = explode(";", $str.";;;;;");
-
-                  
 
                   if ($name <> "") {
 
@@ -142,13 +132,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '<div class="text">';
                         echo '<tr>';
                         echo '<td width="50px"><a target="_blank" href="' .$image_path.$image .'"><img src="'. $image_path.$image.'" alt="' .$name.'" style="width:50px"></td>';
-                        echo '<td><strong>' . $name       . '</strong></td>';
-               
-                        
-                        
+                        echo '<td><strong>' . $name       . '</strong></td>';         
 
-                        $aPrice = getFloatFromString($price);
-                        ?>
+                    $aPrice = getFloatFromString($price);
+            ?>
                         
                         <td align="center">
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -156,10 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name="" class="productListingBtn" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
+                                <input type="submit" id="" name="" class="ahref solid primary" <?php if($quantity == 1) {?> disabled="disabled" <?php } ?>  value="-">
                             </form>
                         </td>
-
+                       
                         <td align="center"><?php echo $quantity; ?></td>
 
                         <td align="center">
@@ -168,21 +155,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="currCode" name="currCode" value="<?php echo $code; ?>">
                                 <input type="hidden" id="currQuantity" name="currQuantity" value="<?php echo $quantity; ?>">
-                                <input type="submit" id="" name=""  class="productListingBtn" value="+">
+                                <input type="submit" id="" name=""  class="ahref solid primary" value="+">
                             </form>
                         </td>
                         
-
+                       
                         <td>
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="cartcta">
                                 <input type="hidden" id="actionType" name="actionType" value="Remove">
                                 <input type="hidden" id="pCode" name="pCode" value="<?php echo $pCode; ?>">
                                 <input type="hidden" id="RemovePCode" name="RemovePCode" value="<?php echo $code; ?>">
                                 <i class="far fa-trash-alt"></i>
-                                <input type="submit" id=""  name="" class="productListingBtn" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
+                                <input type="submit" id=""  name="" class="ahref solid primary" <?php if(!$enableRemovefromCart) {?> disabled="disabled" <?php } ?>  value="">
                             </form>
                         </td>
-
                         <td><strong><?php echo money_format('%i',$aPrice);?></strong></td>
 
                         <?php
@@ -206,27 +192,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td>    
                     <td colspan="2"><b>TOTAL : <?php echo money_format('%i',$tPrice) ?></b></td>
                 </tr>
                 <tr>
-                    <td><a href="product_listing.php" class="ahref solid primary">Continue Shopping</a></td>
-                    <td><a href="checkout.php" class="ahref solid primary" <?php if(!$showCheckOut) {?> style="display:none;" <?php } ?>><button class="productListingBtn">Checkout</button></a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2">
+                    <a href="products.php" class="ahref solid primary">Continue Shopping</a>
+                    <?php
+                    $checkoutMsg = "Please login first to checkout";
+                    if ($showCheckOut) {
+                        $checkoutMsg = "Check Out";
+                    }
+                    echo '<a href="' . (!$showCheckOut ? '#' : 'checkout.php') . '" class="ahref solid primary">' . $checkoutMsg . '</a>';
+                    ?>
+                    </td>
                 </tr>
             </table>
         </div>
     </div>
 </section>
-
-
-<table id="productListing" <?php if(isCartEmpty($cart)) {?> style="display:none;" <?php } ?>>
-     <tr align="right">
-        <td colspan="8">
-        
-        </td>
-    </tr>
-</table>
 
 <?php include('inc/footer.php');?>
 <?php include('inc/foot.php');?>    

@@ -88,31 +88,23 @@ session_start();
 include 'inc/lib.php';
 
 
-$msg = $email = $psw = "";
+$msg = $adminEmail = $psw = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $msg = "";
     $proceed = TRUE;
     
-    $loginType = $_POST["loginType"];
+    $adminLoginType = $_POST["adminLoginType"];
     
-    
-    if ($loginType == "new") {
-        $_SESSION['loginType'] = $loginType;
-        $_SESSION['email'] = "";
-        $_SESSION['timestamp'] = "";
-        header ("Location: data.php"); 
-        exit;
-    }
-    else if ($loginType == "login") {
+    if ($adminLoginType == "login") {
 
-        if (empty($_POST["email"])) {
+        if (empty($_POST["adminEmail"])) {
             $msg = "Please enter an email address";
             $proceed = FALSE;
         } 
         else {
-            $email = stripInput($_POST["email"]);
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $adminEmail = stripInput($_POST["adminEmail"]);
+            if (!filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) {
                 $msg = "Invalid email format";
                 $proceed = FALSE;
             }
@@ -131,22 +123,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($proceed) {
 
             $record = "";
-            $record = findUserRecord($psw, $email);
+            $record = findAdminRecord($psw, $adminEmail);
        
-            if ($loginType == "login") {
+            if ($adminLoginType == "login") {
                 if ($record == "RecordNotFound") {
-                    $msg = "Record not found for " . $email; 
+                    $msg = "Record not found for " . $adminEmail; 
                 
                 }
                 else if ($record == "IncorrectCredentials") {
-                    $msg = "Incorrect credentials for " . $email; 
+                    $msg = "Incorrect credentials for " . $adminEmail; 
                 }
                 else if ($record == "PasswordCorrect") {
-                    $_SESSION['loginType'] = $loginType;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['timestamp'] = "";
+                    $_SESSION['adminLoginType'] = "adminLogin";
+                    $_SESSION['adminEmail'] = $adminEmail;
            
-                    header ("Location: data.php"); 
+                    header ("Location: admindata.php"); 
                     exit;
                 
                 }
@@ -176,22 +167,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
        
-            <label style="font-family: Arial; color: Black;font-size: 12px;" for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" value="<?php echo $email; ?>">
+            <label style="font-family: Arial; color: Black;font-size: 12px;" for="adminEmail"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="adminEmail" value="<?php echo $adminEmail; ?>">
 
             <label style="font-family: Arial; color: Black;font-size: 12px;" for="psw"><b>Password</label>
             <input type="password" placeholder="Enter Password" name="psw" value="<?php echo $psw; ?>">
-            <input type="hidden" id="loginType" name="loginType" value="login">
+            <input type="hidden" id="adminLoginType" name="adminLoginType" value="login">
             <button type="submit" name ="submit" value="login" class="btn">Login</button>
             
         </form>
         
        <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b> </b></h1>
-       
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" id="loginType" name="loginType" value="new">
-            <button type="submit" name ="register" value="register" class="btn">Register</button>
-        </form>
         
         <h1 style="font-family: Arial; color: Red;font-size: 12px;"><b><?php echo $msg; ?></b></h1>
     </div>
