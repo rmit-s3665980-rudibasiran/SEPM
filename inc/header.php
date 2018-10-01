@@ -5,6 +5,7 @@ $cart = array ("rudi-wanyi-huani-john-ahdeiah" => 1);
 $showCartIcon  = true;
 $email = $name = "";
 if (isset($_SESSION['name']) )              { $name = $_SESSION['name']; }     
+if (isset($_SESSION['email']) )              { $email = $_SESSION['email']; }     
 if (isset($_SESSION['cart']) )              { $cart = $_SESSION['cart']; }     
 if (isset($_SESSION['showCartIcon']) )      { $showCartIcon = $_SESSION['showCartIcon']; }     
 
@@ -38,6 +39,7 @@ function myFunction() {
     }
 }
 </script>
+
 
 <header>
 	<div class="container h-100">
@@ -116,7 +118,8 @@ function myFunction() {
 
 			<a href="cart.php" <?php if(!$showCartIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-shopping-cart"></i> Cart</a>
 			<a href="login.php" <?php if(!$showLoginIcon) {?> style="display:none;" <?php } ?>><i class="fal fa-sign-in"></i> Login</a>
-			<a href="data.php" <?php if(!$showName) {?> style="display:none;" <?php } ?>><i class="fas fa-user"></i>&nbsp &nbsp<?php echo $name; ?></a>
+			<a href="data.php" <?php if(!$showName) {?> style="display:none;" <?php } ?>><i class="fas fa-user"></i>&nbsp <?php echo $_SESSION['name']; ?></a>
+
 
 			
 			</nav>

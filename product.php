@@ -160,17 +160,6 @@ while(!feof($myfile)) {
                 <div class="product-image">
                     <img class="active" src="<?php echo $image_path, $image ;?>">
                 </div>
-                <div class="w-100"></div>
-                <ul class="row image-list">
-                    <li class="col image-item">
-                        <img src="https://source.unsplash.com/VgbUxvW3gS4"></li>
-                    <li class="col image-item">
-                        <img src="https://source.unsplash.com/5WbYFH0kf_8">
-                    </li>
-                    <li class="col image-item">
-                        <img src="https://source.unsplash.com/5WbYFH0kf_8">
-                    </li>
-                </ul>
             </div>
             <div class="right col-12 col-md-7 col-lg-6">
                 <div class="content">
