@@ -1,81 +1,3 @@
-
-<!-- <style>
-body, html {
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("images/background.png");
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.bg-img {
-    /* The image used */
-    background-image: url("images/background.png");
-
-    min-height: 380px; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: 100% 100%;
-    box-shadow: 5px 5px 5px grey;
-}
-
-/* Add styles to the form container */
-.container {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-    background-color: white;
-}
-
-.container2 {
-    position: absolute;
-    left: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-/* Set a style for the submit button */
-.btn {
-    background-color: black;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 1;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn:hover {
-    opacity: 0.7;
-}
-</style> -->
-
-
 <?php
 
 // wanyibeh@palmtech.com / ttt
@@ -185,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <section class="m50t m50b">
     <div class="container">
-        <div class="row justify-content-start align-items-center">
-            <form method="post" class="col-12 col-md-6" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <div class="row justify-content-between align-items-center">
+            <form method="post" class="col-12 col-md-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" placeholder="Enter Email" name="email" value="<?php echo $email; ?>">
@@ -196,17 +118,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" class="form-control" placeholder="Enter Password" name="psw" value="<?php echo $psw; ?>">
                     <input type="hidden" id="loginType" name="loginType" value="login">
                 </div>
-                <button type="submit" name ="submit" value="login"  class="ahref solid dark">Login</button>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" name ="submit" value="login"  class="ahref solid primary">Login</button>
+                </div>
             </form>
-        </div>
-        <div class="row justify-content-end align-items-center">
             <div class="col-12 col-md-6">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <p><strong>Interested in registering as a member?</strong></p>
+                <form class="m25t" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <input type="hidden" id="loginType" name="loginType" value="new">
-                    <button type="submit" name ="register" value="register" class="ahref solid dark">Register</button>
+                    <button type="submit" name ="register" value="register" class="ahref solid dark">Click here</button>
                 </form>
                 <h2><b></b></h2>
-                <h2><b><?php echo $msg; ?></b></h2>
+                <p class="m50t" style="color: red;">
+                    <i class="far fa-exclamation-circle"></i> <strong><?php echo $msg; ?></strong>
+                </p>
             </div>
         </div>
     </div>

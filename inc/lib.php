@@ -88,7 +88,7 @@ function writeNewUserRecord($data) {
 
 	#Email;Password;Name;Date of Birth;Address;Suburb;Postal;State;Contact;Card Number;Card Expiry; CVV;Registration Date;End-of-Record
 	$myfile = fopen("data/users.txt", "a") or die("Unable to open file!");
-	fwrite($myfile, "\n".$txt);
+	fwrite($myfile, "\n".$data);
 	fclose($myfile);
 }
 

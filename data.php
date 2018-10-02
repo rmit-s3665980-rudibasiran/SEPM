@@ -264,7 +264,7 @@ function myFunction() {
         <div class="row justify-content-left align-items-center">
 
             <form method="post" class="col-12" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    <h2><?php echo $timestamp; ?> </h2>
+                <h4 class="m50t m50b" style="color: green;"><?php echo $timestamp; ?></h4>
 
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email*</label>
@@ -376,15 +376,17 @@ function myFunction() {
                         <input type="checkbox" class="form-control" name = "showCard" onclick="myFunction()">
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <h2 style="font-family: Arial; color: White;"></h2>
+                    <div class="col-sm-10">
+                        <input type="hidden" id="actionType" name="actionType" value="saveData">
+                        <button type="submit" class="ahref solid primary" >Save Details</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="row justify-content-left align-items-center">
-
-            <h2 style="font-family: Arial; color: White;"></h2>
-            <div class="col-12 col-md-3">
-                <input type="hidden" id="actionType" name="actionType" value="saveData">
-                <button type="submit" class="ahref solid primary" >Save Details</button>
-            </div>
 
             <div class="col-12 col-md-9 d-flex justify-content-end">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style="margin-right: 5px;">
