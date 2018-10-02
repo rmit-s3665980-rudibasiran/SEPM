@@ -110,17 +110,28 @@ function updateUserRecord($email, $newData) {
 	}
 	fclose($myfile);
 
-	$fname = "data/users.txt";
-	$fhandle = fopen($fname,"r");
-	$content = fread($fhandle,filesize($fname));
-	
-	$content = str_replace($oldData, $newData, $content);
-	
-	$fhandle = fopen($fname,"w");
-	fwrite($fhandle,$content);
-	fclose($fhandle);
-}
+ 	$data = file("data/users.txt");
+	$out = array();
 
+	foreach($data as $line) {
+     	if(trim($line) != trim($oldData)) {
+         	$out[] = $line;
+		}
+	}
+	
+
+	$fp = fopen("data/users.txt", "w+");
+ 	flock($fp, LOCK_EX);
+ 	foreach($out as $line) {
+		if ($line <> "") {
+			fwrite($fp, $line);
+		}
+    	
+	}
+ 	flock($fp, LOCK_UN);
+	fclose($fp);  
+	writeNewUserRecord($newData);
+}
 
 function findAdminRecord($psw, $email) {
 

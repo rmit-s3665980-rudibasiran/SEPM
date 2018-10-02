@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($proceed && $loginType == "login") {
 
             // do update
-            $txt = $email .";". md5($psw) .";". $name .";". $dob .";". $address .";". $suburb .";". $postal .";". $state .";". 
+            $txt = $email .";". $psw .";". $name .";". $dob .";". $address .";". $suburb .";". $postal .";". $state .";". 
                         $contact .";". $card .";". $cardExpiry .";". $cvv .";" . $regnDate . ";EOR";
             updateUserRecord ($email, $txt);
             $_SESSION['timestamp'] = getTimeStamp();
